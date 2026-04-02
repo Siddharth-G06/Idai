@@ -1,0 +1,63 @@
+# --- Environment & OS ---
+.env
+.env.local
+.env.*.local
+.DS_Store
+Thumbs.db
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+pythonv/
+
+# --- Backend Specifics ---
+# Data/Temporary files
+backend/manifestos/*.json
+backend/manifestos/*.txt
+!backend/manifestos/.gitkeep
+
+# --- IDEs/Editors ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- Node.js / Future Frontend ---
+node_modules/
+dist-ssr/
+*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.next/
+out/
+build/
+.cache/
