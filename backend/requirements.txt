@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+pdfplumber
+sentence-transformers
+faiss-cpu
+transformers
+feedparser
+apscheduler
+python-dotenv
+requests
+nltk
+torch
+numpy
