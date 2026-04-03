@@ -1,17 +1,3 @@
-"""
-run_pipeline.py
-Master orchestrator. Runs the full pipeline in order:
-  1. news_fetcher  — pull latest articles
-  2. matcher       — semantic matching
-  3. scorer        — rebuild scores.json
-
-This is what GitHub Actions calls every 6 hours.
-
-Usage:
-    python run_pipeline.py
-    python run_pipeline.py --skip-fetch   (skip news fetch, re-match only)
-"""
-
 import argparse
 import sys
 import time
@@ -39,7 +25,7 @@ def run(skip_fetch: bool = False) -> None:
         else:
             print("\n  [Skipping news fetch as requested]")
 
-        section("Semantic Matcher")
+        section("Semantic Matcher + LLM")
         import matcher
         matcher.run()
 
@@ -47,27 +33,15 @@ def run(skip_fetch: bool = False) -> None:
         import scorer
         scorer.run()
 
-    except FileNotFoundError as e:
-        print(f"\n  PIPELINE ERROR: {e}")
-        print("  Make sure you have run manifesto_parser.py first.")
+    except Exception as e:
+        print(f"\nERROR: {e}")
         sys.exit(1)
 
-    except Exception as e:
-        print(f"\n  UNEXPECTED ERROR: {e}")
-        raise
-
-    elapsed = round(time.time() - start, 1)
-    print(f"\n{'='*55}")
-    print(f"  Pipeline complete in {elapsed}s")
-    print(f"  Finished: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print(f"{'='*55}\n")
+    print(f"\nDone in {round(time.time()-start,1)}s")
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Vaakazhipeer Pipeline")
-    parser.add_argument(
-        "--skip-fetch", action="store_true",
-        help="Skip news fetching, run matcher + scorer only"
-    )
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--skip-fetch", action="store_true")
     args = parser.parse_args()
-    run(skip_fetch=args.skip_fetch)
+    run(args.skip_fetch)

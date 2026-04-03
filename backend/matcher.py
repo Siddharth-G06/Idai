@@ -1,197 +1,167 @@
-"""
-matcher.py
-Core ML engine. Encodes promises + articles using Sentence-BERT,
-builds a FAISS index, finds top matches, scores fulfillment.
-
-Usage:
-    python matcher.py
-"""
-
 import json
-from datetime import datetime, timezone
-from pathlib import Path
-
-import faiss
 import numpy as np
+import faiss
+from pathlib import Path
 from sentence_transformers import SentenceTransformer
 
-# ── Config ────────────────────────────────────────────────────────────────────
+from llm_verifier import verify_fulfillment
 
-DATA_DIR        = Path("../data")
-ARTICLES_PATH   = DATA_DIR / "news_articles.json"
+# ────────────────────────────────────────────────────────
+# CONFIG
+# ────────────────────────────────────────────────────────
 
-PROMISE_FILES = {
-    "DMK":  DATA_DIR / "dmk_2021_promises.json",
-    "ADMK": DATA_DIR / "admk_2016_promises.json",
-}
+DATA_DIR = Path("../data")
 
-# Sentence-BERT multilingual model — handles Tamil + English
-MODEL_NAME = "paraphrase-multilingual-MiniLM-L12-v2"
+NEWS_PATH = DATA_DIR / "news_articles.json"
+PROMISE_PATH = DATA_DIR / "dmk_2016_promises.json"
 
-# Similarity threshold — promises above this score → fulfilled
-FULFILLMENT_THRESHOLD = 0.55
+CACHE_PATH = DATA_DIR / "llm_cache.json"
 
-# Number of top articles to retrieve per promise
-TOP_K = 3
+THRESHOLD = 0.35
+TOP_K = 5
+BATCH_SIZE = 5
+USE_LLM = True
 
+MAX_ARTICLE_LEN = 500   # 🔥 CRITICAL FIX (prevents freeze)
 
-# ── Loaders ───────────────────────────────────────────────────────────────────
+# ────────────────────────────────────────────────────────
+# CACHE
+# ────────────────────────────────────────────────────────
 
-def load_json(path: Path) -> list[dict]:
-    if not path.exists():
-        raise FileNotFoundError(f"Required file missing: {path}")
-    with open(path, encoding="utf-8") as f:
-        return json.load(f)
+def load_cache():
+    if CACHE_PATH.exists():
+        return json.load(open(CACHE_PATH))
+    return {}
 
+def save_cache(cache):
+    with open(CACHE_PATH, "w") as f:
+        json.dump(cache, f, indent=2)
 
-def save_json(data, path: Path) -> None:
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+# ────────────────────────────────────────────────────────
+# UTILS
+# ────────────────────────────────────────────────────────
 
+def keyword_overlap(a, b):
+    A = set(a.lower().split())
+    B = set(b.lower().split())
+    return len(A & B) / (len(A) + 1e-5)
 
-# ── Text Preparation ──────────────────────────────────────────────────────────
+# ────────────────────────────────────────────────────────
+# MAIN
+# ────────────────────────────────────────────────────────
 
-def article_to_text(article: dict) -> str:
-    """
-    Combines title + body for richer semantic representation.
-    Title gets double weight by repeating it.
-    """
-    title = article.get("title", "").strip()
-    body  = article.get("body",  "").strip()
-    return f"{title}. {title}. {body}"[:1000]   # cap at 1000 chars
+def run():
+    print("\n=== Matcher ===")
 
+    # ── Load data ─────────────────────────
+    print("Loading articles...")
+    articles = json.load(open(NEWS_PATH, encoding="utf-8"))
 
-def promise_to_text(promise: dict) -> str:
-    return promise.get("promise", "").strip()
+    # 🔥 LIMIT TEXT SIZE BEFORE EMBEDDING
+    texts = [
+        (a["title"] + " " + a["body"])[:MAX_ARTICLE_LEN]
+        for a in articles
+    ]
 
+    print(f"Total articles: {len(texts)}")
 
-# ── Encoding + FAISS Index ────────────────────────────────────────────────────
+    # ── Load model ────────────────────────
+    print("Loading SentenceTransformer model...")
+    model = SentenceTransformer(
+        "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+    )
 
-def build_article_index(
-    articles: list[dict],
-    model: SentenceTransformer,
-) -> tuple[faiss.IndexFlatIP, np.ndarray]:
-    """
-    Encodes all articles and builds a FAISS inner-product index.
-    Normalised vectors → inner product == cosine similarity.
-    """
-    print(f"  Encoding {len(articles)} articles...")
-    texts = [article_to_text(a) for a in articles]
+    # ── Encode articles (FIXED) ───────────
+    print("Encoding articles (this was the freeze point before)...")
 
-    # Batch encoding — much faster than one-by-one
-    vectors = model.encode(
+    embeddings = model.encode(
         texts,
-        batch_size=64,
-        show_progress_bar=True,
-        normalize_embeddings=True,   # L2 normalise for cosine similarity
-        convert_to_numpy=True,
+        batch_size=16,              # ✅ faster
+        show_progress_bar=True      # ✅ visible progress
     )
 
-    dim   = vectors.shape[1]
-    index = faiss.IndexFlatIP(dim)   # Inner Product index
-    index.add(vectors.astype(np.float32))
+    # ── Build FAISS index ────────────────
+    print("Building FAISS index...")
+    index = faiss.IndexFlatL2(embeddings.shape[1])
+    index.add(np.array(embeddings).astype("float32"))
 
-    print(f"  FAISS index built: {index.ntotal} vectors, dim={dim}")
-    return index, vectors
+    # ── Load promises ────────────────────
+    print("Loading promises...")
+    promises = json.load(open(PROMISE_PATH, encoding="utf-8"))
+
+    # ── Load cache ───────────────────────
+    cache = load_cache()
+
+    print(f"Processing {len(promises)} promises...\n")
+
+    # ── Batch processing ─────────────────
+    for i in range(0, len(promises), BATCH_SIZE):
+        batch = promises[i:i+BATCH_SIZE]
+
+        print(f"Batch {i} → {i+len(batch)}")
+
+        for p in batch:
+            query = p["promise"]
+
+            # ── Encode query ─────────────
+            q_emb = model.encode([query]).astype("float32")
+
+            # ── Retrieve Top-K ───────────
+            D, I = index.search(q_emb, TOP_K)
+
+            scores = []
+            top_articles = []
+
+            for rank, idx in enumerate(I[0]):
+                text = texts[idx]
+
+                # ✅ LIMIT TOKENS FOR LLM
+                top_articles.append(text[:1500])
+
+                emb_sim = 1 / (1 + D[0][rank])
+                key_sim = keyword_overlap(query, text)
+
+                scores.append(0.7 * emb_sim + 0.3 * key_sim)
+
+            base_score = sum(scores) / len(scores)
+
+            # ── LLM + CACHE ──────────────
+            cache_key = query.strip().lower()
+
+            if USE_LLM:
+                if cache_key in cache:
+                    result = cache[cache_key]
+                else:
+                    print(f"LLM checking: {query[:60]}...")
+                    result = verify_fulfillment(query, top_articles)
+                    cache[cache_key] = result
+
+                llm_yes = 1 if result["verdict"] == "yes" else 0
+                llm_conf = result["confidence"]
+
+                final_score = 0.6 * base_score + 0.4 * (llm_yes * llm_conf)
+
+                p["llm_verdict"] = result["verdict"]
+                p["llm_confidence"] = llm_conf
+                p["llm_reason"] = result["reason"]
+
+            else:
+                final_score = base_score
+
+            # ── Final status ─────────────
+            p["similarity_score"] = float(final_score)
+            p["status"] = "fulfilled" if final_score > THRESHOLD else "unfulfilled"
+
+    # ── Save cache ───────────────────────
+    save_cache(cache)
+
+    # ── Save updated promises ────────────
+    json.dump(promises, open(PROMISE_PATH, "w", encoding="utf-8"), indent=2)
+
+    print("\n✅ Matching complete")
 
 
-def encode_promises(
-    promises: list[dict],
-    model: SentenceTransformer,
-) -> np.ndarray:
-    texts = [promise_to_text(p) for p in promises]
-    return model.encode(
-        texts,
-        batch_size=64,
-        show_progress_bar=True,
-        normalize_embeddings=True,
-        convert_to_numpy=True,
-    )
-
-
-# ── Matching ──────────────────────────────────────────────────────────────────
-
-def match_promises_to_articles(
-    promises: list[dict],
-    articles: list[dict],
-    index: faiss.IndexFlatIP,
-    model: SentenceTransformer,
-    threshold: float = FULFILLMENT_THRESHOLD,
-) -> list[dict]:
-    """
-    For each promise, finds the top-K most similar articles.
-    Annotates each promise with match results and fulfillment status.
-    """
-    promise_vectors = encode_promises(promises, model)
-
-    scores_matrix, indices_matrix = index.search(
-        promise_vectors.astype(np.float32), TOP_K
-    )
-
-    enriched = []
-    for i, promise in enumerate(promises):
-        best_score   = float(scores_matrix[i][0])
-        best_idx     = int(indices_matrix[i][0])
-        best_article = articles[best_idx] if best_idx < len(articles) else {}
-
-        updated = dict(promise)   # copy
-        updated["status"]           = "fulfilled" if best_score >= threshold else "unfulfilled"
-        updated["similarity_score"] = round(best_score, 4)
-        updated["matched_headline"] = best_article.get("title", "")
-        updated["matched_url"]      = best_article.get("url", "")
-        updated["matched_date"]     = best_article.get("published", "")
-        updated["matched_source"]   = best_article.get("source", "")
-
-        enriched.append(updated)
-
-    return enriched
-
-
-# ── Main Pipeline ─────────────────────────────────────────────────────────────
-
-def run() -> None:
-    print(f"\n{'='*55}")
-    print(f"  Vaakazhipeer — Semantic Matcher")
-    print(f"  {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print(f"{'='*55}\n")
-
-    # Load articles
-    print("[1/4] Loading news articles...")
-    articles = load_json(ARTICLES_PATH)
-    print(f"  {len(articles)} articles loaded.")
-
-    if len(articles) < 10:
-        print("  WARNING: Very few articles. Run news_fetcher.py first.")
-
-    # Load model once — shared across all parties
-    print("\n[2/4] Loading Sentence-BERT model...")
-    model = SentenceTransformer(MODEL_NAME)
-    print(f"  Model loaded: {MODEL_NAME}")
-
-    # Build FAISS index once — shared across all parties
-    print("\n[3/4] Building FAISS index...")
-    index, _ = build_article_index(articles, model)
-
-    # Process each party
-    print("\n[4/4] Matching promises to articles...")
-    for party, path in PROMISE_FILES.items():
-        if not path.exists():
-            print(f"  Skipping {party}: {path} not found")
-            continue
-
-        print(f"\n  ── {party} ──")
-        promises = load_json(path)
-        print(f"  {len(promises)} promises to match")
-
-        enriched = match_promises_to_articles(promises, articles, index, model)
-        save_json(enriched, path)
-
-        fulfilled   = sum(1 for p in enriched if p["status"] == "fulfilled")
-        unfulfilled = len(enriched) - fulfilled
-        print(f"  Results: {fulfilled} fulfilled / {unfulfilled} unfulfilled")
-
-    print(f"\n  Matching complete. Run scorer.py next.\n")
-
+# ────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
     run()
