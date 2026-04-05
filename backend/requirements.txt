@@ -11,3 +11,6 @@ requests
 nltk
 torch
 numpy
+newspaper3k
+pdf2image
+pytesseract

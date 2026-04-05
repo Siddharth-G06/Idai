@@ -1,7 +1,186 @@
 {
-  "DMK_2016": {
-    "total": 699,
+  "AIADMK 2016": {
+    "context": "ruling",
+    "period": "2016-2021",
+    "note": "AIADMK ruled TN 2016-2021; score = promises implemented",
+    "total": 326,
     "fulfilled": 0,
-    "score": 0.0
+    "score": 0.0,
+    "avg_llm_confidence": 0.0,
+    "categories": {
+      "economy": {
+        "total": 47,
+        "fulfilled": 0,
+        "score": 0.0
+      },
+      "agriculture": {
+        "total": 17,
+        "fulfilled": 0,
+        "score": 0.0
+      },
+      "infrastructure": {
+        "total": 138,
+        "fulfilled": 0,
+        "score": 0.0
+      },
+      "healthcare": {
+        "total": 29,
+        "fulfilled": 0,
+        "score": 0.0
+      },
+      "employment": {
+        "total": 69,
+        "fulfilled": 0,
+        "score": 0.0
+      },
+      "education": {
+        "total": 19,
+        "fulfilled": 0,
+        "score": 0.0
+      },
+      "women and youth": {
+        "total": 7,
+        "fulfilled": 0,
+        "score": 0.0
+      }
+    }
+  },
+  "AIADMK 2021": {
+    "context": "opposition",
+    "period": "2021-2026",
+    "note": "AIADMK in opposition 2021-2026; score = promises advocated for",
+    "total": 250,
+    "fulfilled": 0,
+    "score": 0.0,
+    "avg_llm_confidence": 0.0,
+    "categories": {
+      "healthcare": {
+        "total": 20,
+        "fulfilled": 0,
+        "score": 0.0
+      },
+      "infrastructure": {
+        "total": 84,
+        "fulfilled": 0,
+        "score": 0.0
+      },
+      "women and youth": {
+        "total": 13,
+        "fulfilled": 0,
+        "score": 0.0
+      },
+      "employment": {
+        "total": 60,
+        "fulfilled": 0,
+        "score": 0.0
+      },
+      "economy": {
+        "total": 44,
+        "fulfilled": 0,
+        "score": 0.0
+      },
+      "education": {
+        "total": 11,
+        "fulfilled": 0,
+        "score": 0.0
+      },
+      "agriculture": {
+        "total": 18,
+        "fulfilled": 0,
+        "score": 0.0
+      }
+    }
+  },
+  "DMK 2016": {
+    "context": "opposition",
+    "period": "2016-2021",
+    "note": "DMK in opposition 2016-2021; score = promises advocated for",
+    "total": 699,
+    "fulfilled": 4,
+    "score": 0.6,
+    "avg_llm_confidence": 0.0,
+    "categories": {
+      "education": {
+        "total": 34,
+        "fulfilled": 0,
+        "score": 0.0
+      },
+      "women and youth": {
+        "total": 11,
+        "fulfilled": 0,
+        "score": 0.0
+      },
+      "economy": {
+        "total": 63,
+        "fulfilled": 1,
+        "score": 1.6
+      },
+      "employment": {
+        "total": 191,
+        "fulfilled": 0,
+        "score": 0.0
+      },
+      "infrastructure": {
+        "total": 272,
+        "fulfilled": 3,
+        "score": 1.1
+      },
+      "healthcare": {
+        "total": 74,
+        "fulfilled": 0,
+        "score": 0.0
+      },
+      "agriculture": {
+        "total": 54,
+        "fulfilled": 0,
+        "score": 0.0
+      }
+    }
+  },
+  "DMK 2021": {
+    "context": "ruling",
+    "period": "2021-2026",
+    "note": "DMK ruled TN 2021-2026; score = promises implemented",
+    "total": 650,
+    "fulfilled": 0,
+    "score": 0.0,
+    "avg_llm_confidence": 0.0,
+    "categories": {
+      "employment": {
+        "total": 165,
+        "fulfilled": 0,
+        "score": 0.0
+      },
+      "education": {
+        "total": 42,
+        "fulfilled": 0,
+        "score": 0.0
+      },
+      "infrastructure": {
+        "total": 238,
+        "fulfilled": 0,
+        "score": 0.0
+      },
+      "healthcare": {
+        "total": 71,
+        "fulfilled": 0,
+        "score": 0.0
+      },
+      "economy": {
+        "total": 45,
+        "fulfilled": 0,
+        "score": 0.0
+      },
+      "agriculture": {
+        "total": 75,
+        "fulfilled": 0,
+        "score": 0.0
+      },
+      "women and youth": {
+        "total": 14,
+        "fulfilled": 0,
+        "score": 0.0
+      }
+    }
   }
 }
