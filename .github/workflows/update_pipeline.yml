@@ -1,0 +1,75 @@
+name: Vaakazhipeer Data Pipeline
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    
+    # Required to allow GitHub Actions bot to perform git pushes securely
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          
+      - name: Cache pip packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('backend/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+            
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r backend/requirements.txt
+          
+      - name: Run news fetcher
+        env:
+          NEWSAPI_KEY: ${{ secrets.NEWSAPI_KEY }}
+        run: |
+          cd backend
+          python news_fetcher.py
+          
+      - name: Run ML pipeline
+        env:
+          # Note: Added GROQ_API_KEY here because we migrated to Groq earlier.
+          # The pipeline will crash without this token!
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: |
+          cd backend
+          python run_pipeline.py --skip-fetch
+          
+      - name: Check if data files changed
+        id: changes
+        run: |
+          git diff --quiet data/ || echo "changed=true" >> $GITHUB_OUTPUT
+          
+      - name: Commit and push changes
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "vaakazhipeer-bot"
+          git config user.email "bot@vaakazhipeer.app"
+          git add data/
+          git commit -m "auto: pipeline update $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push
+          
+      - name: Skip if no changes
+        if: steps.changes.outputs.changed != 'true'
+        run: |
+          echo "No new data. Skipping commit."
