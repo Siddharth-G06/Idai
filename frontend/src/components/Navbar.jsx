@@ -3,7 +3,6 @@ import { BarChart3, List, GitCompare } from 'lucide-react'
 
 const links = [
   { to: '/',         label: 'Dashboard', icon: BarChart3  },
-  { to: '/promises', label: 'Promises',  icon: List       },
   { to: '/compare',  label: 'Compare',   icon: GitCompare },
 ]
 
