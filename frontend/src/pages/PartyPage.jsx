@@ -1,7 +1,7 @@
-export default function Home() {
+export default function PartyPage({ party }) {
   return (
     <div className="text-white text-2xl font-bold">
-      Home Page
+      Party Page: {party}
     </div>
   )
 }
