@@ -8,6 +8,7 @@ feedparser
 apscheduler
 python-dotenv
 requests
+groq
 nltk
 torch
 numpy

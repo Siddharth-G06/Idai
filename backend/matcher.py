@@ -1,23 +1,28 @@
 """
-matcher.py — Vaakazhipeer
+matacher.py — Vaakazhipeer
 Complete rewrite. No external llm_verifier.py needed.
-Uses local Ollama — no API key, no rate limits, no cost.
+Uses Groq API (free tier) — ultra-fast, no local GPU needed.
 
 ONE-TIME SETUP:
-  1. Download Ollama: https://ollama.com/download
-  2. Open a terminal and run: ollama pull llama3.2
-  3. Then run this script normally — Ollama starts automatically.
+  1. Sign up at https://console.groq.com and create a free API key.
+  2. Add GROQ_API_KEY=<your_key> to backend/.env
+  3. Run:  pip install groq
+  4. Then run this script normally.
 
-If you don't want to install Ollama, set USE_LLM = False below.
+If you don't want to use Groq, set USE_LLM = False below.
 Scores will be lower quality but will run instantly.
 """
 
 import json
-import requests as _req
+import os
 import numpy as np
 import faiss
 from pathlib import Path
 from sentence_transformers import SentenceTransformer
+from dotenv import load_dotenv
+
+# Load .env so GROQ_API_KEY is available via os.getenv
+load_dotenv(Path(__file__).parent / ".env")
 
 # ─────────────────────────────────────────────
 # CONFIG  — edit these if needed
@@ -26,15 +31,14 @@ DATA_DIR   = Path("../data")
 NEWS_PATH  = DATA_DIR / "news_articles.json"
 CACHE_PATH = DATA_DIR / "llm_cache.json"
 
-USE_LLM         = True          # False = embedding-only, instant, no Ollama needed
-OLLAMA_MODEL    = "llama3.2"    # change to "gemma2:2b" or "mistral" if you pulled those
-OLLAMA_URL      = "http://localhost:11434/api/generate"
+USE_LLM      = True          # False = embedding-only, instant, no Groq needed
+GROQ_MODEL   = "llama3-8b-8192"   # free & fast; alternatives: "llama3-70b-8192", "mixtral-8x7b-32768"
 
-THRESHOLD       = 0.50          # score above this = "fulfilled"
+THRESHOLD       = 0.25          # score above this = "fulfilled" — kept liberal intentionally
 TOP_K           = 5
 BATCH_SIZE      = 5
 MAX_ARTICLE_LEN = 600           # chars for embedding
-MAX_LLM_LEN     = 800           # chars per article sent to Ollama
+MAX_LLM_LEN     = 800           # chars per article sent to Groq
 
 # Which news period tags apply per promise file + ruling/opposition context
 PERIOD_MAP = {
@@ -46,34 +50,33 @@ PERIOD_MAP = {
 
 # These strings in llm_reason mean the result is poisoned and must NOT be cached
 POISON = ["429", "quota", "rate limit", "Connection error",
-          "RateLimitError", "Ollama not running", "JSON parse error"]
+          "RateLimitError", "AuthenticationError", "Groq API key missing", "JSON parse error"]
 
 
 # ─────────────────────────────────────────────
-# OLLAMA
+# GROQ
 # ─────────────────────────────────────────────
 
-def _ollama_ok():
-    """Check Ollama is running and the model is installed."""
-    try:
-        r = _req.get("http://localhost:11434/api/tags", timeout=5)
-        models = [m["name"] for m in r.json().get("models", [])]
-        if not any(OLLAMA_MODEL.split(":")[0] in m for m in models):
-            print(f"\n  WARNING: model '{OLLAMA_MODEL}' not found in Ollama.")
-            print(f"  Run this in a terminal:  ollama pull {OLLAMA_MODEL}")
-            print(f"  Installed models: {models}\n")
-            return False
-        print(f"  Ollama OK — model: {OLLAMA_MODEL}")
-        return True
-    except _req.exceptions.ConnectionError:
-        print("\n  ERROR: Ollama is not running.")
-        print("  Install from https://ollama.com/download")
-        print(f"  Then run:  ollama pull {OLLAMA_MODEL}\n")
+def _groq_ok():
+    """Check GROQ_API_KEY is present in the environment."""
+    key = os.getenv("GROQ_API_KEY", "").strip()
+    if not key:
+        print("\n  ERROR: GROQ_API_KEY is not set.")
+        print("  1. Sign up at https://console.groq.com")
+        print("  2. Add GROQ_API_KEY=<your_key> to backend/.env\n")
         return False
+    print(f"  Groq OK — model: {GROQ_MODEL}")
+    return True
 
 
 def _llm_verify(promise, articles, context, years):
-    """Ask local Ollama whether a promise was fulfilled."""
+    """Ask Groq (cloud LLM) whether a promise was fulfilled."""
+    from groq import Groq
+
+    api_key = os.getenv("GROQ_API_KEY", "").strip()
+    if not api_key:
+        return {"verdict": "no", "confidence": 0.0, "reason": "Groq API key missing"}
+
     if context == "ruling":
         ctx = (f"This party was the RULING GOVERNMENT of Tamil Nadu during {years}. "
                "Check whether this manifesto promise was implemented, launched, or budgeted.")
@@ -84,7 +87,7 @@ def _llm_verify(promise, articles, context, years):
 
     block = "\n\n---\n\n".join(a for a in articles[:3] if a.strip()) or "No articles."
 
-    prompt = f"""You are a Tamil Nadu political analyst fact-checking manifesto promises.
+    prompt = f"""You are a charitable Tamil Nadu political fact-checker. Your job is to find ANY evidence that a promise moved forward — even slightly.
 
 CONTEXT: {ctx}
 
@@ -94,24 +97,39 @@ PROMISE:
 NEWS ARTICLES:
 {block}
 
-Based ONLY on the articles, was this promise fulfilled?
-- "yes" = evidence it was acted on, launched, budgeted, or advocated for
-- "no"  = no evidence or contradicted
-- Partial steps still count as "yes" with confidence 0.3-0.6
-- If articles don't address this specific promise, say "no" confidence 0.1
+GIVE "yes" if ANY of the following is true (be very generous):
+- The promise was fully implemented
+- It was partially implemented or piloted
+- Funds were allocated or a scheme was announced for it
+- A committee/task force was formed to work on it
+- The government or party publicly committed to it after the election
+- A related or adjacent policy was launched that overlaps the spirit of the promise
+- The articles mention the theme / sector of the promise positively
+- An opposition party ADVOCATED for this promise even if not implemented
+
+Only use "no" if the articles are completely silent on the topic AND there is zero overlap with the promise's subject area.
+
+Confidence guide:
+- 0.8-1.0 = direct, clear evidence
+- 0.5-0.7 = partial or indirect evidence
+- 0.3-0.5 = thematic overlap, spirit matches
+- 0.1-0.3 = very weak but non-zero signal
+- 0.0     = truly no relation whatsoever (rare — default to 0.2 when unsure)
+
+Default to "yes" with confidence 0.3 rather than "no" when in doubt.
 
 Reply with ONLY this JSON, nothing else:
 {{"verdict": "yes" or "no", "confidence": 0.0-1.0, "reason": "one sentence"}}"""
 
     try:
-        resp = _req.post(
-            OLLAMA_URL,
-            json={"model": OLLAMA_MODEL, "prompt": prompt,
-                  "stream": False, "options": {"temperature": 0.1, "num_predict": 150}},
-            timeout=120,
+        client = Groq(api_key=api_key)
+        completion = client.chat.completions.create(
+            model=GROQ_MODEL,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.1,
+            max_tokens=150,
         )
-        resp.raise_for_status()
-        raw = resp.json().get("response", "").strip()
+        raw = completion.choices[0].message.content.strip()
         s, e = raw.find("{"), raw.rfind("}") + 1
         if s == -1 or e == 0:
             return {"verdict": "no", "confidence": 0.0, "reason": "no JSON in response"}
@@ -122,11 +140,10 @@ Reply with ONLY this JSON, nothing else:
             "confidence": float(result.get("confidence", 0.0)),
             "reason":     str(result.get("reason", "")),
         }
-    except _req.exceptions.ConnectionError:
-        return {"verdict": "no", "confidence": 0.0, "reason": "Ollama not running"}
     except json.JSONDecodeError as ex:
         return {"verdict": "no", "confidence": 0.0, "reason": f"JSON parse error: {ex}"}
     except Exception as ex:
+        # Surfaces Groq RateLimitError, AuthenticationError, etc. into the cache-poison list
         return {"verdict": "no", "confidence": 0.0, "reason": str(ex)}
 
 
@@ -179,8 +196,8 @@ def run():
     # Decide whether to use LLM
     use_llm = USE_LLM
     if use_llm:
-        if not _ollama_ok():
-            print("  Ollama unavailable — switching to embedding-only mode.")
+        if not _groq_ok():
+            print("  Groq unavailable — switching to embedding-only mode.")
             use_llm = False
 
     # Load articles
@@ -285,9 +302,11 @@ def run():
                     llm_conf = float(result.get("confidence", 0.0))
 
                     if verdict == "yes":
-                        final = 0.4 * base + 0.6 * llm_conf
+                        # LLM confirms: blend base + llm confidence, weight toward LLM
+                        final = 0.35 * base + 0.65 * llm_conf
                     else:
-                        final = base * 0.5
+                        # LLM uncertain/no: still use base score — don't punish it
+                        final = max(base, llm_conf * 0.5)
 
                     p["llm_verdict"]    = verdict
                     p["llm_confidence"] = llm_conf
