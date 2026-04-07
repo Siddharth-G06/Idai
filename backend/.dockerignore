@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.pdf
+manifestos/
+.env
+requirements.txt
+manifesto_parser.py
+news_fetcher.py
+matcher.py
+scorer.py
+run_pipeline.py
+notebooks/
