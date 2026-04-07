@@ -25,8 +25,9 @@ const SkeletonCard = () => (
 )
 
 export default function PartyPage({ party }) {
-  // Pass the party prop straight into our new React Query hooks!
-  const { data: promisesData, isLoading: isLoadingPromises } = usePromises({ party })
+  // Standardize 'ADMK' router string to 'AIADMK' for backend exact-matching
+  const queryParty = party === 'ADMK' ? 'AIADMK' : party
+  const { data: promisesData, isLoading: isLoadingPromises } = usePromises({ party: queryParty })
   const { data: scoresData } = useScore()
 
   const [selectedCat, setSelectedCat] = useState('All')

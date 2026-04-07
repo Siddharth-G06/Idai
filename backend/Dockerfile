@@ -1,15 +1,13 @@
 FROM python:3.11-slim
 
-# Set the working directory (Railway handles the root shift, 
-# but inside the container, we usually use /app)
 WORKDIR /app
 
-# Copy requirements from your backend folder
-COPY requirements.txt .
+# Only copy and install the lightweight API requirements
+COPY requirements.api.txt .
+RUN pip install --no-cache-dir -r requirements.api.txt
 
-# Use the -m flag to ensure it finds the pip module
-RUN python -m pip install --no-cache-dir -r requirements.txt
+# Copy only the API file and data folder
+COPY main.py .
+COPY ../data ./data
 
-    COPY . .
-
-CMD ["python", "main.py"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
