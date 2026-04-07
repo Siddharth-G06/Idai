@@ -145,27 +145,7 @@ def _scores_key(stem: str) -> str:
 @app.get("/health")
 def health():
     """Liveness / readiness check."""
-    scores_path = DATA_DIR / "scores.json"
-    news_path   = DATA_DIR / "news_articles.json"
-
-    last_updated = None
-    if scores_path.exists():
-        mtime = scores_path.stat().st_mtime
-        last_updated = datetime.fromtimestamp(mtime, tz=timezone.utc).isoformat()
-
-    total_articles = 0
-    if news_path.exists():
-        try:
-            articles = _load_json(news_path)
-            total_articles = len(articles)
-        except Exception:
-            total_articles = -1
-
-    return {
-        "status": "ok",
-        "last_updated": last_updated,
-        "total_articles": total_articles,
-    }
+    return {"status": "ok"}
 
 
 @app.get("/api/parties")
