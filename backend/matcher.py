@@ -50,7 +50,8 @@ PERIOD_MAP = {
 
 # These strings in llm_reason mean the result is poisoned and must NOT be cached
 POISON = ["429", "quota", "rate limit", "Connection error",
-          "RateLimitError", "AuthenticationError", "Groq API key missing", "JSON parse error"]
+          "RateLimitError", "AuthenticationError", "Groq API key missing", "JSON parse error",
+          "model_decommissioned", "deprecated", "Error code:"]
 
 
 # ─────────────────────────────────────────────

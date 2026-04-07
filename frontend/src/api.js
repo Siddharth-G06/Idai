@@ -1,6 +1,7 @@
 // Central API client — all fetches go through here.
 // Vite dev-server proxies /api/* → http://localhost:8000
-const BASE = '/api'
+const API_URL = import.meta.env.VITE_API_URL || '';
+const BASE = `${API_URL}/api`;
 
 async function get(path) {
   const res = await fetch(`${BASE}${path}`)
@@ -15,7 +16,7 @@ export const api = {
   scores:    ()                          => get('/score'),
   summary:   ()                          => get('/summary'),
   parties:   ()                          => get('/parties'),
-  health:    ()                          => fetch('/health').then(r => r.json()),
+  health:    ()                          => fetch(`${API_URL}/health`).then(r => r.json()),
   promises:  (params = {})              => {
     const q = new URLSearchParams(
       Object.fromEntries(Object.entries(params).filter(([, v]) => v !== undefined && v !== ''))
