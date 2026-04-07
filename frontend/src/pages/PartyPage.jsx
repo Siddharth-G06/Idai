@@ -6,7 +6,7 @@ import { useScore } from '../hooks/useScore'
 import PromiseCard from '../components/PromiseCard'
 
 const CATEGORIES = [
-  'All', 'Healthcare', 'Education', 'Infrastructure', 
+  'All', 'Healthcare', 'Education', 'Infrastructure',
   'Agriculture', 'Economy', 'Employment', 'Women & Youth'
 ]
 
@@ -24,62 +24,78 @@ const SkeletonCard = () => (
   </div>
 )
 
+/**
+ * PartyPage — shows all promises for a given party, with category + status filters.
+ *
+ * Props:
+ *   party: 'DMK' | 'ADMK'
+ *
+ * Key fixes:
+ * 1. Uses context='ruling' to select the right score entry (DMK 2021, AIADMK 2016)
+ * 2. Passes both party + year to the API so only relevant promises load
+ * 3. promisesData.promises (not .promises[]) — backend returns {count, promises:[]}
+ */
 export default function PartyPage({ party }) {
-  // Standardize 'ADMK' router string to 'AIADMK' for backend exact-matching
+  // Backend filter: 'ADMK' → 'AIADMK'
   const queryParty = party === 'ADMK' ? 'AIADMK' : party
-  const { data: promisesData, isLoading: isLoadingPromises } = usePromises({ party: queryParty })
+
+  // --- Score / category data from scores.json ---
   const { data: scoresData } = useScore()
 
-  const [selectedCat, setSelectedCat] = useState('All')
-  const [selectedStatus, setSelectedStatus] = useState('All')
-
-  const isDMK = party === 'DMK'
-  
-  // Hardcoded string literals guarantee Tailwind scanner binds the generated colors
-  const pBg = isDMK ? 'bg-dmk-primary' : 'bg-admk-primary'
-  const pText = isDMK ? 'text-dmk-primary' : 'text-admk-primary'
-  const pBorder = isDMK ? 'border-dmk-primary' : 'border-admk-primary'
-  const pBgHover = isDMK ? 'hover:bg-dmk-primary/20' : 'hover:bg-admk-primary/20'
-
-  // Standardize party prefix for traversing scores.json map since ADMK keys might be 'AIADMK'
-  const scorePrefix = isDMK ? 'DMK' : 'AIADMK'
-  
-  let partyScore = 0
-  let partyYear = ''
+  const scorePrefix = party === 'ADMK' ? 'AIADMK' : party
+  let partyScore    = 0
+  let partyYear     = ''
   let categoriesData = {}
+  let queryYear      = undefined   // will be set once we know the ruling year
 
   if (scoresData) {
-    // Find all matching keys (e.g. DMK 2021, DMK 2016), sort reverse to grab the most recent year
-    const relevantKeys = Object.keys(scoresData).filter(k => k.startsWith(scorePrefix)).sort().reverse()
-    const latestKey = relevantKeys[0]
+    const relevantKeys = Object.keys(scoresData).filter(k => k.startsWith(scorePrefix))
+    // Prefer ruling context; fallback to highest year
+    const rulingKey = relevantKeys.find(k => scoresData[k]?.context === 'ruling')
+    const latestKey = rulingKey ?? relevantKeys.sort().reverse()[0]
 
     if (latestKey) {
-      partyScore = scoresData[latestKey].score || 0
-      partyYear = latestKey.split(' ')[1] || ''
-      categoriesData = scoresData[latestKey].categories || {}
+      partyScore     = scoresData[latestKey]?.score      ?? 0
+      partyYear      = latestKey.split(' ')[1]            ?? ''
+      categoriesData = scoresData[latestKey]?.categories  ?? {}
+      queryYear      = partyYear ? parseInt(partyYear, 10) : undefined
     }
   }
 
-  const rawPromises = promisesData?.promises || []
+  // --- Promises: only fetch after we know the target year ---
+  const { data: promisesData, isLoading: isLoadingPromises } = usePromises(
+    queryYear
+      ? { party: queryParty, year: queryYear }
+      : { party: queryParty }
+  )
 
-  // Client-side filtering applies immediately
+  // Backend returns { count: N, promises: [...] }
+  const rawPromises = promisesData?.promises ?? []
+
+  // --- UI filter state ---
+  const [selectedCat, setSelectedCat]       = useState('All')
+  const [selectedStatus, setSelectedStatus] = useState('All')
+
+  const isDMK    = party === 'DMK'
+  const pBg      = isDMK ? 'bg-dmk-primary'         : 'bg-admk-primary'
+  const pText    = isDMK ? 'text-dmk-primary'        : 'text-admk-primary'
+  const pBorder  = isDMK ? 'border-dmk-primary'      : 'border-admk-primary'
+  const pBgHover = isDMK ? 'hover:bg-dmk-primary/20' : 'hover:bg-admk-primary/20'
+
+  // Client-side filtering (instant, no extra API call)
   const filteredPromises = rawPromises.filter(p => {
-    // Category match
     if (selectedCat !== 'All') {
       const matchCat = selectedCat === 'Women & Youth' ? 'women and youth' : selectedCat.toLowerCase()
-      if ((p.category || '').toLowerCase() !== matchCat) return false
+      if ((p.category ?? '').toLowerCase() !== matchCat) return false
     }
-
-    // Status match
-    if (selectedStatus === 'Addressed' && (p.status || '').toLowerCase() !== 'fulfilled') return false
-    if (selectedStatus === 'Not addressed' && (p.status || '').toLowerCase() !== 'unfulfilled') return false
-
+    if (selectedStatus === 'Addressed'     && (p.status ?? '').toLowerCase() !== 'fulfilled')   return false
+    if (selectedStatus === 'Not addressed' && (p.status ?? '').toLowerCase() !== 'unfulfilled') return false
     return true
   })
 
   return (
     <div className="min-h-screen bg-navy text-gray-200">
-      
+
       {/* 1) Party Header Bar */}
       <div className={`w-full ${pBg} text-white px-4 py-8 shadow-lg sticky top-0 z-10`}>
         <div className="max-w-2xl mx-auto flex items-center gap-4">
@@ -88,20 +104,24 @@ export default function PartyPage({ party }) {
           </Link>
           <div className="flex-1 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
             <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">{party}</h1>
-            {partyYear && <span className="text-lg font-bold text-white/80">{partyYear} Manifesto</span>}
+            {partyYear && (
+              <span className="text-lg font-bold text-white/80">{partyYear} Manifesto</span>
+            )}
           </div>
           <div className="flex flex-col items-end">
             <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-white/80">
               Overall Score
             </span>
-            <span className="text-3xl sm:text-4xl font-black tabular-nums">{partyScore.toFixed(1)}%</span>
+            <span className="text-3xl sm:text-4xl font-black tabular-nums">
+              {partyScore.toFixed(1)}%
+            </span>
           </div>
         </div>
       </div>
 
       <div className="max-w-2xl mx-auto px-4 py-6">
-        
-        {/* 2) Category Filter Chips (Horizontal Map) */}
+
+        {/* 2) Category Filter Chips */}
         <div className="flex gap-2 overflow-x-auto pb-4 [&::-webkit-scrollbar]:hidden">
           {CATEGORIES.map(cat => {
             const active = selectedCat === cat
@@ -110,8 +130,8 @@ export default function PartyPage({ party }) {
                 key={cat}
                 onClick={() => setSelectedCat(cat)}
                 className={`shrink-0 px-4 py-1.5 rounded-full text-sm font-semibold border-2 transition-all duration-200 shadow-sm ${
-                  active 
-                    ? `${pBg} text-white border-transparent` 
+                  active
+                    ? `${pBg} text-white border-transparent`
                     : `bg-transparent ${pText} ${pBorder} ${pBgHover}`
                 }`}
               >
@@ -120,9 +140,9 @@ export default function PartyPage({ party }) {
             )
           })}
         </div>
-        
+
         {/* 3) Status Filter Toggles */}
-        <div className="flex gap-2 overflow-x-auto mt-2 pb-6 border-b border-navy-light [&::-webkit-scrollbar]:hidden mt-2">
+        <div className="flex gap-2 overflow-x-auto mt-2 pb-6 border-b border-navy-light [&::-webkit-scrollbar]:hidden">
           {STATUSES.map(stat => {
             const active = selectedStatus === stat
             return (
@@ -141,7 +161,7 @@ export default function PartyPage({ party }) {
           })}
         </div>
 
-        {/* 4) Category Score Summary Bars (Visible globally across all promises) */}
+        {/* 4) Category Score Summary Bars */}
         {Object.keys(categoriesData).length > 0 && selectedCat === 'All' && (
           <div className="my-6 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 p-4 bg-navy-card rounded-xl border border-navy-light shadow-sm">
             {Object.entries(categoriesData)
@@ -153,13 +173,13 @@ export default function PartyPage({ party }) {
                     <span className={pText}>{cData.score.toFixed(0)}%</span>
                   </div>
                   <div className="h-2 bg-navy-light/60 rounded-full overflow-hidden shadow-inner flex">
-                    <div 
-                      className={`h-full ${pBg} transition-all duration-1000 ease-out`} 
-                      style={{ width: `${cData.score}%` }} 
+                    <div
+                      className={`h-full ${pBg} transition-all duration-1000 ease-out`}
+                      style={{ width: `${cData.score}%` }}
                     />
                   </div>
                 </div>
-            ))}
+              ))}
           </div>
         )}
 

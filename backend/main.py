@@ -23,7 +23,20 @@ from dotenv import load_dotenv
 # ─────────────────────────────────────────────
 load_dotenv(Path(__file__).parent / ".env")
 
-DATA_DIR = Path("/data")
+def _get_data_dir() -> Path:
+    # 1. Container Path
+    container_path = Path("/data")
+    if container_path.exists():
+        return container_path
+    
+    # 2. Local fallback (assuming we are in /backend/ when running)
+    local_path = Path(__file__).parent.parent / "data"
+    if local_path.exists():
+        return local_path
+        
+    return container_path
+
+DATA_DIR = _get_data_dir()
 PORT = int(os.environ.get("PORT", 8000))
 
 # ─────────────────────────────────────────────
