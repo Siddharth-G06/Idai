@@ -12,4 +12,4 @@ COPY . /app_src
 RUN cp -r /app_src/data /data || (echo "DATA NOT FOUND! ROOT CONTEXT CONTAINS:" && ls -la /app_src && exit 1)
 RUN rm -rf /app_src
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD sh -c "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}"
