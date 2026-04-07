@@ -23,16 +23,20 @@ from dotenv import load_dotenv
 # ─────────────────────────────────────────────
 load_dotenv(Path(__file__).parent / ".env")
 
-DATA_DIR = Path(__file__).parent.parent / "data"
+DATA_DIR = Path("/data")
+PORT = int(os.environ.get("PORT", 8000))
 
 # ─────────────────────────────────────────────
 # LOAD DATA AT MODULE LEVEL (once, on startup)
 # ─────────────────────────────────────────────
 
 def _load_json(path: Path) -> Any:
-    with open(path, encoding="utf-8") as f:
-        return json.load(f)
-
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception as e:
+        print(f"Warning: Could not load JSON from {path}: {e}")
+        return {}
 
 def _load_all_promises() -> dict[str, list[dict]]:
     """
@@ -41,11 +45,13 @@ def _load_all_promises() -> dict[str, list[dict]]:
     Auto-picks up future manifesto files with zero code changes.
     """
     result: dict[str, list[dict]] = {}
+    if not DATA_DIR.exists():
+        print(f"Warning: DATA_DIR {DATA_DIR} does not exist.")
+        return result
     for p in sorted(DATA_DIR.glob("*_promises.json")):
         stem = p.stem.replace("_promises", "")
         result[stem] = _load_json(p)
     return result
-
 
 # Named references kept for backward compat with the spec
 _promises_by_stem = _load_all_promises()
@@ -273,4 +279,4 @@ def get_summary():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=PORT, reload=True)
