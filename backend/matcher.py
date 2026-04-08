@@ -27,7 +27,8 @@ load_dotenv(Path(__file__).parent / ".env")
 # ─────────────────────────────────────────────
 # CONFIG  — edit these if needed
 # ─────────────────────────────────────────────
-DATA_DIR   = Path("../data")
+BASE_DIR   = Path(__file__).resolve().parent
+DATA_DIR   = BASE_DIR / "data"
 NEWS_PATH  = DATA_DIR / "news_articles.json"
 CACHE_PATH = DATA_DIR / "llm_cache.json"
 

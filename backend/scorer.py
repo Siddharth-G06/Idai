@@ -8,7 +8,8 @@ Knows which party was ruling vs opposition for each period.
 import json
 from pathlib import Path
 
-DATA_DIR = Path("../data")
+BASE_DIR = Path(__file__).resolve().parent
+DATA_DIR = BASE_DIR / "data"
 OUTPUT   = DATA_DIR / "scores.json"
 
 FILE_META = {

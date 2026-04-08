@@ -17,7 +17,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-OUTPUT_PATH = Path("../data/news_articles.json")
+BASE_DIR = Path(__file__).resolve().parent
+DATA_DIR = BASE_DIR / "data"
+OUTPUT_PATH = DATA_DIR / "news_articles.json"
 
 RSS_FEEDS = [
     "https://www.thehindu.com/news/national/tamil-nadu/feeder/default.rss",

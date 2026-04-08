@@ -21,22 +21,10 @@ from dotenv import load_dotenv
 # ─────────────────────────────────────────────
 # ENV & PATHS
 # ─────────────────────────────────────────────
-load_dotenv(Path(__file__).parent / ".env")
+BASE_DIR = Path(__file__).resolve().parent
+DATA_DIR = BASE_DIR / "data"
 
-def _get_data_dir() -> Path:
-    # 1. Container Path
-    container_path = Path("/data")
-    if container_path.exists():
-        return container_path
-    
-    # 2. Local fallback (assuming we are in /backend/ when running)
-    local_path = Path(__file__).parent.parent / "data"
-    if local_path.exists():
-        return local_path
-        
-    return container_path
-
-DATA_DIR = _get_data_dir()
+load_dotenv(BASE_DIR / ".env")
 PORT = int(os.environ.get("PORT", 8000))
 
 # ─────────────────────────────────────────────
@@ -95,7 +83,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],          # restrict in production
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -120,8 +108,19 @@ async def global_exception_handler(request: Request, exc: Exception):
 
 @app.on_event("startup")
 async def startup_event():
+    print(f"BASE_DIR : {BASE_DIR}")
+    print(f"DATA_DIR : {DATA_DIR}")
+    print(f"DATA_DIR exists: {DATA_DIR.exists()}")
+    if DATA_DIR.exists():
+        files = list(DATA_DIR.iterdir())
+        print(f"Files found: {[f.name for f in files]}")
+    else:
+        print("ERROR: data directory not found!")
+    
     total = sum(len(v) for v in _promises_by_stem.values())
-    print(f"Vaakazhipeer API — ready  |  stems={list(_promises_by_stem.keys())}  |  promises={total}")
+    print(f"Scores loaded: {bool(scores)}")
+    print(f"Promise files loaded: {list(_promises_by_stem.keys())}")
+    print(f"Vaakazhipeer API — ready  |  promises={total}")
 
 
 # ─────────────────────────────────────────────

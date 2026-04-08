@@ -56,7 +56,7 @@ jobs:
       - name: Check if data files changed
         id: changes
         run: |
-          git diff --quiet data/ || echo "changed=true" >> $GITHUB_OUTPUT
+          git diff --quiet backend/data/ || echo "changed=true" >> $GITHUB_OUTPUT
           
       - name: Commit and push changes
         if: steps.changes.outputs.changed == 'true'
@@ -65,7 +65,7 @@ jobs:
         run: |
           git config user.name "vaakazhipeer-bot"
           git config user.email "bot@vaakazhipeer.app"
-          git add data/
+          git add backend/data/
           git commit -m "auto: pipeline update $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git push
           
