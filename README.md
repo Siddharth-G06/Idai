@@ -1,4 +1,4 @@
-# 🗳️ Vaakazhipeer Accountability Dashboard
+# 🗳️ Idai Accountability Dashboard
 
 **Tamil Nadu Political Accountability Tracker (2016 - 2026)**
 
