@@ -97,14 +97,13 @@ app = FastAPI(
     version="1.0.0",
 )
 
-ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173,http://localhost:3000")
-origins = [o.strip() for o in ALLOWED_ORIGINS.split(",") if o.strip()]
+ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "*")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["GET"],
+    allow_origins=["*"],
+    allow_credentials=False,
+    allow_methods=["GET", "HEAD", "OPTIONS"],
     allow_headers=["*"],
     max_age=3600,
 )
