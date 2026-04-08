@@ -18,4 +18,5 @@ COPY . .
 EXPOSE 8000
 
 # Start the FastAPI application on the explicit port using EXEC form
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# CRITICAL: We must include proxy-headers and forwarded-allow-ips so Uvicorn does not silently drop Cloudflare traffic!
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port 8000 --proxy-headers --forwarded-allow-ips='*'"]
