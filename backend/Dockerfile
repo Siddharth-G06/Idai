@@ -14,5 +14,8 @@ RUN pip install --no-cache-dir -r requirements.api.txt
 # Copy the actual source files and the /data directory
 COPY . .
 
-# Start the FastAPI application. Render injects its own $PORT variable dynamically.
-CMD uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}
+# Expose port exactly to prevent Render from dynamically shifting ports and confusing the Cloudflare proxy
+EXPOSE 8000
+
+# Start the FastAPI application on the explicit port using EXEC form
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
