@@ -2,14 +2,12 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
+# Copy requirement files from backend directory
 COPY backend/requirements.api.txt .
 RUN pip install --no-cache-dir -r requirements.api.txt
 
-COPY backend/main.py .
-
-# Bypass BuildKit static cache resolution by copying everything and extracting data
-COPY . /app_src
-RUN cp -r /app_src/data /data || (echo "DATA NOT FOUND! ROOT CONTEXT CONTAINS:" && ls -la /app_src && exit 1)
-RUN rm -rf /app_src
+# Copy everything from backend to /app
+# This includes main.py, .env, and the data/ directory
+COPY backend/ .
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
