@@ -1,7 +1,9 @@
 import { useEffect, useState, useCallback } from 'react'
 import { api } from '../api'
 import PromiseCard from '../components/PromiseCard'
-import { Search, Filter } from 'lucide-react'
+import ErrorState from '../components/ErrorState'
+import EmptyState from '../components/EmptyState'
+import { Search, Filter, Loader2 } from 'lucide-react'
 
 const PARTIES    = ['DMK', 'AIADMK']
 const YEARS      = [2016, 2021]
@@ -126,24 +128,27 @@ export default function Promises() {
       </div>
 
       {error && (
-        <div style={{ background: 'rgba(239,68,68,.1)', borderRadius: 10, padding: 16, color: '#fca5a5', marginBottom: 16 }}>
-          ⚠ {error}
-        </div>
+        <ErrorState 
+          message={`We couldn't load the promises: ${error}`} 
+          onRetry={load} 
+        />
       )}
 
       {/* Promise list */}
       {loading
         ? <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {[...Array(8)].map((_, i) => (
-              <div key={i} className="skeleton" style={{ height: 90, borderRadius: 12 }} />
+              <div key={i} className="skeleton h-24 rounded-2xl opacity-10" />
             ))}
           </div>
-        : <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            {paginated.length === 0
-              ? <div style={{ textAlign: 'center', color: '#475569', padding: '48px 0' }}>No promises match your filters.</div>
-              : paginated.map(p => <PromiseCard key={p.id} promise={p} />)
-            }
-          </div>
+        : !error && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {paginated.length === 0
+                ? <EmptyState message="No promises match your filters." />
+                : paginated.map(p => <PromiseCard key={p.id} promise={p} />)
+              }
+            </div>
+          )
       }
 
       {/* Pagination */}

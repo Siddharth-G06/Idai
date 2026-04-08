@@ -53,22 +53,53 @@ def run():
             "note":    "",
         })
 
-        data      = json.load(open(path, encoding="utf-8"))
+        raw_data  = json.load(open(path, encoding="utf-8"))
+        data      = raw_data["promises"] if isinstance(raw_data, dict) and "promises" in raw_data else raw_data
+        
         total     = len(data)
-        fulfilled = sum(1 for p in data if p.get("status") == "fulfilled")
+        party_name = meta["label"].split()[0]
+        context    = meta["context"]
+        
+        # Liberalized Fulfillment Logic
+        def get_p_score(p):
+            status = p.get("status", "unfulfilled")
+            credit = p.get("credit_party", "")
+            
+            # Fulfilled (direct) — promising party always gets credit now
+            if status == "fulfilled":
+                return 1.0
+            
+            # fulfilled_by_other still counts for opposition advocacy
+            if status == "fulfilled_by_other":
+                if context == "opposition":
+                    return 1.0   # they advocated, other party delivered
+                return 0.5       # partial credit for ruling party
+            
+            # Pending = in-progress, 40% credit for ruling party
+            if status == "pending" and context == "ruling":
+                return 0.4
+                
+            return 0.0
+
+        fulfilled = sum(get_p_score(p) for p in data)
         score     = round(fulfilled / total * 100, 1) if total else 0.0
 
         cats = {}
         for p in data:
-            cat = p.get("category", "unknown")
-            cats.setdefault(cat, {"total": 0, "fulfilled": 0})
-            cats[cat]["total"] += 1
-            if p.get("status") == "fulfilled":
-                cats[cat]["fulfilled"] += 1
+            p_cats = p.get("categories") or [p.get("category", "general")]
+            weight = 1.0 / len(p_cats)
+            p_val  = get_p_score(p)
+
+            for cat in p_cats:
+                if cat == "general": continue
+                cats.setdefault(cat, {"total": 0, "fulfilled": 0})
+                cats[cat]["total"] += weight
+                cats[cat]["fulfilled"] += p_val * weight
+
         for cat in cats:
             t = cats[cat]["total"]
             f = cats[cat]["fulfilled"]
-            cats[cat]["score"] = round(f / t * 100, 1) if t else 0.0
+            cats[cat]["score"] = round(f / t * 100, 1) if t > 0 else 0.0
 
         confs    = [p.get("llm_confidence", 0) for p in data
                     if p.get("llm_verdict") == "yes"]

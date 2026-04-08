@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>IDAI | Political Accountability Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;800&amp;family=Inter:wght@300;400;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#283646",
+                    "surface-container-high": "#1e2b3b",
+                    "primary": "#ffb3b1",
+                    "error": "#ffb4ab",
+                    "on-secondary-fixed": "#002106",
+                    "background": "#061423",
+                    "on-surface-variant": "#c4c6cc",
+                    "on-secondary-container": "#003c11",
+                    "on-tertiary": "#2a322b",
+                    "on-background": "#d6e4f9",
+                    "on-tertiary-fixed-variant": "#404940",
+                    "tertiary-fixed": "#dce5d9",
+                    "inverse-on-surface": "#243141",
+                    "outline": "#8e9196",
+                    "secondary-fixed": "#6fff83",
+                    "on-surface": "#d6e4f9",
+                    "secondary-container": "#01b343",
+                    "inverse-primary": "#bb152c",
+                    "secondary": "#4fe16a",
+                    "secondary-fixed-dim": "#4fe16a",
+                    "outline-variant": "#44474c",
+                    "on-secondary": "#003910",
+                    "on-tertiary-container": "#7c857b",
+                    "on-error": "#690005",
+                    "surface-bright": "#2d3a4a",
+                    "surface-container-lowest": "#020f1e",
+                    "on-primary-fixed-variant": "#92001c",
+                    "tertiary-fixed-dim": "#c0c9be",
+                    "surface": "#061423",
+                    "surface-dim": "#061423",
+                    "inverse-surface": "#d6e4f9",
+                    "error-container": "#93000a",
+                    "primary-fixed": "#ffdad8",
+                    "surface-variant": "#283646",
+                    "on-primary-fixed": "#410007",
+                    "surface-container-low": "#0f1c2c",
+                    "primary-container": "#3e0006",
+                    "surface-tint": "#ffb3b1",
+                    "surface-container": "#132030",
+                    "on-primary": "#680011",
+                    "on-secondary-fixed-variant": "#00531a",
+                    "on-tertiary-fixed": "#161d16",
+                    "on-primary-container": "#ef404c",
+                    "primary-fixed-dim": "#ffb3b1",
+                    "tertiary": "#c0c9be",
+                    "tertiary-container": "#141c15",
+                    "on-error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(40, 54, 70, 0.4);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+      }
+      .tonal-transition {
+        background: linear-gradient(180deg, rgba(6, 20, 35, 0.8) 0%, rgba(15, 28, 44, 0.8) 100%);
+      }
+      body {
+        background-color: #0D1B2A;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body text-on-surface antialiased">
+<!-- Top Navigation Shell -->
+<header class="fixed top-0 w-full bg-[#061423]/80 backdrop-blur-xl flex justify-between items-center px-6 h-16 w-full z-50 shadow-[0_40px_80px_-15px_rgba(2,15,30,0.1)]">
+<div class="text-xl font-bold tracking-tighter text-white">IDAI</div>
+<div class="flex items-center gap-4">
+<button class="bg-surface-container-high rounded-full px-4 py-1.5 flex items-center gap-2 border border-outline-variant/20">
+<span class="text-[10px] font-bold tracking-widest font-headline text-on-surface-variant">EN | தமிழ்</span>
+<span class="material-symbols-outlined text-sm text-emerald-500">language</span>
+</button>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-md mx-auto">
+<!-- Hero Section -->
+<section class="mb-12">
+<h1 class="font-headline font-extrabold text-4xl leading-tight tracking-tight mb-4 text-on-surface">
+                Closing the gap between <span class="text-transparent bg-clip-text bg-gradient-to-br from-error via-white to-secondary">promises and proof</span>
+</h1>
+<p class="text-on-surface-variant font-light leading-relaxed">
+                Empowering the electorate through real-time data auditing and manifesto tracking.
+            </p>
+</section>
+<!-- DMK Party Card -->
+<div class="glass-card rounded-lg p-6 mb-6 border border-white/5 relative overflow-hidden">
+<!-- Party Gradient Accent -->
+<div class="absolute top-0 left-0 w-1.5 h-full bg-[#E63946]"></div>
+<div class="flex justify-between items-start mb-8">
+<div>
+<h2 class="font-headline font-bold text-2xl">DMK</h2>
+<p class="text-xs tracking-widest text-on-surface-variant uppercase mt-1">2021 Manifesto</p>
+</div>
+<!-- Progress Ring -->
+<div class="relative flex items-center justify-center w-16 h-16">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-white/10" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-width="4"></circle>
+<circle class="text-[#E63946]" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-dasharray="175.9" stroke-dashoffset="58" stroke-width="4"></circle>
+</svg>
+<span class="absolute font-headline font-bold text-sm">67%</span>
+</div>
+</div>
+<!-- Micro Stats Grid -->
+<div class="grid grid-cols-3 gap-4 mb-8">
+<div class="bg-surface-container-lowest/50 p-3 rounded-md">
+<span class="block text-[10px] text-on-surface-variant font-headline tracking-wider uppercase mb-1">Total</span>
+<span class="text-lg font-headline font-bold">505</span>
+</div>
+<div class="bg-surface-container-lowest/50 p-3 rounded-md">
+<span class="block text-[10px] text-on-surface-variant font-headline tracking-wider uppercase mb-1">Fulfilled</span>
+<span class="text-lg font-headline font-bold">338</span>
+</div>
+<div class="bg-surface-container-lowest/50 p-3 rounded-md">
+<span class="block text-[10px] text-on-surface-variant font-headline tracking-wider uppercase mb-1">Top Cat.</span>
+<span class="text-sm font-headline font-bold leading-tight">Agri</span>
+</div>
+</div>
+<button class="w-full py-4 bg-gradient-to-br from-[#E63946] to-primary-container text-on-primary font-headline font-bold rounded-full transition-transform active:scale-95 shadow-lg shadow-[#E63946]/20">
+                View Details
+            </button>
+</div>
+<!-- ADMK Party Card -->
+<div class="glass-card rounded-lg p-6 mb-12 border border-white/5 relative overflow-hidden">
+<!-- Party Gradient Accent -->
+<div class="absolute top-0 left-0 w-1.5 h-full bg-[#2DC653]"></div>
+<div class="flex justify-between items-start mb-8">
+<div>
+<h2 class="font-headline font-bold text-2xl">ADMK</h2>
+<p class="text-xs tracking-widest text-on-surface-variant uppercase mt-1">2016 Manifesto</p>
+</div>
+<!-- Progress Ring -->
+<div class="relative flex items-center justify-center w-16 h-16">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-white/10" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-width="4"></circle>
+<circle class="text-[#2DC653]" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-dasharray="175.9" stroke-dashoffset="70" stroke-width="4"></circle>
+</svg>
+<span class="absolute font-headline font-bold text-sm">60%</span>
+</div>
+</div>
+<!-- Micro Stats Grid -->
+<div class="grid grid-cols-3 gap-4 mb-8">
+<div class="bg-surface-container-lowest/50 p-3 rounded-md">
+<span class="block text-[10px] text-on-surface-variant font-headline tracking-wider uppercase mb-1">Total</span>
+<span class="text-lg font-headline font-bold">482</span>
+</div>
+<div class="bg-surface-container-lowest/50 p-3 rounded-md">
+<span class="block text-[10px] text-on-surface-variant font-headline tracking-wider uppercase mb-1">Fulfilled</span>
+<span class="text-lg font-headline font-bold">289</span>
+</div>
+<div class="bg-surface-container-lowest/50 p-3 rounded-md">
+<span class="block text-[10px] text-on-surface-variant font-headline tracking-wider uppercase mb-1">Top Cat.</span>
+<span class="text-sm font-headline font-bold leading-tight">Welfare</span>
+</div>
+</div>
+<button class="w-full py-4 bg-gradient-to-br from-[#2DC653] to-on-secondary-container text-white font-headline font-bold rounded-full transition-transform active:scale-95 shadow-lg shadow-secondary/20">
+                View Details
+            </button>
+</div>
+<!-- Status Indicator -->
+<div class="flex flex-col items-center justify-center gap-2 mb-12">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary animate-pulse shadow-[0_0_8px_rgba(79,225,106,0.8)]"></div>
+<span class="text-xs font-headline tracking-[0.2em] text-secondary font-semibold uppercase">● Live</span>
+</div>
+<span class="text-xs text-on-surface-variant/60 font-light">Updated 3 hrs ago</span>
+</div>
+<!-- Footer -->
+<footer class="text-center pb-12 border-t border-white/5 pt-8">
+<p class="text-[10px] text-on-surface-variant/40 leading-relaxed px-8 mb-4">
+                Disclaimer: IDAI is an independent monitoring platform. Data is collated from official gazettes and public records. Information is presented without prejudice.
+            </p>
+<p class="text-xs font-headline font-semibold text-on-surface-variant/80 tracking-widest uppercase">
+                Created by Siddharth
+            </p>
+</footer>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 w-full flex justify-around items-center h-20 px-4 z-50 bg-[#0D1B2A]/60 backdrop-blur-3xl rounded-t-[2.5rem] shadow-2xl shadow-navy-950">
+<a class="flex flex-col items-center justify-center text-emerald-400 bg-emerald-500/10 rounded-full px-4 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-manrope uppercase tracking-widest text-[10px] mt-0.5">Pulse</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 hover:text-emerald-300 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-manrope uppercase tracking-widest text-[10px] mt-0.5">Parties</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 hover:text-emerald-300 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">account_balance</span>
+<span class="font-manrope uppercase tracking-widest text-[10px] mt-0.5">Metrics</span>
+</a>
+</nav>
+</body></html>

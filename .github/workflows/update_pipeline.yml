@@ -6,10 +6,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  update:
+  update_data:
     runs-on: ubuntu-latest
-    
-    # Required to allow GitHub Actions bot to perform git pushes securely
     permissions:
       contents: write
 
@@ -29,8 +27,6 @@ jobs:
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('backend/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
             
       - name: Install dependencies
         run: |
@@ -46,8 +42,6 @@ jobs:
           
       - name: Run ML pipeline
         env:
-          # Note: Added GROQ_API_KEY here because we migrated to Groq earlier.
-          # The pipeline will crash without this token!
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: |
           cd backend
@@ -56,6 +50,7 @@ jobs:
       - name: Check if data files changed
         id: changes
         run: |
+          # Use backend/data/ path as it contains the processed JSON files
           git diff --quiet backend/data/ || echo "changed=true" >> $GITHUB_OUTPUT
           
       - name: Commit and push changes
@@ -66,10 +61,20 @@ jobs:
           git config user.name "vaakazhipeer-bot"
           git config user.email "bot@vaakazhipeer.app"
           git add backend/data/
-          git commit -m "auto: pipeline update $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git commit -m "auto: data update $(date -u) [skip ci] [skip vercel]"
           git push
-          
-      - name: Skip if no changes
-        if: steps.changes.outputs.changed != 'true'
+
+  deploy_check:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-actions[bot]'
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install and Build (Dry Run)
         run: |
-          echo "No new data. Skipping commit."
+          cd frontend
+          npm install
+          npm run build

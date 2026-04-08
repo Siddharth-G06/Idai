@@ -34,5 +34,8 @@ export const api = {
   getPromise: (id) => get(`/promises/${id}`),
 
   // GET /health
-  getHealth: () => fetch('/health').then(r => r.json()),
+  getHealth: () => fetch(`${API_URL}/health`).then(r => {
+    if (!r.ok) throw new Error('Unhealthy');
+    return r.json();
+  }),
 }

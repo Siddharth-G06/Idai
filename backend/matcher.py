@@ -20,9 +20,97 @@ import faiss
 from pathlib import Path
 from sentence_transformers import SentenceTransformer
 from dotenv import load_dotenv
+from datetime import datetime
+import re
 
 # Load .env so GROQ_API_KEY is available via os.getenv
 load_dotenv(Path(__file__).parent / ".env")
+
+# ─────────────────────────────────────────────
+# GOVERNANCE CONFIG
+# ─────────────────────────────────────────────
+GOVERNANCE = {
+    "ADMK": {"start": "2016-05-23", "end": "2021-05-07"},
+    "DMK":  {"start": "2021-05-07", "end": None},  # ongoing
+}
+
+def get_ruling_party(date_str: str) -> str:
+    """Returns which party was in power on a given date."""
+    if not date_str:
+        return "unknown"
+    try:
+        # news_fetcher usually saves ISO format or RFC-822
+        # Try a few common formats
+        if 'T' in date_str:
+            dt = datetime.fromisoformat(date_str.split('+')[0].split('Z')[0])
+        else:
+            # Fallback for RSS dates like "Mon, 06 Apr 2026 01:54:20 +0530"
+            from dateutil import parser
+            dt = parser.parse(date_str).replace(tzinfo=None)
+    except:
+        return "unknown"
+
+    admk_start = datetime(2016, 5, 23)
+    admk_end   = datetime(2021, 5, 7)
+    
+    if admk_start <= dt < admk_end:
+        return "ADMK"
+    elif dt >= admk_end:
+        return "DMK"
+    return "unknown"
+
+def is_temporally_valid(promise_year: int, article_date_str: str) -> bool:
+    """Ensures article isn't ancient history vs the promise."""
+    if not article_date_str: return False
+    try:
+        from dateutil import parser
+        adt = parser.parse(article_date_str).replace(tzinfo=None)
+    except:
+        return False
+    
+    # Define election/manifesto dates
+    if promise_year == 2016:
+        # Grace window: ~1 year before 2016-05-23
+        start_valid = datetime(2015, 5, 1)
+    elif promise_year == 2021:
+        # Grace window: ~1 year before 2021-05-07
+        start_valid = datetime(2020, 5, 1)
+    else:
+        start_valid = datetime(promise_year - 1, 1, 1)
+
+    return adt >= start_valid
+
+def assess_promise_specificity(text: str) -> float:
+    """Returns a specificity score 0.0 to 1.0."""
+    if not text: return 0.0
+    score = 0.0
+    t = text.lower()
+
+    # Numbers / Quantities (+0.3)
+    if re.search(r'\d+|crore|lakh|percent|%|கோடி|லட்சம்|சதவீதம்', t):
+        score += 0.3
+    
+    # Named Locations (+0.2)
+    districts = ['chennai', 'madurai', 'coimbatore', 'salem', 'trichy', 'vellore', 'thanjavur', 
+                 'rural', 'district', 'village', 'சென்னை', 'மதுரை', 'கோவை', 'மாவட்டம்', 'கிராமம்']
+    if any(d in t for d in districts):
+        score += 0.2
+    
+    # Timeframe (+0.2)
+    if re.search(r'year|month|day|20\d{2}|நாட்கள்|வருடம்|மாதம்|ஆண்டு', t):
+        score += 0.2
+    
+    # Beneficiary Group (+0.1)
+    groups = ['farmer', 'women', 'student', 'youth', 'elder', 'disabl', 'worker',
+              'விவசாயி', 'பெண்கள்', 'மாணவர்', 'இளைஞர்', 'தொழிலாளர்']
+    if any(g in t for g in groups):
+        score += 0.1
+    
+    # Length metrics
+    if len(text) > 80: score += 0.1
+    if len(text) < 30: score -= 0.4
+    
+    return round(max(0.0, min(1.0, score)), 2)
 
 # ─────────────────────────────────────────────
 # CONFIG  — edit these if needed
@@ -33,9 +121,9 @@ NEWS_PATH  = DATA_DIR / "news_articles.json"
 CACHE_PATH = DATA_DIR / "llm_cache.json"
 
 USE_LLM      = True          # False = embedding-only, instant, no Groq needed
-GROQ_MODEL   = "llama3-8b-8192"   # free & fast; alternatives: "llama3-70b-8192", "mixtral-8x7b-32768"
+GROQ_MODEL   = "llama3-70b-8192"   # upgraded from decommissioned llama3-8b
 
-THRESHOLD       = 0.25          # score above this = "fulfilled" — kept liberal intentionally
+THRESHOLD       = 0.15          # Minimum baseline to even consider a match
 TOP_K           = 5
 BATCH_SIZE      = 5
 MAX_ARTICLE_LEN = 600           # chars for embedding
@@ -209,9 +297,21 @@ def run():
 
     articles = json.load(open(NEWS_PATH, encoding="utf-8"))
     texts = []
+    # NEW: Quality Filter
+    all_count = len(articles)
+    articles = [a for a in articles if a.get("quality_score", 1.0) >= 0.3]
+    print(f"  Using {len(articles)} of {all_count} articles after quality filter")
+
+    texts = []
     for a in articles:
-        body = a.get("body", "").strip() or a.get("title", "")
-        texts.append((a.get("title", "") + " " + body)[:MAX_ARTICLE_LEN])
+        title = a.get("title", "")
+        body = a.get("body", "").strip()
+        # NEW: Weighted Headline for short articles
+        if len(body) < 100:
+            text = (title + " ") * 3
+        else:
+            text = (title + " " + body)
+        texts.append(text[:MAX_ARTICLE_LEN])
     print(f"Articles loaded: {len(texts)}")
 
     # Embed all articles once
@@ -242,7 +342,14 @@ def run():
         context = meta["context"]
         years   = meta["years"]
 
-        promises = json.load(open(pfile, encoding="utf-8"))
+        raw_data = json.load(open(pfile, encoding="utf-8"))
+        if isinstance(raw_data, dict) and "promises" in raw_data:
+            promises = raw_data["promises"]
+            pmeta = raw_data.get("metadata", {})
+        else:
+            promises = raw_data
+            pmeta = {}
+
         print(f"\n── {pfile.name}  ({context}, {years}) ──")
 
         # Build period-filtered sub-index
@@ -281,11 +388,38 @@ def run():
                 k = min(TOP_K, len(sub_texts))
                 D, I = sub_idx.search(q_emb, k)
 
-                emb_sims  = [_cosine(D[0][r]) for r in range(k)]
-                kw_sims   = [_kw(query, sub_texts[idx]) for idx in I[0]]
-                top_texts = [sub_texts[idx][:MAX_LLM_LEN] for idx in I[0]]
+                # ─────────────────────────────────────────────
+                # TEMPORAL VALIDATION LOOP
+                # Try to find a temporally-valid article first.
+                # If none found, fall back to best-scoring article
+                # (don't hard-fail — we have limited news coverage).
+                # ─────────────────────────────────────────────
+                best_idx  = None
+                p_year    = int(p.get("year", 2021))
+                
+                for r in range(k):
+                    idx = I[0][r]
+                    art_date = sub_arts[idx].get("published", "")
+                    if is_temporally_valid(p_year, art_date):
+                        best_idx = r
+                        break
+                
+                # FALLBACK: if no temporally-valid article, use best cosine match
+                if best_idx is None:
+                    best_idx = 0  # I[0][0] is always the closest
+                    p["match_valid"] = False  # flag it, but don't skip
+                else:
+                    p["match_valid"] = True
 
-                base = 0.7 * float(np.mean(emb_sims)) + 0.3 * float(np.mean(kw_sims))
+                top = int(I[0][best_idx])
+                p["matched_headline"] = sub_arts[top].get("title", "")
+                p["matched_url"]      = sub_arts[top].get("url", "")
+                p["matched_date"]     = sub_arts[top].get("published", "")
+
+                valid_emb_sim = _cosine(D[0][best_idx])
+                valid_kw_sim  = _kw(query, sub_texts[best_idx])
+                base = 0.7 * valid_emb_sim + 0.3 * valid_kw_sim
+                top_texts_for_llm = [sub_texts[idx][:MAX_LLM_LEN] for idx in I[0][best_idx:best_idx+3]]
 
                 if use_llm:
                     key = (query.strip().lower() + "|" + context)[:200]
@@ -294,7 +428,7 @@ def run():
                         result = cache[key]
                     else:
                         print(f"    LLM → {query[:65]}...")
-                        result = _llm_verify(query, top_texts, context, years)
+                        result = _llm_verify(query, top_texts_for_llm, context, years)
                         # Only cache clean results — never cache errors
                         if not any(p in str(result.get("reason","")) for p in POISON):
                             cache[key] = result
@@ -317,15 +451,51 @@ def run():
                     final = base
 
                 p["similarity_score"] = round(final, 4)
-                p["status"] = "fulfilled" if final >= THRESHOLD else "unfulfilled"
+                
+                # ─────────────────────────────────────────────
+                # SPECIFICITY FILTER & DYNAMIC THRESHOLD
+                # Vague promises need more evidence; specific ones
+                # get credit even with moderate similarity.
+                # ─────────────────────────────────────────────
+                spec_score = assess_promise_specificity(query)
+                p["specificity_score"] = spec_score
+                p["specificity"] = "high" if spec_score >= 0.6 else "medium" if spec_score >= 0.3 else "low"
+                
+                # Liberal thresholds — favour recognition over skepticism
+                if spec_score < 0.3:
+                    dyn_threshold = 0.35   # vague promise: still needs decent evidence
+                elif spec_score < 0.6:
+                    dyn_threshold = 0.28   # medium specificity
+                else:
+                    dyn_threshold = 0.22   # specific promise: low bar is fine
 
-                if I[0].size > 0:
-                    top = int(I[0][0])
-                    p["matched_headline"] = sub_arts[top].get("title", "")
-                    p["matched_url"]      = sub_arts[top].get("url", "")
-                    p["matched_date"]     = sub_arts[top].get("published", "")
+                p["status"] = "fulfilled" if final >= dyn_threshold else "unfulfilled"
 
-        json.dump(promises, open(pfile, "w", encoding="utf-8"),
+                # ── GOVERNANCE ATTRIBUTION ──
+                # Whichever party made the promise gets credit.
+                # We still record ruling_at_time for transparency.
+                promising_party = "DMK" if "dmk" in stem.lower() else "AIADMK"
+                article_date    = p.get("matched_date", "")
+                ruling_at_time  = get_ruling_party(article_date)
+
+                p["promising_party"] = promising_party
+                p["ruling_at_time"]  = ruling_at_time
+
+                if p["status"] == "fulfilled":
+                    p["credit_party"] = promising_party
+
+                # Mark pending for any unfulfilled promise still in active term
+                if p["status"] == "unfulfilled" and final < 0.25:
+                    stem_base = stem.replace("_promises", "")
+                    if stem_base in ("dmk_2021", "aiadmk_2021"):
+                        p["status"] = "pending"
+            if (bi // BATCH_SIZE) % 5 == 0:
+                out_data = {"metadata": pmeta, "promises": promises} if pmeta else promises
+                json.dump(out_data, open(pfile, "w", encoding="utf-8"),
+                          indent=2, ensure_ascii=False)
+
+        out_data = {"metadata": pmeta, "promises": promises} if pmeta else promises
+        json.dump(out_data, open(pfile, "w", encoding="utf-8"),
                   indent=2, ensure_ascii=False)
         print(f"  Saved {pfile.name}")
 
