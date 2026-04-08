@@ -1,8 +1,8 @@
-# 🗳️ Vaakazhipeer (வாக்களிப்பீர்)
+# 🗳️ IDAI (இடை)
 
 **Tamil Nadu Election Accountability Dashboard**
 
-A real-time, mobile-friendly AI system built to track, measure, and score the fulfillment of political promises made by major Tamil Nadu political parties (DMK and ADMK) over the past decade (2016 → 2026).
+Closing the gap between promises and proof. A real-time, mobile-friendly AI system built to track, measure, and score the fulfillment of political promises made by major Tamil Nadu political parties (DMK and ADMK) over the past decade (2016 → 2026).
 
 ---
 
@@ -80,4 +80,4 @@ Build a real-time AI accountability dashboard that:
 
 ---
 
-*This project aims to bridge the gap between promises made and governance delivered using state-of-the-art NLP, bringing transparency to Tamil Nadu politics.*
+*This project aims to bridge the gap between promises and proof using state-of-the-art NLP, bringing transparency to Tamil Nadu politics.*

@@ -1,124 +1,172 @@
-import { useScore } from '../hooks/useScore'
-import ScoreRing from '../components/ScoreRing'
-
-const CATEGORIES = [
-  { key: 'healthcare', label: 'Healthcare' },
-  { key: 'education', label: 'Education' },
-  { key: 'infrastructure', label: 'Infrastructure' },
-  { key: 'agriculture', label: 'Agriculture' },
-  { key: 'economy', label: 'Economy' },
-  { key: 'employment', label: 'Employment' },
-  { key: 'women and youth', label: 'Women & Youth' },
-]
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useQueries } from '@tanstack/react-query';
+import { api } from '../api/client';
+import { useLanguage } from '../i18n/LanguageContext';
+import CategoryBar from '../components/CategoryBar';
+import ScoreRing from '../components/ScoreRing';
+import Navbar from '../components/Navbar';
+import BottomNav from '../components/BottomNav';
+import ErrorState from '../components/ErrorState';
+import EmptyState from '../components/EmptyState';
+import { COLORS } from '../styles/design-system';
 
 export default function Compare() {
-  const { data: scores, isLoading } = useScore()
+  const { t } = useLanguage();
+  
+  const results = useQueries({
+    queries: [
+      { queryKey: ['score'], queryFn: () => api.getScore() },
+      { queryKey: ['summary'], queryFn: () => api.getSummary() },
+    ]
+  });
+
+  const isLoading = results.some(r => r.isLoading);
+  const isError = results.some(r => r.isError);
+  const data = results[0].data; // Scores data
+  const refetch = () => results.forEach(r => r.refetch());
 
   if (isLoading) {
-    return <div className="h-full w-full flex items-center justify-center p-20 text-gray-500 font-medium animate-pulse">Loading Head-to-Head Data...</div>
+    return (
+      <div className="min-h-screen bg-background">
+        <Navbar />
+        <main className="max-w-7xl mx-auto px-6 pt-32 space-y-12">
+          <div className="h-24 glass rounded-3xl animate-pulse w-3/4 mx-auto" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="h-64 glass rounded-3xl animate-pulse" />
+            <div className="h-64 glass rounded-3xl animate-pulse" />
+          </div>
+        </main>
+        <BottomNav />
+      </div>
+    );
   }
 
-  // Robustly extract latest DMK and ADMK score chunks
-  const dmkKey = Object.keys(scores || {}).filter(k => k.startsWith('DMK')).sort().reverse()[0]
-  const admkKey = Object.keys(scores || {}).filter(k => k.startsWith('AIADMK') || k.startsWith('ADMK')).sort().reverse()[0]
+  if (isError) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center p-6">
+        <ErrorState 
+          message="We couldn't generate the comparison report. Please try again later." 
+          onRetry={refetch} 
+        />
+      </div>
+    );
+  }
 
-  const dmkData = (scores && dmkKey) ? scores[dmkKey] : {}
-  const admkData = (scores && admkKey) ? scores[admkKey] : {}
+  const getBestKey = (prefix) => {
+    const keys = Object.keys(data);
+    return keys.find(k => k.startsWith(prefix) && data[k].context === 'ruling') || 
+           keys.find(k => k.startsWith(prefix));
+  };
 
-  const dmkScore = dmkData.score || 0
-  const admkScore = admkData.score || 0
+  const dmkKey = getBestKey('DMK');
+  const admkKey = getBestKey('AIADMK') || getBestKey('ADMK');
 
-  const winner = dmkScore >= admkScore ? 'DMK' : 'ADMK'
-  const bannerBg = winner === 'DMK' ? 'bg-dmk-primary' : 'bg-admk-primary'
-  
-  const topScore = Math.max(dmkScore, admkScore).toFixed(1)
-  const bottomScore = Math.min(dmkScore, admkScore).toFixed(1)
-  const loserName = winner === 'DMK' ? 'ADMK' : 'DMK'
+  const dmkData = dmkKey ? data[dmkKey] : null;
+  const admkData = admkKey ? data[admkKey] : null;
+
+  if (!dmkData || !admkData) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center p-6">
+        <EmptyState message={t('compare.insufficientData') || "Comparison data is currently incomplete. We're updating our records."} />
+        <BottomNav />
+      </div>
+    );
+  }
+
+  const categories = Object.keys(dmkData.categories || {});
+
+  const winner = dmkData.score > admkData.score ? 'DMK' : 'ADMK';
+  const winnerScore = Math.round(dmkData.score > admkData.score ? dmkData.score : admkData.score);
+  const loserScore = Math.round(dmkData.score > admkData.score ? admkData.score : dmkData.score);
+  const winnerColor = dmkData.score > admkData.score ? (COLORS?.dmk?.primary || '#E63946') : (COLORS?.admk?.primary || '#2DC653');
+  const secondaryColor = dmkData.score > admkData.score ? COLORS.dmk.light : COLORS.admk.light;
 
   return (
-    <div className="w-full max-w-3xl mx-auto py-8 lg:py-12 flex flex-col md:px-0">
-      
-      {/* Heavy Header */}
-      <div className="mb-10 text-center">
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight uppercase">
-          <span className="text-dmk-primary shadow-sm drop-shadow-md">DMK</span> 
-          <span className="text-gray-500 italic lowercase mx-3 font-medium text-2xl">vs</span> 
-          <span className="text-admk-primary shadow-sm drop-shadow-md">ADMK</span>
-        </h1>
-        <p className="text-xs sm:text-sm text-gray-400 mt-2 tracking-widest uppercase font-semibold">
-          Promises Delivered Head-to-Head
-        </p>
-      </div>
+    <div className="min-h-screen pb-32 bg-background">
+      <Navbar />
 
-      {/* Duel Rings */}
-      <div className="flex justify-center items-center gap-2 sm:gap-10 mb-12">
-        <div className="flex flex-col items-center">
-          <h2 className="text-2xl font-black text-white mb-3 tracking-widest">DMK</h2>
-          <ScoreRing score={dmkScore} color="#E63946" size={140} />
-        </div>
-        <div className="text-3xl font-black text-navy-light italic pb-8 mx-2 sm:mx-6">VS</div>
-        <div className="flex flex-col items-center">
-          <h2 className="text-2xl font-black text-white mb-3 tracking-widest">ADMK</h2>
-          <ScoreRing score={admkScore} color="#2DC653" size={140} />
-        </div>
-      </div>
+      <main className="max-w-7xl mx-auto px-6 pt-32 pb-24">
+        {/* Header */}
+        <header className="text-center mb-16 animate-in">
+          <div className="inline-flex items-center gap-6 md:gap-12">
+            <h1 className="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-error">DMK</h1>
+            <div className="h-12 w-px bg-white/10 rotate-12"></div>
+            <span className="text-2xl md:text-3xl font-headline font-light tracking-[0.2em] text-white/30 truncate">VS</span>
+            <div className="h-12 w-px bg-white/10 rotate-12"></div>
+            <h1 className="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-secondary">ADMK</h1>
+          </div>
+          <p className="mt-4 text-on-surface-variant font-label tracking-widest text-xs uppercase">
+            {t('compare.matrixTitle') || 'Party Accountability Comparison Matrix'}
+          </p>
+        </header>
 
-      {/* Category Breakdowns (Scrollable Container for Mobile Edge Cases) */}
-      <div className="w-full overflow-x-auto pb-4 [&::-webkit-scrollbar]:hidden px-2 mb-6">
-        <div className="min-w-[340px] flex flex-col gap-3">
-          {CATEGORIES.map(cat => {
-            const dmkCatScore = dmkData.categories?.[cat.key]?.score || 0
-            const admkCatScore = admkData.categories?.[cat.key]?.score || 0
-            
-            // Winning side highlights brighter
-            const dmkWins = dmkCatScore >= admkCatScore
-            const admkWins = admkCatScore >= dmkCatScore
+        {/* Top Section: Score Rings */}
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+          <div className="surface-container-low rounded-lg p-10 flex flex-col items-center relative overflow-hidden group animate-in" style={{ animationDelay: '0.1s' }}>
+            <div className="absolute inset-0 bg-gradient-to-br from-error/5 to-transparent"></div>
+            <ScoreRing score={dmkData.score} color={COLORS.dmk.primary} size={192} label="Efficiency" />
+            <h3 className="mt-8 font-headline text-xl text-error font-bold tracking-tight">DMK Performance</h3>
+            <p className="text-on-surface-variant text-sm mt-2 text-center max-w-[240px]">
+              {t('compare.dmkSummary') || 'Stable growth in infrastructure and social welfare metrics over the last cycle.'}
+            </p>
+          </div>
 
-            return (
-              <div key={cat.key} className="grid grid-cols-[1fr_minmax(85px,auto)_1fr] sm:grid-cols-[1fr_minmax(120px,auto)_1fr] gap-x-2 items-center">
-                
-                {/* DMK Bar (Left Column -> Pushes filling from Right edge) */}
-                <div className="relative w-full h-8 sm:h-9 bg-navy-card/80 border border-navy-light rounded-sm overflow-hidden flex items-center justify-end">
-                  <div 
-                    className={`absolute inset-y-0 right-0 transition-all duration-1000 ease-out ${dmkWins ? 'bg-dmk-primary' : 'bg-dmk-dark/50'}`}
-                    style={{ width: `${dmkCatScore}%` }}
-                  />
-                  {/* Floating Number Overlay locked tightly to axis */}
-                  <span className="relative z-10 text-[11px] sm:text-xs font-black text-white mr-2.5 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] tabular-nums tracking-wider">
-                    {dmkCatScore.toFixed(0)}%
-                  </span>
-                </div>
+          <div className="surface-container-low rounded-lg p-10 flex flex-col items-center relative overflow-hidden group animate-in" style={{ animationDelay: '0.2s' }}>
+            <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent"></div>
+            <ScoreRing score={admkData.score} color={COLORS.admk.primary} size={192} label="Efficiency" />
+            <h3 className="mt-8 font-headline text-xl text-secondary font-bold tracking-tight">ADMK Performance</h3>
+            <p className="text-on-surface-variant text-sm mt-2 text-center max-w-[240px]">
+              {t('compare.admkSummary') || 'Strong momentum in agricultural subsidies and rural development initiatives.'}
+            </p>
+          </div>
+        </section>
 
-                {/* Shared Axis Marker */}
-                <div className="text-[9px] sm:text-[11px] font-bold uppercase tracking-widest text-center text-gray-400 break-words leading-tight px-1 font-tamil">
-                  {cat.label}
-                </div>
-
-                {/* ADMK Bar (Right Column -> Pushes filling from Left edge) */}
-                <div className="relative w-full h-8 sm:h-9 bg-navy-card/80 border border-navy-light rounded-sm overflow-hidden flex items-center justify-start">
-                  <div 
-                    className={`absolute inset-y-0 left-0 transition-all duration-1000 ease-out ${admkWins ? 'bg-admk-primary' : 'bg-admk-dark/50'}`}
-                    style={{ width: `${admkCatScore}%` }}
-                  />
-                  {/* Floating Number Overlay locked tightly to axis */}
-                  <span className="relative z-10 text-[11px] sm:text-xs font-black text-white ml-2.5 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] tabular-nums tracking-wider">
-                    {admkCatScore.toFixed(0)}%
-                  </span>
-                </div>
-
-              </div>
-            )
-          })}
-        </div>
-      </div>
+        {/* Comparison Rows */}
+        <section className="space-y-12 mb-24 px-0 max-w-3xl mx-auto animate-in" style={{ animationDelay: '0.3s' }}>
+          <div className="flex justify-between items-end mb-4 px-2 opacity-60 font-label text-[10px] uppercase tracking-widest text-on-surface-variant">
+            <div className="w-1/2 text-left">DMK Impact Score</div>
+            <div className="w-1/2 text-right">ADMK Impact Score</div>
+          </div>
+          
+          <div className="flex flex-col gap-4">
+            {categories.map((cat, idx) => (
+              <CategoryBar 
+                key={cat}
+                category={cat} 
+                dmkScore={dmkData.categories?.[cat]?.score || 0} 
+                admkScore={admkData.categories?.[cat]?.score || 0} 
+              />
+            ))}
+          </div>
+        </section>
+      </main>
 
       {/* Winner Banner */}
-      <div className={`mx-2 sm:mx-0 mt-6 px-6 py-5 rounded-2xl shadow-xl flex justify-center items-center transform transition-all ${bannerBg} group cursor-default hover:scale-[1.01]`}>
-        <span className="text-sm sm:text-base font-extrabold text-white tracking-widest md:tracking-[0.1em] text-center drop-shadow-sm uppercase">
-          Overall: {winner} leads with <span className="text-white/90 underline decoration-2 underline-offset-4">{topScore}%</span> vs {loserName} <span className="opacity-80">{bottomScore}%</span>
-        </span>
-      </div>
+      <footer className="fixed bottom-24 left-0 right-0 z-50 px-4 animate-in" style={{ animationDelay: '0.8s' }}>
+        <div className="max-w-xl mx-auto glass-blur bg-[#132030]/80 rounded-full py-4 px-8 flex justify-between items-center shadow-2xl border border-white/5 overflow-hidden relative">
+          <div 
+            className="absolute inset-0 opacity-20 pointer-events-none"
+            style={{ background: `linear-gradient(to right, ${winnerColor}, transparent, ${winnerColor})` }}
+          />
+          <div className="flex items-center gap-3 relative z-10">
+            <span className="text-white font-headline font-bold text-lg tracking-tight">
+              {winner} {t('compare.leadsOverall') || 'leads overall'}
+            </span>
+          </div>
+          <div className="text-white/80 font-label font-medium tracking-wider relative z-10">
+            {winnerScore}% vs {loserScore}%
+          </div>
+          <Link 
+            to={`/parties/${winner.toLowerCase()}`}
+            className="bg-white/10 hover:bg-white/20 text-white px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all relative z-10"
+          >
+            {t('home.viewDetails')}
+          </Link>
+        </div>
+      </footer>
 
+      <BottomNav />
     </div>
-  )
+  );
 }

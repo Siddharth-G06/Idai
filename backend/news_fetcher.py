@@ -61,6 +61,41 @@ def fetch_body_safe(url, timeout=10):
     return ""
 
 
+def score_article_quality(article: dict) -> float:
+    body = article.get("body", "")
+    title = article.get("title", "")
+    source = article.get("source", "").lower()
+    
+    score = 0.0
+    
+    # body length
+    blen = len(body)
+    if blen > 200: score += 0.4
+    if blen > 500: score += 0.3
+    
+    # title length
+    if len(title) > 30: score += 0.1
+    
+    # Contains number
+    if re.search(r'\d+', body) or re.search(r'\d+', title):
+        score += 0.1
+        
+    # Body is title repeated
+    if body.strip() == title.strip():
+        score -= 0.5
+        
+    # Paywall / Stubs
+    paywall_keywords = ["subscribe to read", "sign in", "read more at", "this article is for subscribers"]
+    if any(kw in body.lower() for kw in paywall_keywords):
+        score -= 0.8
+        
+    # Source bonus
+    if "the hindu" in source or "prs india" in source:
+        score += 0.1
+        
+    return round(score, 2)
+
+
 def clean(text):
     return re.sub(r"\s+", " ", (text or "")).strip()
 
@@ -161,6 +196,10 @@ def run():
     rss_new  = fetch_rss(seen)
     api_new  = fetch_newsapi(seen)
     combined = existing + rss_new + api_new
+    
+    for a in combined:
+        if "quality_score" not in a:
+            a["quality_score"] = score_article_quality(a)
 
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     json.dump(combined, open(OUTPUT_PATH, "w", encoding="utf-8"),

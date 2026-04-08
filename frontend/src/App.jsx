@@ -2,20 +2,21 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import PartyPage from './pages/PartyPage'
 import Compare from './pages/Compare'
-import Navbar from './components/Navbar'
+import About from './pages/About'
+import HealthBanner from './components/HealthBanner'
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Navbar />
-      <main className="min-h-screen pt-20 px-8">
+    <>
+      <HealthBanner />
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/parties/dmk" element={<PartyPage party="DMK" />} />
-          <Route path="/parties/admk" element={<PartyPage party="ADMK" />} />
+          <Route path="/parties/:partyId" element={<PartyPage />} />
           <Route path="/compare" element={<Compare />} />
+          <Route path="/about" element={<About />} />
         </Routes>
-      </main>
-    </BrowserRouter>
+      </BrowserRouter>
+    </>
   )
 }

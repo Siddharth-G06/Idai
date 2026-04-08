@@ -1,0 +1,75 @@
+export default {
+  appName: "IDAI",
+  tagline: "Closing the gap between promises and proof",
+  nav: { home: "Home", compare: "Compare", about: "About" },
+  home: {
+    heroHeadingLine1: "Closing the gap between",
+    heroHeadingLine2: "promises and proof",
+    hero: "Who kept their promise?",
+    heroSub: "Tracking political commitments in Tamil Nadu · 2016 to now",
+    liveLabel: "Live · Updates every 6 hrs",
+    statusLive: "Live",
+    viewDetails: "View Details",
+    lastUpdated: "Updated",
+    hrsAgo: "hrs ago",
+  },
+  party: {
+    manifesto: "Manifesto",
+    initTitle: "Manifesto",
+    addressed: "addressed",
+    total: "Total",
+    fulfilled: "Fulfilled",
+    notFulfilled: "Not Addressed",
+    topCategory: "Top Cat.",
+    showing: "Showing",
+    of: "of",
+    promises: "promises",
+    readArticle: "Read article →",
+    matchScore: "Match",
+    noResults: "No promises found for these filters.",
+    leadsOverall: "leads overall",
+  },
+  filters: {
+    all: "All",
+    healthcare: "Healthcare",
+    education: "Education",
+    infrastructure: "Infrastructure",
+    agriculture: "Agriculture",
+    economy: "Economy",
+    employment: "Employment",
+    womenandyouth: "Women & Youth",
+    statusAll: "All",
+    fulfilled: "Addressed",
+    unfulfilled: "Not Addressed",
+    status: {
+      completedBy: "Completed by",
+      pending: "Ongoing",
+      unverified: "Unverified"
+    }
+  },
+  compare: {
+    title: "DMK vs ADMK",
+    matrixTitle: "Party Accountability Comparison Matrix",
+    dmkSummary: "Stable growth in infrastructure and social welfare metrics over the last cycle.",
+    admkSummary: "Strong momentum in agricultural subsidies and rural development initiatives.",
+    leadsOverall: "leads overall"
+  },
+  disclaimer: "Data sourced from publicly available election manifestos and verified news publications. This platform is independent and non-partisan. AI-assisted promise matching is for informational purposes only. Not affiliated with any political party.",
+  footer: {
+    createdBy: "Created by Siddharth",
+    about: "About",
+    methodology: "Methodology"
+  },
+  about: {
+    title: "About IDAI",
+    desc: "IDAI tracks political promises made by Tamil Nadu's major parties — DMK and ADMK — and maps them against verified news and government actions.",
+    howTitle: "How it works",
+    step1: "Manifestos from 2016 and 2021 are processed by AI to extract individual promises",
+    step2: "Each promise is matched against thousands of news articles using semantic search",
+    step3: "A similarity score determines if a promise was addressed",
+    step4: "Scores update automatically every 6 hours",
+    sourcesTitle: "Sources",
+    methodTitle: "Methodology Note",
+    methodDesc: "AI matching is approximate. A high match score means news coverage exists about that topic — not that the promise was 100% fulfilled. IDAI presents evidence, not verdicts. Voters decide."
+  }
+}

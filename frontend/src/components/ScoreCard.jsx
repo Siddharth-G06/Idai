@@ -16,9 +16,9 @@ export default function ScoreCard({ partyKey, data }) {
     return () => clearTimeout(t)
   }, [])
 
-  const score      = data?.score      ?? 0
-  const fulfilled  = data?.fulfilled  ?? 0
-  const total      = data?.total      ?? 0
+  const score      = Math.round(data?.score      ?? 0)
+  const fulfilled  = Math.round(data?.fulfilled  ?? 0)
+  const total      = Math.round(data?.total      ?? 0)
   const topCat     = data?.top_category ?? '—'
   const context    = data?.context    ?? ''
   const period     = data?.period     ?? ''
@@ -56,7 +56,7 @@ export default function ScoreCard({ partyKey, data }) {
       {/* Big score */}
       <div style={{ display: 'flex', alignItems: 'flex-end', gap: 8, marginBottom: 14 }}>
         <span style={{ fontSize: 52, fontWeight: 900, lineHeight: 1, fontFamily: "'Space Grotesk',sans-serif", color: color.accent }}>
-          {score.toFixed(1)}
+          {score}
         </span>
         <span style={{ fontSize: 22, color: '#64748b', paddingBottom: 6 }}>%</span>
       </div>

@@ -21,6 +21,7 @@ import re
 import sys
 from pathlib import Path
 from collections import Counter
+import numpy as np
 
 import pdfplumber
 from transformers import pipeline
@@ -184,11 +185,24 @@ def extract_text_pdfplumber(pdf_path: str) -> tuple[str, int]:
 
 
 def is_scanned_pdf(text: str, page_count: int) -> bool:
-    """Detect if a PDF is image-only based on chars-per-page average."""
+    """Detect if a PDF is image-only or uses legacy garbled encoding."""
     if page_count == 0:
         return True
+    
+    # 1. Chars per page check
     avg = len(text.strip()) / page_count
-    return avg < SCANNED_THRESHOLD_CHARS_PER_PAGE
+    if avg < SCANNED_THRESHOLD_CHARS_PER_PAGE:
+        return True
+    
+    # 2. Garbled Latin check (Common in legacy AIADMK/DMK PDFs)
+    # These PDFs look like "mmmmÃÃÃÃ" to a text extractor
+    garbled_indicators = ["Ã", "Â", "Â®", "jjjj", "aaaa", "mmmm", "ffff"]
+    count = sum(text.count(ind) for ind in garbled_indicators)
+    if count > 200: # High density of garbled markers
+        print(f"  ⚠ Garbled encoding detected ({count} markers). Forcing OCR for accuracy.")
+        return True
+        
+    return False
 
 
 def extract_text_ocr(
@@ -348,6 +362,41 @@ def extract_promise_candidates(text: str):
     return candidates
 
 
+def deduplicate_promises(candidates: list[str]) -> list[str]:
+    """Remove duplicates using substring checks and semantic similarity."""
+    if not candidates: return []
+    
+    # 1. Exact substring deduplication
+    unique = []
+    candidates = sorted(candidates, key=len, reverse=True)
+    for c in candidates:
+        if not any(c in u for u in unique if c != u):
+            unique.append(c)
+    
+    # 2. Semantic deduplication
+    from sentence_transformers import SentenceTransformer, util
+    model = SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
+    
+    # Process in reverse order (longest first) to keep more specific ones
+    final = []
+    embeddings = model.encode(unique, convert_to_tensor=True)
+    
+    to_remove = set()
+    for i in range(len(unique)):
+        if i in to_remove: continue
+        for j in range(i + 1, len(unique)):
+            if j in to_remove: continue
+            
+            sim = util.cos_sim(embeddings[i], embeddings[j]).item()
+            if sim > 0.85:
+                # Keep longer one (i is longer than or equal to j because of sort)
+                to_remove.add(j)
+    
+    final = [unique[i] for i in range(len(unique)) if i not in to_remove]
+    print(f"  Deduplication removed {len(candidates) - len(final)} duplicates from {len(candidates)} candidates")
+    return final
+
+
 # ── Models ───────────────────────────────────────────────────────────────────
 
 def build_models():
@@ -394,9 +443,7 @@ def process_promises(candidates, translator, classifier):
     print("[3/4] Processing + Classifying...\n")
 
     for i, sentence in enumerate(candidates):
-
         # Translate if Tamil
-        # translator() now takes a list and returns a list of strings
         if is_tamil(sentence):
             try:
                 translated = translator([sentence], max_length=512)[0]
@@ -405,26 +452,51 @@ def process_promises(candidates, translator, classifier):
         else:
             translated = sentence
 
-        # Classify
-        result = classifier(
+        # ── CLASSIFICATION PAS 1 ──
+        res = classifier(
             translated,
             candidate_labels=CATEGORIES,
             hypothesis_template="This sentence is about {}.",
         )
+        
+        cat1, conf1 = res["labels"][0], res["scores"][0]
+        cat2, conf2 = res["labels"][1], res["scores"][1]
+        
+        # ── SECOND PASS IF LOW CONFIDENCE ──
+        if conf1 < 0.40:
+            res2 = classifier(
+                translated,
+                candidate_labels=CATEGORIES,
+                hypothesis_template="This text is primarily about {}.",
+            )
+            cat1, conf1 = res2["labels"][0], res2["scores"][0]
+            cat2, conf2 = res2["labels"][1], res2["scores"][1]
+            
+            if conf1 < 0.40:
+                cat1 = "general"
 
-        category = result["labels"][0]
-        confidence = round(result["scores"][0], 4)
+        # ── AMBIGUITY CHECK (Multi-Category) ──
+        multi_cat = False
+        final_cats = [cat1]
+        if cat1 != "general" and abs(conf1 - conf2) < 0.08:
+            final_cats = [cat1, cat2]
+            multi_cat = True
+
+        conf_label = "high" if conf1 > 0.70 else "medium" if conf1 >= 0.40 else "low"
 
         results.append({
             "promise": sentence,
             "translated": translated,
-            "category": category,
-            "confidence": confidence,
+            "category": cat1, # primary
+            "categories": final_cats,
+            "multi_category": multi_cat,
+            "confidence": round(conf1, 4),
+            "classification_confidence": conf_label
         })
 
-        print(f"[{i+1}/{len(candidates)}] {category:<20} ({confidence:.2f})")
-        print(f"  TA/EN : {sentence[:80]}")
-        print(f"  EN    : {translated[:80]}\n")
+        label_str = "/".join(final_cats)
+        print(f"[{i+1}/{len(candidates)}] {label_str:<25} ({conf1:.2f}) [{conf_label}]")
+        if multi_cat: print(f"  (Multi-Category detected)")
 
     return results
 
@@ -464,31 +536,30 @@ def run(pdf_path, party, year, output_dir, force_ocr, dpi, max_pages, poppler_pa
 
     if not candidates:
         print("\nNo promises found. Possible causes:")
-        print("  • OCR quality poor — try higher --dpi (e.g. 300)")
-        print("  • Promise trigger words don't match this manifesto's style")
-        print("  • Add more trigger words to PROMISE_TRIGGERS_TA")
-        print("\nHint: save the raw OCR text and inspect it:")
-        print("  Add --save-text flag or check /tmp/ocr_debug.txt")
-        # Save debug dump
-        debug_path = Path(output_dir) / "ocr_debug.txt"
-        debug_path.write_text(text[:50000], encoding="utf-8")
-        print(f"  Saved first 50k chars to {debug_path}")
+        # ... (error messages)
         sys.exit(1)
 
+    # NEW: Deduplication
+    print("  Deduplicating...")
+    deduped = deduplicate_promises(candidates)
+    
     # Step 3 — Models
     translator, classifier = build_models()
-    processed = process_promises(candidates, translator, classifier)
+    processed = process_promises(deduped, translator, classifier)
 
     # Step 4 — Save
     print("[4/4] Saving results...")
-    results = []
+    promise_data = []
     for i, item in enumerate(processed):
-        results.append({
+        promise_data.append({
             "id": f"{party.lower()}_{year}_{str(i+1).zfill(3)}",
             "promise": item["promise"],
             "translated": item["translated"],
             "category": item["category"],
+            "categories": item.get("categories", [item["category"]]),
+            "multi_category": item.get("multi_category", False),
             "confidence": item["confidence"],
+            "classification_confidence": item.get("classification_confidence", "medium"),
             "party": party.upper(),
             "year": year,
             "status": "pending",
@@ -498,17 +569,28 @@ def run(pdf_path, party, year, output_dir, force_ocr, dpi, max_pages, poppler_pa
             "matched_date": None,
         })
 
+    output_results = {
+        "metadata": {
+            "party": party.upper(),
+            "year": year,
+            "raw_candidates": len(candidates),
+            "after_dedup": len(deduped),
+            "removed_duplicates": len(candidates) - len(deduped)
+        },
+        "promises": promise_data
+    }
+
     out_path = Path(output_dir) / f"{party.lower()}_{year}_promises.json"
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
     with open(out_path, "w", encoding="utf-8") as f:
-        json.dump(results, f, ensure_ascii=False, indent=2)
+        json.dump(output_results, f, ensure_ascii=False, indent=2)
 
-    print(f"\n  ✓ Saved {len(results)} promises → {out_path}")
+    print(f"\n  ✓ Saved {len(promise_data)} promises → {out_path}")
 
     # Stats
     print("\nCategory breakdown:")
-    counts = Counter(r["category"] for r in results)
+    counts = Counter(r["category"] for r in promise_data)
     for cat, count in sorted(counts.items(), key=lambda x: -x[1]):
         print(f"  {cat:<25} {count}")
 

@@ -1,83 +1,75 @@
-import { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react';
+import { useLanguage } from '../i18n/LanguageContext';
+import { COLORS } from '../styles/design-system';
 
-export default function ScoreRing({ score = 0, color = "#10b981", size = 120 }) {
-  const strokeWidth = Math.max(size * 0.08, 4) // adjust track thickness dynamically
-  const center = size / 2
-  const radius = center - strokeWidth
-  const circumference = 2 * Math.PI * radius
+export default function ScoreRing({ score = 0, color = '#E63946', size = 140, label = 'addressed', hideLabel = false }) {
+  const [offset, setOffset] = useState(0);
   
-  // Start fully offset (empty ring) to trigger transition on mount
-  const [offset, setOffset] = useState(circumference)
+  const strokeWidth = hideLabel ? size * 0.12 : size * 0.08;
+  const radius = (size - strokeWidth) / 2;
+  const circumference = radius * 2 * Math.PI;
 
   useEffect(() => {
-    // Small timeout ensures the DOM has rendered the empty ring before transitioning
-    const t = setTimeout(() => {
-      const finalOffset = circumference - (Math.max(0, Math.min(100, score)) / 100) * circumference
-      setOffset(finalOffset)
-    }, 50)
-    return () => clearTimeout(t)
-  }, [score, circumference])
+    // Initial paint: 0, then after mount: actual value
+    const timeout = setTimeout(() => {
+      const progress = (score / 100) * circumference;
+      setOffset(circumference - progress);
+    }, 100);
+    return () => clearTimeout(timeout);
+  }, [score, circumference]);
 
   return (
-    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
-      {/* Background Track */}
-      <circle
-        cx={center}
-        cy={center}
-        r={radius}
-        fill="none"
-        stroke="rgba(255, 255, 255, 0.08)"
-        strokeWidth={strokeWidth}
-      />
-      {/* Animated Foreground Ring */}
-      <circle
-        cx={center}
-        cy={center}
-        r={radius}
-        fill="none"
-        stroke={color}
-        strokeWidth={strokeWidth}
-        strokeLinecap="round"
-        strokeDasharray={circumference}
-        strokeDashoffset={offset}
-        style={{
-          transition: 'stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1)',
-          transform: 'rotate(-90deg)',
-          transformOrigin: '50% 50%'
-        }}
-      />
-      {/* Text Group */}
-      <text x="50%" y="45%" textAnchor="middle" dominantBaseline="central">
-        <tspan 
-          fill="#f1f5f9" 
-          fontSize={size * 0.26} 
-          fontWeight="800" 
-          fontFamily="'Space Grotesk', system-ui, sans-serif"
-        >
-          {Number(score).toFixed(0)}
-        </tspan>
-        <tspan 
-          fill="#94a3b8" 
-          fontSize={size * 0.14} 
-          fontWeight="600" 
-          dx="2"
-        >
-          %
-        </tspan>
-      </text>
-      <text 
-        x="50%" 
-        y="68%" 
-        textAnchor="middle" 
-        dominantBaseline="central"
-        fill="#64748b"
-        fontSize={size * 0.1}
-        fontWeight="600"
-        letterSpacing="0.04em"
-        style={{ textTransform: 'uppercase' }}
-      >
-        addressed
-      </text>
-    </svg>
-  )
+    <div 
+      className="relative flex items-center justify-center rounded-full"
+      style={{ 
+        width: size, 
+        height: size,
+        boxShadow: hideLabel ? 'none' : `0 0 30px ${color}15`
+      }}
+    >
+      <svg width={size} height={size} className="transform -rotate-90">
+        {/* Track */}
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
+          fill="transparent"
+          stroke="rgba(255,255,255,0.05)"
+          strokeWidth={strokeWidth}
+        />
+        {/* Progress Arc */}
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
+          fill="transparent"
+          stroke={color}
+          strokeWidth={strokeWidth}
+          strokeDasharray={circumference}
+          strokeDashoffset={offset || circumference}
+          strokeLinecap="round"
+          style={{
+            transition: 'stroke-dashoffset 1.4s cubic-bezier(0.4, 0, 0.2, 1)'
+          }}
+        />
+      </svg>
+      
+      {/* Center Labeling */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+        <div className="flex items-baseline mb-[-2px]">
+          <span className={`${hideLabel ? 'text-lg' : 'text-3xl'} font-black text-white leading-none`}>
+            {Math.round(score)}
+          </span>
+          <span className={`${hideLabel ? 'text-[10px]' : 'text-sm'} font-bold text-white/60 ml-0.5`}>
+            %
+          </span>
+        </div>
+        {!hideLabel && (
+          <span className="text-[10px] font-bold uppercase tracking-widest text-white/30">
+            {label}
+          </span>
+        )}
+      </div>
+    </div>
+  );
 }

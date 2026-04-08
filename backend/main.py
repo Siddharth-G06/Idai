@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import os
+import time
 from collections import defaultdict
 from pathlib import Path
 from datetime import datetime, timezone
@@ -31,13 +32,23 @@ PORT = int(os.environ.get("PORT", 8000))
 # LOAD DATA AT MODULE LEVEL (once, on startup)
 # ─────────────────────────────────────────────
 
-def _load_json(path: Path) -> Any:
+def safe_load_json(path: Path, fallback):
     try:
+        if not path.exists():
+            print(f"WARNING: {path} not found, using fallback")
+            return fallback
         with open(path, encoding="utf-8") as f:
-            return json.load(f)
+            content = f.read().strip()
+            if not content:
+                print(f"WARNING: {path} is empty")
+                return fallback
+            return json.loads(content)
+    except json.JSONDecodeError as e:
+        print(f"ERROR: {path} is malformed JSON — {e}")
+        return fallback
     except Exception as e:
-        print(f"Warning: Could not load JSON from {path}: {e}")
-        return {}
+        print(f"ERROR reading {path} — {e}")
+        return fallback
 
 def _load_all_promises() -> dict[str, list[dict]]:
     """
@@ -51,7 +62,12 @@ def _load_all_promises() -> dict[str, list[dict]]:
         return result
     for p in sorted(DATA_DIR.glob("*_promises.json")):
         stem = p.stem.replace("_promises", "")
-        result[stem] = _load_json(p)
+        data = safe_load_json(p, [])
+        # Check for new {metadata, promises} structure
+        if isinstance(data, dict) and "promises" in data:
+            result[stem] = data["promises"]
+        else:
+            result[stem] = data
     return result
 
 # Named references kept for backward compat with the spec
@@ -61,7 +77,7 @@ _promises_by_stem = _load_all_promises()
 dmk_promises   = _promises_by_stem.get("dmk_2021",   [])
 admk_promises  = _promises_by_stem.get("aiadmk_2016", [])
 
-scores: dict = _load_json(DATA_DIR / "scores.json")
+scores: dict = safe_load_json(DATA_DIR / "scores.json", {})
 
 # Flat index: id → promise object  (across ALL stems)
 _promise_index: dict[str, dict] = {}
@@ -81,12 +97,16 @@ app = FastAPI(
     version="1.0.0",
 )
 
+ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173,http://localhost:3000")
+origins = [o.strip() for o in ALLOWED_ORIGINS.split(",") if o.strip()]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET"],
     allow_headers=["*"],
+    max_age=3600,
 )
 
 
@@ -156,8 +176,57 @@ def _scores_key(stem: str) -> str:
 
 @app.get("/health")
 def health():
-    """Liveness / readiness check."""
-    return {"status": "ok"}
+    """Liveness / readiness check + freshness."""
+    score_path = DATA_DIR / "scores.json"
+    data_stale = False
+    if score_path.exists():
+        mtime = score_path.stat().st_mtime
+        age_hours = (time.time() - mtime) / 3600
+        if age_hours > 25:
+            data_stale = True
+    
+    return {
+        "status": "ok",
+        "data_stale": data_stale,
+        "uptime": "active"
+    }
+
+@app.get("/api/status")
+def get_service_status():
+    """Returns detailed loading status for all data files."""
+    status = {}
+    
+    # Check promise files
+    for pfile in sorted(DATA_DIR.glob("*_promises.json")):
+        stem = pfile.stem.replace("_promises", "")
+        mtime = datetime.fromtimestamp(pfile.stat().st_mtime, tz=timezone.utc).isoformat()
+        
+        plist = _promises_by_stem.get(stem, [])
+        status[stem] = {
+            "loaded": len(plist) > 0,
+            "count": len(plist),
+            "last_modified": mtime
+        }
+    
+    # Check scores
+    score_path = DATA_DIR / "scores.json"
+    if score_path.exists():
+        status["scores"] = {
+            "loaded": bool(scores),
+            "last_modified": datetime.fromtimestamp(score_path.stat().st_mtime, tz=timezone.utc).isoformat()
+        }
+        
+    # Check news
+    news_path = DATA_DIR / "news_articles.json"
+    if news_path.exists():
+        news_data = safe_load_json(news_path, [])
+        status["news"] = {
+            "loaded": len(news_data) > 0,
+            "count": len(news_data),
+            "last_modified": datetime.fromtimestamp(news_path.stat().st_mtime, tz=timezone.utc).isoformat()
+        }
+        
+    return status
 
 
 @app.get("/api/parties")
@@ -191,34 +260,54 @@ def get_promises(
     year: int | None = None,
     category: str | None = None,
     status: str | None = None,
+    page: int = 1,
+    limit: int = 20,
 ):
     """
-    Filtered list of promises.
-    Query params (all optional): party, year, category, status
-    Example: /api/promises?party=DMK&category=healthcare&status=fulfilled
+    Filtered and paginated list of promises.
     """
     results: list[dict] = []
+    limit = min(max(1, limit), 50) # Cap at 50
 
     for stem, promises in _promises_by_stem.items():
         stem_party, stem_year = _parse_stem(stem)
 
-        # Party filter (case-insensitive)
         if party and stem_party.lower() != party.strip().lower():
             continue
-        # Year filter
         if year and stem_year != year:
             continue
 
         for p in promises:
-            # Category filter (case-insensitive)
             if category and p.get("category", "").lower() != category.strip().lower():
                 continue
-            # Status filter (case-insensitive)
             if status and p.get("status", "").lower() != status.strip().lower():
                 continue
             results.append(p)
 
-    return {"count": len(results), "promises": results}
+    total = len(results)
+    total_pages = (total + limit - 1) // limit if limit > 0 else 0
+    start = (page - 1) * limit
+    end   = start + limit
+    
+    paginated_data = results[start:end]
+
+    return {
+        "data": paginated_data,
+        "pagination": {
+            "page": page,
+            "limit": limit,
+            "total": total,
+            "total_pages": total_pages,
+            "has_next": page < total_pages,
+            "has_prev": page > 1
+        },
+        "filters_applied": {
+            "party": party,
+            "year": year,
+            "category": category,
+            "status": status
+        }
+    }
 
 
 @app.get("/api/promises/{promise_id}")

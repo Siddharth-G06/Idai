@@ -1,99 +1,186 @@
-import { Link } from 'react-router-dom'
-import { useScore } from '../hooks/useScore'
-import ScoreRing from '../components/ScoreRing'
+import React, { useState } from 'react';
+import { useSummary } from '../hooks/useSummary';
+import { useHealth } from '../hooks/useHealth';
+import { useLanguage } from '../i18n/LanguageContext';
+import ScoreRing from '../components/ScoreRing';
+import Navbar from '../components/Navbar';
+import BottomNav from '../components/BottomNav';
+import ErrorState from '../components/ErrorState';
+import EmptyState from '../components/EmptyState';
+import { COLORS } from '../styles/design-system';
+import { Link } from 'react-router-dom';
 
-/**
- * Home page — shows DMK 2021 (ruling) and AIADMK 2016 (ruling) score rings.
- *
- * Key fix: `.find()` returns the FIRST matching key. scores.json insertion order
- * is AIADMK-2016 → AIADMK-2021 → DMK-2016 → DMK-2021, so naïve `.find()` on
- * 'DMK' picks "DMK 2016" instead of "DMK 2021". We now filter by year explicitly.
- */
 export default function Home() {
-  const { data: scores, isLoading, error } = useScore()
+  const { t } = useLanguage();
+  const { data: scores, isLoading, isError, refetch } = useSummary();
+  const { data: health } = useHealth();
 
-  // Prefer the "ruling" entry (context === 'ruling'), falling back to highest year
-  function getBestKey(prefix) {
-    if (!scores) return null
-    const matches = Object.keys(scores).filter(k => k.startsWith(prefix))
-    // First try to find ruling context
-    const ruling = matches.find(k => scores[k]?.context === 'ruling')
-    if (ruling) return ruling
-    // Fallback: highest year
-    return matches.sort().reverse()[0] ?? null
-  }
+  // Group scores by party
+  const groupedScores = scores ? Object.values(scores).reduce((acc, curr) => {
+    const partyName = curr.party;
+    if (!acc[partyName]) acc[partyName] = [];
+    acc[partyName].push(curr);
+    return acc;
+  }, {}) : {};
 
-  const dmkKey  = getBestKey('DMK')
-  const admkKey = getBestKey('AIADMK')
+  // Track selected year for each party (default to latest)
+  const [selectedYears, setSelectedYears] = useState({});
 
-  const dmkData  = dmkKey  ? scores?.[dmkKey]  : null
-  const admkData = admkKey ? scores?.[admkKey] : null
+  const parties = Object.keys(groupedScores).sort();
 
-  const dmkYear  = dmkKey?.split(' ')[1]  ?? '2021'
-  const admkYear = admkKey?.split(' ')[1] ?? '2016'
+  if (isError) return (
+    <div className="min-h-screen bg-background flex items-center justify-center p-6">
+      <ErrorState 
+        message="Unable to load the accountability summary. Please check your internet connection." 
+        onRetry={refetch} 
+      />
+    </div>
+  );
+
+  if (isLoading) return (
+    <div className="min-h-screen bg-background p-6 pt-24 space-y-8 max-w-md mx-auto">
+      <div className="h-20 glass rounded-2xl animate-pulse" />
+      {[1, 2].map(i => (
+        <div key={i} className="h-64 glass rounded-3xl animate-pulse" />
+      ))}
+    </div>
+  );
 
   return (
-    <div className="max-w-4xl mx-auto py-10 flex flex-col items-center selection:bg-dmk-primary/30">
-      <h1 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-dmk-primary to-admk-primary mb-4 text-center font-tamil tracking-tight">
-        வாக்காளிபீர்
-      </h1>
-      <p className="text-gray-400 mb-12 text-center max-w-md font-medium leading-relaxed">
-        Hold Tamil Nadu political parties accountable to their election manifestos with data-driven promise tracking.
-      </p>
+    <div className="min-h-screen pb-32 bg-background">
+      <Navbar />
 
-      {/* Error banner — shown when backend is unreachable */}
-      {error && (
-        <div className="mb-8 p-4 bg-red-500/10 border border-red-500/20 text-red-400 rounded-lg max-w-lg text-center text-sm">
-          ⚠️ Could not connect to the backend API. Make sure FastAPI is running on{' '}
-          <code className="font-mono bg-red-900/30 px-1 rounded">localhost:8000</code>
+      <main className="pt-24 px-6 max-w-md mx-auto">
+        {/* Hero Section */}
+        <section className="mb-12 animate-in text-center">
+          <h1 className="font-headline font-extrabold text-4xl leading-tight tracking-tight mb-4 text-on-surface">
+            {t('home.heroHeadingLine1')}{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-br from-error via-white to-secondary">
+              {t('home.heroHeadingLine2')}
+            </span>
+          </h1>
+          <p className="text-on-surface-variant font-light leading-relaxed">
+            {t('home.heroSub')}
+          </p>
+        </section>
+
+        {/* Party Cards */}
+        <div className="space-y-8 mb-12">
+          {parties.length > 0 ? parties.map((partyName, idx) => {
+            const history = groupedScores[partyName].sort((a, b) => (b.year || 0) - (a.year || 0));
+            const selectedYear = selectedYears[partyName] || history[0].year;
+            const entry = history.find(h => h.year === selectedYear) || history[0];
+            
+            const partyId = partyName.toLowerCase();
+            const partyColor = partyId.includes('dmk') && !partyId.includes('aiadmk') ? '#E63946' : '#2DC653';
+            const isRuling = entry.context === 'ruling';
+            
+            return (
+              <div 
+                key={partyName}
+                className="glass-card rounded-lg p-6 border border-white/5 relative overflow-hidden animate-in" 
+                style={{ animationDelay: `${0.1 + idx * 0.1}s` }}
+              >
+                <div 
+                  className="absolute top-0 left-0 w-1.5 h-full" 
+                  style={{ backgroundColor: partyColor }}
+                />
+                
+                <div className="flex justify-between items-start mb-6">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <h2 className="font-headline font-bold text-2xl text-white">{partyName}</h2>
+                      <span className={`text-[9px] px-2 py-0.5 rounded-full font-bold uppercase tracking-widest ${
+                        isRuling ? 'bg-secondary/20 text-secondary' : 'bg-white/10 text-white/40'
+                      }`}>
+                        {isRuling ? 'Ruling' : 'Opposition'}
+                      </span>
+                    </div>
+                    <p className="text-[10px] tracking-widest text-on-surface-variant uppercase mt-1">
+                      {entry.period} {t('party.manifesto')}
+                    </p>
+                  </div>
+                  <div className="relative flex items-center justify-center w-16 h-16">
+                    <ScoreRing score={entry.score} color={partyColor} size={64} hideLabel />
+                  </div>
+                </div>
+
+                {/* Year Switcher */}
+                <div className="flex bg-white/5 p-1 rounded-md mb-8 w-fit">
+                  {history.map(h => (
+                    <button
+                      key={h.year}
+                      onClick={() => setSelectedYears(prev => ({ ...prev, [partyName]: h.year }))}
+                      className={`px-3 py-1 text-[10px] font-bold rounded transition-all ${
+                        selectedYear === h.year 
+                          ? 'bg-white/10 text-white shadow-sm' 
+                          : 'text-white/40 hover:text-white/60'
+                      }`}
+                    >
+                      {h.year}
+                    </button>
+                  ))}
+                </div>
+                
+                <div className="grid grid-cols-3 gap-4 mb-8">
+                  <div className="bg-surface-container-lowest/50 p-3 rounded-md border border-white/5">
+                    <span className="block text-[10px] text-on-surface-variant font-headline tracking-wider uppercase mb-1">Total</span>
+                    <span className="text-lg font-headline font-bold text-white">{Math.round(entry.total)}</span>
+                  </div>
+                  <div className="bg-surface-container-lowest/50 p-3 rounded-md border border-white/5">
+                    <span className="block text-[10px] text-on-surface-variant font-headline tracking-wider uppercase mb-1">Fulfilled</span>
+                    <span className="text-lg font-headline font-bold text-white">{Math.round(entry.fulfilled)}</span>
+                  </div>
+                  <div className="bg-surface-container-lowest/50 p-3 rounded-md border border-white/5 text-ellipsis overflow-hidden">
+                    <span className="block text-[10px] text-on-surface-variant font-headline tracking-wider uppercase mb-1">Top Cat.</span>
+                    <span className="text-xs font-headline font-bold leading-tight text-white capitalize">
+                      {entry.top_category?.split(' ')[0] || '—'}
+                    </span>
+                  </div>
+                </div>
+                
+                <Link 
+                  to={`/parties/${partyId}?year=${selectedYear}`}
+                  className="block w-full text-center py-4 text-white font-headline font-bold rounded-full transition-all active:scale-95 shadow-lg"
+                  style={{ 
+                    background: `linear-gradient(135deg, ${partyColor} 0%, ${partyName.toLowerCase().includes('dmk') && !partyName.toLowerCase().includes('aiadmk') ? '#3e0006' : '#003910'} 100%)`,
+                    boxShadow: `0 10px 20px -5px ${partyColor}40`
+                  }}
+                >
+                  {t('home.viewDetails')}
+                </Link>
+              </div>
+            );
+          }) : (
+            <EmptyState message="No party data available at the moment." />
+          )}
         </div>
-      )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-3xl px-4">
-
-        {/* DMK Card */}
-        <Link
-          to="/parties/dmk"
-          className="bg-navy-card hover:bg-navy-light/80 transition-all rounded-2xl p-8 border-b-4 border-dmk-primary border-t border-t-white/5 flex flex-col items-center shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-dmk-primary/10 group"
-        >
-          <h2 className="text-4xl font-black text-white mb-1 group-hover:text-dmk-light transition-colors">DMK</h2>
-          <span className="text-[11px] font-bold text-gray-500 uppercase tracking-[0.15em] mb-8">
-            Manifesto {dmkYear}
-          </span>
-
-          {isLoading ? (
-            <div className="w-[140px] h-[140px] rounded-full bg-navy-light animate-pulse" />
-          ) : (
-            <ScoreRing score={dmkData?.score ?? 0} color="#E63946" size={140} />
-          )}
-
-          <div className="mt-8 px-4 py-2 rounded-full bg-dmk-primary/10 text-dmk-primary text-xs font-bold transition-all group-hover:bg-dmk-primary group-hover:text-white">
-            Explore {dmkYear} Promises →
+        {/* Status Indicator */}
+        <div className="flex flex-col items-center justify-center gap-2 mb-12 animate-in" style={{ animationDelay: '0.4s' }}>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-secondary animate-pulse shadow-[0_0_8px_rgba(79,225,106,0.8)]"></div>
+            <span className="text-xs font-headline tracking-[0.2em] text-secondary font-semibold uppercase">
+              ● {t('home.statusLive')}
+            </span>
           </div>
-        </Link>
-
-        {/* ADMK Card */}
-        <Link
-          to="/parties/admk"
-          className="bg-navy-card hover:bg-navy-light/80 transition-all rounded-2xl p-8 border-b-4 border-admk-primary border-t border-t-white/5 flex flex-col items-center shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-admk-primary/10 group"
-        >
-          <h2 className="text-4xl font-black text-white mb-1 group-hover:text-admk-light transition-colors">ADMK</h2>
-          <span className="text-[11px] font-bold text-gray-500 uppercase tracking-[0.15em] mb-8">
-            Manifesto {admkYear}
+          <span className="text-xs text-on-surface-variant/60 font-light">
+            {t('home.lastUpdated')} {health?.last_updated_hours || 3} {t('home.hrsAgo')}
           </span>
+        </div>
 
-          {isLoading ? (
-            <div className="w-[140px] h-[140px] rounded-full bg-navy-light animate-pulse" />
-          ) : (
-            <ScoreRing score={admkData?.score ?? 0} color="#2DC653" size={140} />
-          )}
+        {/* Footer */}
+        <footer className="text-center pb-12 border-t border-white/5 pt-8 animate-in" style={{ animationDelay: '0.5s' }}>
+          <p className="text-[10px] text-on-surface-variant/40 leading-relaxed px-8 mb-4">
+            {t('disclaimer')}
+          </p>
+          <p className="text-xs font-headline font-semibold text-on-surface-variant/80 tracking-widest uppercase">
+            {t('footer.createdBy')}
+          </p>
+        </footer>
+      </main>
 
-          <div className="mt-8 px-4 py-2 rounded-full bg-admk-primary/10 text-admk-primary text-xs font-bold transition-all group-hover:bg-admk-primary group-hover:text-white">
-            Explore {admkYear} Promises →
-          </div>
-        </Link>
-
-      </div>
+      <BottomNav />
     </div>
-  )
+  );
 }

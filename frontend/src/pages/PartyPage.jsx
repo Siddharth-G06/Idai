@@ -1,214 +1,271 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { ArrowLeft } from 'lucide-react'
-import { usePromises } from '../hooks/usePromises'
-import { useScore } from '../hooks/useScore'
-import PromiseCard from '../components/PromiseCard'
+import React, { useState, useMemo, useEffect, useRef } from 'react';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
+import { api } from '../api/client';
+import { usePromises } from '../hooks/usePromises';
+import { useScore } from '../hooks/useScore';
+import { useLanguage } from '../i18n/LanguageContext';
+import { COLORS } from '../styles/design-system';
+import PromiseCard from '../components/PromiseCard';
+import Navbar from '../components/Navbar';
+import BottomNav from '../components/BottomNav';
+import ErrorState from '../components/ErrorState';
+import EmptyState from '../components/EmptyState';
+import { ArrowLeft, CheckCircle, XCircle, Clock, Languages, Loader2 } from 'lucide-react';
 
 const CATEGORIES = [
-  'All', 'Healthcare', 'Education', 'Infrastructure',
-  'Agriculture', 'Economy', 'Employment', 'Women & Youth'
-]
+  'All', 'Healthcare', 'Education', 'Infrastructure', 'Agriculture', 'Economy', 'Employment', 'Women & Youth'
+];
 
-const STATUSES = ['All', 'Addressed', 'Not addressed']
+export default function PartyPage() {
+  const { partyId } = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const yearParam = queryParams.get('year');
 
-const SkeletonCard = () => (
-  <div className="w-full bg-navy-card rounded-lg p-4 flex flex-col gap-4 animate-pulse shadow-sm min-h-[140px]">
-    <div className="flex justify-between items-start">
-      <div className="h-5 w-24 bg-gray-600/50 rounded-full"></div>
-      <div className="h-5 w-28 bg-gray-600/50 rounded-full"></div>
+  const { lang, setLang, t } = useLanguage();
+
+  const toggleLanguage = () => {
+    setLang(lang === 'en' ? 'ta' : 'en');
+  };
+
+  const [activeCategory, setActiveCategory] = useState('All');
+  const [activeStatus, setActiveStatus] = useState('All');
+
+  // Intelligent Prefetching
+  const queryClient = useQueryClient();
+  useEffect(() => {
+    const otherParty = partyId.toLowerCase().includes('dmk') && !partyId.toLowerCase().includes('aiadmk') ? 'AIADMK' : 'DMK';
+    queryClient.prefetchQuery({
+      queryKey: ['promises', { party: otherParty }],
+      queryFn: () => api.getPromises({ party: otherParty })
+    });
+  }, [partyId, queryClient]);
+
+  const { 
+    data, 
+    fetchNextPage, 
+    hasNextPage, 
+    isFetchingNextPage, 
+    isLoading: promisesLoading,
+    isError: promisesError,
+    refetch: refetchPromises
+  } = usePromises({ 
+    party: partyId,
+    year: yearParam ? parseInt(yearParam) : undefined,
+    category: activeCategory === 'All' ? undefined : activeCategory,
+    status: activeStatus === 'All' ? undefined : (activeStatus === 'Addressed' ? 'fulfilled' : 'unfulfilled')
+  });
+
+  // Flatten promises from all pages
+  const allPromises = useMemo(() => 
+    data?.pages.flatMap(page => page.data) || [], 
+  [data]);
+  
+  const { data: scores, isLoading: scoresLoading, isError: scoresError, refetch: refetchScores } = useScore();
+
+  const partyKey = Object.keys(scores || {}).find(k => {
+    const p = k.toLowerCase();
+    const matchesParty = p.startsWith(partyId.toLowerCase()) || p.includes(partyId.toLowerCase());
+    const matchesYear = yearParam ? k.includes(yearParam) : true;
+    return matchesParty && matchesYear;
+  });
+  
+  const partyData = scores?.[partyKey];
+  const partyColor = partyId.toLowerCase().includes('dmk') && !partyId.toLowerCase().includes('aiadmk') ? '#ef404c' : '#2DC653';
+  const isRuling = partyData?.context === 'ruling';
+
+  // Infinite Scroll Trigger
+  const loadMoreRef = useRef(null);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries[0].isIntersecting && hasNextPage) {
+          fetchNextPage();
+        }
+      },
+      { threshold: 1.0 }
+    );
+    if (loadMoreRef.current) observer.observe(loadMoreRef.current);
+    return () => observer.disconnect();
+  }, [hasNextPage, fetchNextPage]);
+
+  if (promisesLoading || scoresLoading) return (
+    <div className="min-h-screen bg-[#061423] flex items-center justify-center p-6">
+      <div className="w-full max-w-2xl space-y-8">
+        <div className="h-48 glass rounded-3xl animate-pulse" />
+        <div className="space-y-4">
+          <div className="h-24 glass rounded-2xl animate-pulse" />
+          <div className="h-24 glass rounded-2xl animate-pulse" />
+          <div className="h-24 glass rounded-2xl animate-pulse" />
+        </div>
+      </div>
     </div>
-    <div className="h-4 w-full bg-gray-600/50 rounded-full mt-2"></div>
-    <div className="h-4 w-[85%] bg-gray-600/50 rounded-full"></div>
-    <div className="h-1.5 w-full bg-navy-light rounded-full mt-auto"></div>
-  </div>
-)
+  );
 
-/**
- * PartyPage — shows all promises for a given party, with category + status filters.
- *
- * Props:
- *   party: 'DMK' | 'ADMK'
- *
- * Key fixes:
- * 1. Uses context='ruling' to select the right score entry (DMK 2021, AIADMK 2016)
- * 2. Passes both party + year to the API so only relevant promises load
- * 3. promisesData.promises (not .promises[]) — backend returns {count, promises:[]}
- */
-export default function PartyPage({ party }) {
-  // Backend filter: 'ADMK' → 'AIADMK'
-  const queryParty = party === 'ADMK' ? 'AIADMK' : party
-
-  // --- Score / category data from scores.json ---
-  const { data: scoresData } = useScore()
-
-  const scorePrefix = party === 'ADMK' ? 'AIADMK' : party
-  let partyScore    = 0
-  let partyYear     = ''
-  let categoriesData = {}
-  let queryYear      = undefined   // will be set once we know the ruling year
-
-  if (scoresData) {
-    const relevantKeys = Object.keys(scoresData).filter(k => k.startsWith(scorePrefix))
-    // Prefer ruling context; fallback to highest year
-    const rulingKey = relevantKeys.find(k => scoresData[k]?.context === 'ruling')
-    const latestKey = rulingKey ?? relevantKeys.sort().reverse()[0]
-
-    if (latestKey) {
-      partyScore     = scoresData[latestKey]?.score      ?? 0
-      partyYear      = latestKey.split(' ')[1]            ?? ''
-      categoriesData = scoresData[latestKey]?.categories  ?? {}
-      queryYear      = partyYear ? parseInt(partyYear, 10) : undefined
-    }
-  }
-
-  // --- Promises: only fetch after we know the target year ---
-  const { data: promisesData, isLoading: isLoadingPromises } = usePromises(
-    queryYear
-      ? { party: queryParty, year: queryYear }
-      : { party: queryParty }
-  )
-
-  // Backend returns { count: N, promises: [...] }
-  const rawPromises = promisesData?.promises ?? []
-
-  // --- UI filter state ---
-  const [selectedCat, setSelectedCat]       = useState('All')
-  const [selectedStatus, setSelectedStatus] = useState('All')
-
-  const isDMK    = party === 'DMK'
-  const pBg      = isDMK ? 'bg-dmk-primary'         : 'bg-admk-primary'
-  const pText    = isDMK ? 'text-dmk-primary'        : 'text-admk-primary'
-  const pBorder  = isDMK ? 'border-dmk-primary'      : 'border-admk-primary'
-  const pBgHover = isDMK ? 'hover:bg-dmk-primary/20' : 'hover:bg-admk-primary/20'
-
-  // Client-side filtering (instant, no extra API call)
-  const filteredPromises = rawPromises.filter(p => {
-    if (selectedCat !== 'All') {
-      const matchCat = selectedCat === 'Women & Youth' ? 'women and youth' : selectedCat.toLowerCase()
-      if ((p.category ?? '').toLowerCase() !== matchCat) return false
-    }
-    if (selectedStatus === 'Addressed'     && (p.status ?? '').toLowerCase() !== 'fulfilled')   return false
-    if (selectedStatus === 'Not addressed' && (p.status ?? '').toLowerCase() !== 'unfulfilled') return false
-    return true
-  })
+  if (promisesError || scoresError) return (
+    <div className="min-h-screen bg-[#061423] flex items-center justify-center p-6">
+      <ErrorState 
+        message="We encountered an issue connecting to our servers. Please check your connection and try again."
+        onRetry={() => { refetchPromises(); refetchScores(); }} 
+      />
+    </div>
+  );
 
   return (
-    <div className="min-h-screen bg-navy text-gray-200">
-
-      {/* 1) Party Header Bar */}
-      <div className={`w-full ${pBg} text-white px-4 py-8 shadow-lg sticky top-0 z-10`}>
-        <div className="max-w-2xl mx-auto flex items-center gap-4">
-          <Link to="/" className="p-2 -ml-2 rounded-full hover:bg-black/20 transition-colors">
-            <ArrowLeft size={24} />
-          </Link>
-          <div className="flex-1 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
-            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">{party}</h1>
-            {partyYear && (
-              <span className="text-lg font-bold text-white/80">{partyYear} Manifesto</span>
-            )}
+    <div className="min-h-screen pb-32 bg-background font-body text-on-surface selection:bg-primary/30">
+      {/* Top AppBar */}
+      <header className="fixed top-0 w-full z-50 bg-[#061423] flex items-center justify-between px-6 py-4 border-b border-white/5">
+        <div className="flex items-center gap-4">
+          <button 
+            onClick={() => navigate('/')}
+            className="p-2 rounded-full hover:bg-slate-800/50 transition-colors active:scale-90"
+          >
+            <ArrowLeft className="text-secondary" size={24} />
+          </button>
+          <div className="flex flex-col">
+            <h1 className="text-xl font-bold tracking-widest text-slate-100 font-headline">IDAI</h1>
+            <div className="flex items-center gap-2">
+              <p className="text-[10px] uppercase tracking-widest text-on-surface-variant/60 font-label">
+                {partyId.toUpperCase()} {partyData?.year || yearParam}
+              </p>
+              <span className={`text-[8px] px-1.5 py-0.5 rounded-full font-bold uppercase tracking-widest ${
+                isRuling ? 'bg-secondary/20 text-secondary' : 'bg-white/10 text-white/40'
+              }`}>
+                {isRuling ? 'Ruling' : 'Opposition'}
+              </span>
+            </div>
           </div>
-          <div className="flex flex-col items-end">
-            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-white/80">
-              Overall Score
+        </div>
+        <div className="flex items-center gap-4">
+          <button 
+            onClick={toggleLanguage}
+            className="bg-[#1e2b3b] rounded-full px-4 py-1.5 flex items-center gap-2 border border-white/10 active:scale-95 transition-transform"
+          >
+            <span className="text-[10px] font-bold tracking-widest text-[#c4c6cc] uppercase">
+              {lang === 'en' ? 'EN | தமிழ்' : 'தமிழ் | EN'}
             </span>
-            <span className="text-3xl sm:text-4xl font-black tabular-nums">
-              {partyScore.toFixed(1)}%
-            </span>
-          </div>
+            <Languages size={14} className="text-secondary" />
+          </button>
         </div>
-      </div>
+      </header>
 
-      <div className="max-w-2xl mx-auto px-4 py-6">
-
-        {/* 2) Category Filter Chips */}
-        <div className="flex gap-2 overflow-x-auto pb-4 [&::-webkit-scrollbar]:hidden">
-          {CATEGORIES.map(cat => {
-            const active = selectedCat === cat
-            return (
-              <button
-                key={cat}
-                onClick={() => setSelectedCat(cat)}
-                className={`shrink-0 px-4 py-1.5 rounded-full text-sm font-semibold border-2 transition-all duration-200 shadow-sm ${
-                  active
-                    ? `${pBg} text-white border-transparent`
-                    : `bg-transparent ${pText} ${pBorder} ${pBgHover}`
-                }`}
-              >
-                {cat}
-              </button>
-            )
-          })}
-        </div>
-
-        {/* 3) Status Filter Toggles */}
-        <div className="flex gap-2 overflow-x-auto mt-2 pb-6 border-b border-navy-light [&::-webkit-scrollbar]:hidden">
-          {STATUSES.map(stat => {
-            const active = selectedStatus === stat
-            return (
-              <button
-                key={stat}
-                onClick={() => setSelectedStatus(stat)}
-                className={`shrink-0 px-4 py-1.5 rounded-md text-sm font-bold border transition-all shadow-sm ${
-                  active
-                    ? `${pBg} text-white border-transparent`
-                    : `bg-navy-card text-gray-400 border-gray-600 hover:bg-gray-700/50`
-                }`}
-              >
-                {stat}
-              </button>
-            )
-          })}
-        </div>
-
-        {/* 4) Category Score Summary Bars */}
-        {Object.keys(categoriesData).length > 0 && selectedCat === 'All' && (
-          <div className="my-6 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 p-4 bg-navy-card rounded-xl border border-navy-light shadow-sm">
-            {Object.entries(categoriesData)
-              .sort((a, b) => b[1].score - a[1].score)
-              .map(([cName, cData]) => (
-                <div key={cName}>
-                  <div className="flex justify-between text-xs mb-1.5 font-bold text-gray-300 uppercase tracking-wide">
-                    <span>{cName === 'women and youth' ? 'Women & Youth' : cName}</span>
-                    <span className={pText}>{cData.score.toFixed(0)}%</span>
+      <main className="pt-24 px-6 max-w-5xl mx-auto">
+        {/* Hero Section */}
+        <section className="mb-10 animate-in">
+          <div 
+            className="rounded-lg p-8 relative overflow-hidden shadow-2xl transition-all duration-700"
+            style={{ 
+              background: `linear-gradient(135deg, ${partyColor} 0%, ${partyId.toLowerCase().includes('dmk') && !partyId.toLowerCase().includes('aiadmk') ? '#92001c' : '#003c11'} 100%)` 
+            }}
+          >
+            <div className="relative z-10">
+              <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div>
+                  <div className="flex items-center gap-3 mb-1">
+                    <h2 className="text-5xl font-extrabold text-white font-headline tracking-tighter">
+                      {partyId.toUpperCase()}
+                    </h2>
+                    <span className="text-white/60 text-xl font-light font-headline">{partyData?.year || yearParam}</span>
                   </div>
-                  <div className="h-2 bg-navy-light/60 rounded-full overflow-hidden shadow-inner flex">
-                    <div
-                      className={`h-full ${pBg} transition-all duration-1000 ease-out`}
-                      style={{ width: `${cData.score}%` }}
+                  <p className="text-white/80 font-medium tracking-tight text-lg">
+                    {partyData?.period} {t('party.manifesto')} · {Math.round(partyData?.score || 0)}% {t('party.addressed')}
+                  </p>
+                </div>
+                <div className="flex flex-col items-end w-full md:w-48">
+                  <div className="w-full h-2 bg-white/20 rounded-full overflow-hidden mb-2">
+                    <div 
+                      className="bg-white h-full rounded-full transition-all duration-1000" 
+                      style={{ width: `${partyData?.score || 0}%` }}
                     />
                   </div>
+                  <span className="text-white/60 text-[9px] font-label uppercase tracking-widest">
+                    {isRuling ? 'Governance Score' : 'Proposed Impact Score'}
+                  </span>
                 </div>
-              ))}
-          </div>
-        )}
-
-        {/* 5) Results Count Header */}
-        <div className="mt-8 mb-4 flex justify-between items-end">
-          <span className="text-sm text-gray-400 font-medium">
-            Showing <strong className="text-gray-200">{filteredPromises.length}</strong> of {rawPromises.length} promises
-          </span>
-        </div>
-
-        {/* 6) Promise List Feed */}
-        <div className="flex flex-col gap-4 pb-12">
-          {isLoadingPromises ? (
-            <>
-              <SkeletonCard />
-              <SkeletonCard />
-              <SkeletonCard />
-            </>
-          ) : filteredPromises.length === 0 ? (
-            <div className="text-center py-16 bg-navy-card/50 text-gray-400 border-2 border-dashed border-gray-700 rounded-xl">
-              <span className="text-lg font-medium">No promises found.</span>
-              <p className="text-sm mt-1 opacity-70">Adjust your category or status filters.</p>
+              </div>
             </div>
-          ) : (
-            filteredPromises.map(p => <PromiseCard key={p.id} promise={p} />)
-          )}
+          </div>
+        </section>
+
+        {/* Navigation Filters */}
+        <nav className="mb-8 flex gap-3 overflow-x-auto no-scrollbar pb-2 animate-in" style={{ animationDelay: '0.1s' }}>
+          {CATEGORIES.map(cat => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-6 py-2.5 rounded-full text-sm font-semibold whitespace-nowrap transition-all shadow-lg ${
+                activeCategory === cat 
+                  ? 'bg-on-primary-container text-white shadow-on-primary-container/20' 
+                  : 'border border-white/10 text-on-surface-variant hover:bg-white/5'
+              }`}
+            >
+              {t(`filters.${cat.toLowerCase().replace(' & ', 'and')}`) || cat}
+            </button>
+          ))}
+        </nav>
+
+        {/* Controls */}
+        <div className="flex flex-col sm:flex-row justify-between items-center mb-10 gap-4 animate-in" style={{ animationDelay: '0.2s' }}>
+          <div className="bg-[#0f1c2c] p-1.5 rounded-full flex gap-1 border border-white/5">
+            {['All', 'Addressed', 'Not Addressed'].map(status => (
+              <button
+                key={status}
+                onClick={() => setActiveStatus(status)}
+                className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 ${
+                  activeStatus === status 
+                    ? 'text-on-surface bg-on-surface/10' 
+                    : 'text-on-surface-variant hover:text-on-surface'
+                }`}
+              >
+                {t(`filters.${status === 'All' ? 'statusAll' : status === 'Addressed' ? 'fulfilled' : 'unfulfilled'}`) || status}
+                {status === 'Addressed' && <CheckCircle size={14} className="text-secondary" />}
+                {status === 'Not Addressed' && <XCircle size={14} className="text-error" />}
+              </button>
+            ))}
+          </div>
+          <div className="text-on-surface-variant/70 text-xs font-label uppercase tracking-widest">
+            {t('party.showing')} <span className="text-on-surface font-bold">{allPromises.length}</span> {t('party.of')} {data?.pages[0]?.pagination?.total || 0} {t('party.promises')}
+          </div>
         </div>
 
-      </div>
+        {/* Promise Cards List */}
+        <div className="space-y-6 mb-12">
+          {allPromises.length > 0 ? (
+            allPromises.map((p, idx) => (
+              <div key={p.id} className="animate-in" style={{ animationDelay: `${0.1 + (idx % 20) * 0.05}s` }}>
+                <PromiseCard promise={p} partyColor={partyColor} />
+              </div>
+            ))
+          ) : (
+            <EmptyState message={t('party.noResults') || "No promises found matching your current filters."} />
+          )}
+
+          {/* Load More / Loading State */}
+          <div ref={loadMoreRef} className="pt-10 flex flex-col items-center">
+            {isFetchingNextPage ? (
+              <div className="flex items-center gap-3 text-secondary animate-pulse py-4">
+                <Loader2 className="w-5 h-5 animate-spin" />
+                <span className="text-[10px] font-bold uppercase tracking-widest">Loading more...</span>
+              </div>
+            ) : hasNextPage ? (
+              <button 
+                onClick={() => fetchNextPage()}
+                className="px-8 py-3 rounded-full bg-white/5 border border-white/10 text-xs font-bold uppercase tracking-widest text-on-surface-variant hover:bg-white/10 transition-colors"
+              >
+                {t('common.loadMore') || 'Load More'}
+              </button>
+            ) : allPromises.length > 0 && (
+              <p className="text-[10px] text-white/20 uppercase tracking-widest">
+                No more promises to show
+              </p>
+            )}
+          </div>
+        </div>
+      </main>
+
+      <BottomNav />
     </div>
-  )
+  );
 }
