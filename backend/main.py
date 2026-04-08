@@ -174,6 +174,12 @@ def _scores_key(stem: str) -> str:
 # ENDPOINTS
 # ─────────────────────────────────────────────
 
+@app.get("/")
+@app.head("/")
+def read_root():
+    """Default root endpoint for Render/Cloudflare health checks."""
+    return {"status": "ok", "app": "Vaakazhipeer API"}
+
 @app.get("/health")
 def health():
     """Liveness / readiness check + freshness."""
