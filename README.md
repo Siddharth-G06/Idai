@@ -1,41 +1,175 @@
-# 🗳️ Vaakazhipeer Accountability Dashboard
+# IDAI — இடை
 
-**Tamil Nadu Political Accountability Tracker (2016 - 2026)**
+> **Closing the gap between promises and proof.**
 
-A real-time, AI-powered system built to track, measure, and transparently score the fulfillment of political promises made by major Tamil Nadu political parties (DMK and AIADMK).
+A real-time, AI-powered political accountability dashboard tracking election promises made by Tamil Nadu's two major parties — DMK and ADMK — from 2016 through 2026.
 
-## 🚀 The Gist
-- **What it is:** A platform that automatically extracts promises from election manifestos, scans live news sources for corresponding government actions, and scores each party on their fulfillment metrics.
-- **Frontend:** React + Vite + Tailwind CSS (Bilingual Tamil/English UI)
-- **Backend API:** FastAPI
-- **Automation:** GitHub Actions runs 6-hourly pipelines to fetch news, run ML matching, and push updated static JSON data. 
-- **Resilience:** Integrates active dead-link fallbacks, free-tier cold-start handlers, and intelligent background prefetching for a seamless user experience.
+Built as an independent, non-partisan civic tool. No affiliations. No agenda. Just evidence.
 
 ---
 
-## 🧠 Machine Learning Pipeline
+## What is IDAI?
 
-The core intelligence of the platform relies on a sophisticated, multi-stage NLP pipeline designed to bridge the cross-lingual gap between Tamil manifestos and primarily English news sources.
+**IDAI** (இடை) means *"the space between"* in Tamil.
 
-### 1. Optical Character Recognition (OCR)
-*   **Tech:** `pytesseract` + Poppler
-*   **Role:** Extracts raw text from legacy scanned PDF manifestos. Features a custom garbled-text detector that automatically triggers forced OCR passes specifically tuned for Tamil typography if text extraction fails.
+It represents the gap that exists between what politicians promise and what they actually deliver. This platform makes that gap visible — promise by promise, category by category, year by year.
 
-### 2. Auto-Translation
-*   **Tech:** `Helsinki-NLP/opus-mt-ta-en` (MarianMT)
-*   **Role:** Converts all Tamil promises into English to standardize the dataset and optimize compatibility with downstream embedding models and APIs.
-
-### 3. Semantic Vector Matching
-*   **Tech:** `paraphrase-multilingual-MiniLM-L12-v2` (Sentence-BERT) + FAISS
-*   **Role:** Converts translated promises and scraped news articles into high-dimensional vector embeddings. FAISS enables lightning-fast cosine-similarity searches to identify the most relevant news coverage for any given promise, overcoming variations in phrasing.
-
-### 4. LLM Verification & Scoring
-*   **Tech:** Groq API (Llama 3 8B / 70B Models)
-*   **Role:** Acts as the final cognitive layer. The LLM evaluates the semantically matched news article against the original promise. It performs zero-shot reasoning to categorize the promise (e.g., Healthcare, Infrastructure) and rigorously verify its fulfillment status (*Fulfilled*, *Unfulfilled*, or *Pending*), determining the party's ultimate score.
+| Party | Manifesto Covered | Governance Period |
+|-------|-------------------|-------------------|
+| ADMK  | 2016 State Election | May 2016 – May 2021 |
+| DMK   | 2021 State Election | May 2021 – May 2026 |
 
 ---
 
-## 💻 Tech Stack
-- Frontend: `React`, `Vite`, `TailwindCSS`, `TanStack Query`
-- Backend: `FastAPI`, `Python`
-- Deployment: `Vercel` (Frontend), `Render` (API), `GitHub Actions` (Pipeline)
+## How It Works
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                        YOUR LAPTOP (once)                       │
+│                                                                 │
+│   PDF Manifestos  →  manifesto_parser.py  →  promises.json     │
+│   (DMK 2021,           pytesseract OCR         Structured      │
+│    ADMK 2016)          + Llama 3 NLP           categorisation  │
+└────────────────────────────────┬────────────────────────────────┘
+                                 │ git push
+                                 ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                   GITHUB ACTIONS (every 6 hrs)                  │
+│                                                                 │
+│   news_fetcher.py  →  matcher.py  →  scorer.py                 │
+│   RSS + NewsAPI       SBERT + FAISS    scores.json             │
+│   Live articles       cosine sim       fulfillment %           │
+│                       LLM Verify                               │
+└────────────────────────────────┬────────────────────────────────┘
+                                 │ auto-commit data/*.json
+                                 ▼
+┌──────────────────────────┐    ┌────────────────────────────────┐
+│   RENDER (backend)       │    │   VERCEL (frontend)            │
+│                          │    │                                │
+│   FastAPI                │◄───│   React + Vite + Tailwind      │
+│   Serves JSON via API    │    │   Mobile-first dashboard       │
+│   /api/promises          │    │   Tamil / English toggle       │
+│   /api/score             │    │   Live score cards             │
+│   /keepalive script      │    │   Dead-link fallbacks          │
+└──────────────────────────┘    └────────────────────────────────┘
+```
+
+---
+
+## Promise Fulfillment Logic
+
+### How a promise is scored
+
+1. **Extraction**: Raw text is pulled from scanned PDF manifestos using robust OCR passes.
+2. **Translation**: Tamil promises are mapped to English vectors via `MarianMT`.
+3. **Embedding**: Promises and live news articles are embedded using `Sentence-BERT` (multilingual).
+4. **Vector Search**: `FAISS` rapidly queries the index to find semantic matches despite vocabulary differences.
+5. **Verification**: A Large Language Model (Llama 3 via Groq) validates the match context to confidently classify its status.
+
+### Governance periods used for date-aware scoring
+
+A promise fulfilled during the opposing party's tenure is **not counted** in the promising party's primary score. To ensure fairness, it is recorded as a secondary "Fulfilled by other" state — granting transparency to the voting public.
+
+---
+
+## Tech Stack
+
+| Layer | Technology | Purpose |
+|-------|-----------|---------|
+| PDF Parsing | pdfplumber + pytesseract | Extract text from difficult Tamil manifestos |
+| Semantic Matching | paraphrase-multilingual-MiniLM | Multilingual Tamil+English matching |
+| Vector Search | FAISS | Fast nearest-neighbour lookup |
+| Verification NLP | Llama 3 / Groq API | Zero-shot evaluation of promise status |
+| News Ingestion | NewsAPI + RSS feeds | Automated scraping of real-world impact |
+| Scheduling | GitHub Actions CRON | Auto-refresh every 6 hours (`[skip vercel]`) |
+| Backend API | FastAPI + keepalive.py | Serve pre-computed data continuously |
+| Frontend | React + Vite + TailwindCSS | Mobile-first dynamic dashboard |
+| UI Resilience | TanStack Query | Intelligent refetching & local caching |
+| Hosting | Vercel (Front) / Render (API) | Cloud infrastructure |
+
+---
+
+## Project Structure
+
+```
+idai/
+├── backend/
+│   ├── manifesto_parser.py     # PDF → structured promises (run once locally)
+│   ├── news_fetcher.py         # Live news ingestion routines
+│   ├── matcher.py              # Semantic matching via SBERT + FAISS
+│   ├── scorer.py               # Algorithmic date-aware fulfillment scoring
+│   ├── keepalive.py            # Mitigates Render free-tier cold-starts
+│   ├── main.py                 # FastAPI routing
+│   └── data/                   # Pre-computed JSON (auto-updated)
+│
+├── frontend/
+│   └── src/
+│       ├── pages/              # Compare, PartyPage, Home, About
+│       ├── components/         # HealthBanner, PromiseCard, ScoreRings
+│       ├── hooks/              # API data fetching logic
+│       └── i18n/               # Persistent Tamil/English Context
+│
+└── .github/
+    └── workflows/
+        └── update_pipeline.yml # CRON job — runs every 6 hours
+```
+
+---
+
+## Local Setup
+
+### Backend
+
+```bash
+cd backend
+pip install -r requirements.txt
+
+# Add your API keys
+echo "NEWSAPI_KEY=your_key_here" > .env
+echo "GROQ_API_KEY=your_groq_key" >> .env
+
+# Run full pipeline
+python run_pipeline.py
+
+# Start API server
+uvicorn main:app --reload --port 8000
+```
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+
+# Point to local API
+echo "VITE_API_URL=http://localhost:8000" > .env.development
+
+npm run dev
+# Opens at http://localhost:5173
+```
+
+---
+
+## Known Limitations
+
+| Limitation | Impact | Status |
+|------------|--------|--------|
+| Algorithmic Matching | Semantic matches indicate related coverage, not absolute completion. | By design — voters interpret. |
+| Link Rot | Historic news URLs drop dead over time. | Mitigated via smart Google News fallbacks. |
+| Render Cold Starts | 30s delays after server inactivity. | Mitigated via `keepalive.py` and UI Banners. |
+
+---
+
+## Disclaimer
+
+> This platform is **independent and non-partisan**. It is not affiliated with, funded by, or endorsed by the DMK, ADMK, or any political party, government body, or media organisation.
+>
+> All data is sourced from **publicly available** election manifestos and published news articles. Sources include The Hindu, NDTV, Times of India, PRS India, and NewsAPI.
+>
+> Promise matching is performed using **AI-assisted semantic search** and is intended for **informational purposes only**. A matched article indicates that related news coverage exists — it does not constitute a legal or factual verdict on whether a promise was fulfilled.
+>
+> IDAI presents evidence. **Voters decide.**
+
+---
+
+*IDAI · இடை · 2016–2026*
