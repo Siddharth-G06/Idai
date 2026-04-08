@@ -11,8 +11,8 @@ export default function App() {
       <main className="min-h-screen pt-20 px-8">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/party/dmk" element={<PartyPage party="DMK" />} />
-          <Route path="/party/admk" element={<PartyPage party="ADMK" />} />
+          <Route path="/parties/dmk" element={<PartyPage party="DMK" />} />
+          <Route path="/parties/admk" element={<PartyPage party="ADMK" />} />
           <Route path="/compare" element={<Compare />} />
         </Routes>
       </main>

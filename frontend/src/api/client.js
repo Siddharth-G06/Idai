@@ -1,13 +1,8 @@
-/**
- * api/client.js — Vaakazhipeer
- *
- * All requests go through the Vite dev-server proxy (/api/* → localhost:8000)
- * so there are no CORS issues in development.
- * In production (Vercel), the rewrites in vercel.json forward /api/* to Render.
- */
+const API_URL = import.meta.env.VITE_API_URL || "https://vaakazhipeer-api.onrender.com"
+const BASE = `${API_URL}/api`
 
 async function get(path) {
-  const res = await fetch(`/api${path}`)
+  const res = await fetch(`${BASE}${path}`)
   if (!res.ok) {
     let detail = `HTTP ${res.status}`
     try { detail = (await res.json()).detail || detail } catch (_) {}

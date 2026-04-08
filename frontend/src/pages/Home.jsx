@@ -53,7 +53,7 @@ export default function Home() {
 
         {/* DMK Card */}
         <Link
-          to="/party/dmk"
+          to="/parties/dmk"
           className="bg-navy-card hover:bg-navy-light/80 transition-all rounded-2xl p-8 border-b-4 border-dmk-primary border-t border-t-white/5 flex flex-col items-center shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-dmk-primary/10 group"
         >
           <h2 className="text-4xl font-black text-white mb-1 group-hover:text-dmk-light transition-colors">DMK</h2>
@@ -74,7 +74,7 @@ export default function Home() {
 
         {/* ADMK Card */}
         <Link
-          to="/party/admk"
+          to="/parties/admk"
           className="bg-navy-card hover:bg-navy-light/80 transition-all rounded-2xl p-8 border-b-4 border-admk-primary border-t border-t-white/5 flex flex-col items-center shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-admk-primary/10 group"
         >
           <h2 className="text-4xl font-black text-white mb-1 group-hover:text-admk-light transition-colors">ADMK</h2>
