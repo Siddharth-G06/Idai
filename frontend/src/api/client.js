@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL || "https://vaakazhipeer.onrender.com"
+const API_URL = import.meta.env.VITE_API_URL || "https://idai.onrender.com"
 const BASE = `${API_URL}/api`
 
 async function get(path) {

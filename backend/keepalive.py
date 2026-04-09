@@ -3,7 +3,7 @@ import time
 import os
 
 # Get URL from environment or fallback to production
-RENDER_URL = os.environ.get("RENDER_EXTERNAL_URL", "https://vaakazhipeer.onrender.com") + "/health"
+RENDER_URL = os.environ.get("RENDER_EXTERNAL_URL", "https://idai.onrender.com") + "/health"
 PING_INTERVAL = 600  # 10 minutes
 
 def ping():
