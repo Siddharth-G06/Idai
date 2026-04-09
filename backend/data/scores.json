@@ -4,8 +4,8 @@
     "period": "2016-2021",
     "note": "AIADMK ruled TN 2016-2021; score = promises implemented",
     "total": 326,
-    "fulfilled": 65.0,
-    "score": 19.9,
+    "fulfilled": 67.0,
+    "score": 20.6,
     "avg_llm_confidence": 0.0,
     "categories": {
       "economy": {
@@ -20,8 +20,8 @@
       },
       "infrastructure": {
         "total": 138.0,
-        "fulfilled": 28.0,
-        "score": 20.3
+        "fulfilled": 30.0,
+        "score": 21.7
       },
       "healthcare": {
         "total": 29.0,
@@ -96,14 +96,14 @@
     "period": "2016-2021",
     "note": "DMK in opposition 2016-2021; score = promises advocated for",
     "total": 699,
-    "fulfilled": 189.0,
-    "score": 27.0,
+    "fulfilled": 196.0,
+    "score": 28.0,
     "avg_llm_confidence": 0.0,
     "categories": {
       "education": {
         "total": 34.0,
-        "fulfilled": 9.0,
-        "score": 26.5
+        "fulfilled": 10.0,
+        "score": 29.4
       },
       "women and youth": {
         "total": 11.0,
@@ -117,13 +117,13 @@
       },
       "employment": {
         "total": 191.0,
-        "fulfilled": 60.0,
-        "score": 31.4
+        "fulfilled": 61.0,
+        "score": 31.9
       },
       "infrastructure": {
         "total": 272.0,
-        "fulfilled": 81.0,
-        "score": 29.8
+        "fulfilled": 86.0,
+        "score": 31.6
       },
       "healthcare": {
         "total": 74.0,
@@ -142,14 +142,14 @@
     "period": "2021-2026",
     "note": "DMK ruled TN 2021-2026; score = promises implemented",
     "total": 650,
-    "fulfilled": 320.2,
-    "score": 49.3,
+    "fulfilled": 322.0,
+    "score": 49.5,
     "avg_llm_confidence": 0.0,
     "categories": {
       "employment": {
         "total": 165.0,
-        "fulfilled": 81.4,
-        "score": 49.3
+        "fulfilled": 82.4,
+        "score": 49.9
       },
       "education": {
         "total": 42.0,
@@ -158,7 +158,7 @@
       },
       "infrastructure": {
         "total": 238.0,
-        "fulfilled": 112.0,
+        "fulfilled": 112.2,
         "score": 47.1
       },
       "healthcare": {
@@ -168,8 +168,8 @@
       },
       "economy": {
         "total": 45.0,
-        "fulfilled": 28.79999999999999,
-        "score": 64.0
+        "fulfilled": 29.39999999999999,
+        "score": 65.3
       },
       "agriculture": {
         "total": 75.0,
