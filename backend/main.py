@@ -181,18 +181,21 @@ def read_root():
 
 @app.get("/health")
 def health():
-    """Liveness / readiness check + freshness."""
+    """Liveness / readiness check + data freshness."""
     score_path = DATA_DIR / "scores.json"
+    age_hours = 0
     data_stale = False
+
     if score_path.exists():
         mtime = score_path.stat().st_mtime
-        age_hours = (time.time() - mtime) / 3600
+        age_hours = round((time.time() - mtime) / 3600, 1)
         if age_hours > 25:
             data_stale = True
-    
+
     return {
         "status": "ok",
         "data_stale": data_stale,
+        "last_updated_hours": age_hours,
         "uptime": "active"
     }
 
