@@ -4,44 +4,44 @@
     "period": "2016-2021",
     "note": "AIADMK ruled TN 2016-2021; score = promises implemented",
     "total": 326,
-    "fulfilled": 157,
-    "score": 48.2,
+    "fulfilled": 65.0,
+    "score": 19.9,
     "avg_llm_confidence": 0.0,
     "categories": {
       "economy": {
-        "total": 47,
-        "fulfilled": 18,
-        "score": 38.3
+        "total": 47.0,
+        "fulfilled": 5.0,
+        "score": 10.6
       },
       "agriculture": {
-        "total": 17,
-        "fulfilled": 9,
-        "score": 52.9
+        "total": 17.0,
+        "fulfilled": 3.0,
+        "score": 17.6
       },
       "infrastructure": {
-        "total": 138,
-        "fulfilled": 74,
-        "score": 53.6
+        "total": 138.0,
+        "fulfilled": 28.0,
+        "score": 20.3
       },
       "healthcare": {
-        "total": 29,
-        "fulfilled": 8,
-        "score": 27.6
+        "total": 29.0,
+        "fulfilled": 7.0,
+        "score": 24.1
       },
       "employment": {
-        "total": 69,
-        "fulfilled": 36,
-        "score": 52.2
+        "total": 69.0,
+        "fulfilled": 18.0,
+        "score": 26.1
       },
       "education": {
-        "total": 19,
-        "fulfilled": 9,
-        "score": 47.4
+        "total": 19.0,
+        "fulfilled": 4.0,
+        "score": 21.1
       },
       "women and youth": {
-        "total": 7,
-        "fulfilled": 3,
-        "score": 42.9
+        "total": 7.0,
+        "fulfilled": 0.0,
+        "score": 0.0
       }
     }
   },
@@ -50,44 +50,44 @@
     "period": "2021-2026",
     "note": "AIADMK in opposition 2021-2026; score = promises advocated for",
     "total": 250,
-    "fulfilled": 105,
-    "score": 42.0,
+    "fulfilled": 57.0,
+    "score": 22.8,
     "avg_llm_confidence": 0.0,
     "categories": {
       "healthcare": {
-        "total": 20,
-        "fulfilled": 6,
-        "score": 30.0
+        "total": 20.0,
+        "fulfilled": 4.0,
+        "score": 20.0
       },
       "infrastructure": {
-        "total": 84,
-        "fulfilled": 35,
-        "score": 41.7
+        "total": 84.0,
+        "fulfilled": 23.0,
+        "score": 27.4
       },
       "women and youth": {
-        "total": 13,
-        "fulfilled": 4,
-        "score": 30.8
+        "total": 13.0,
+        "fulfilled": 2.0,
+        "score": 15.4
       },
       "employment": {
-        "total": 60,
-        "fulfilled": 29,
-        "score": 48.3
+        "total": 60.0,
+        "fulfilled": 15.0,
+        "score": 25.0
       },
       "economy": {
-        "total": 44,
-        "fulfilled": 16,
-        "score": 36.4
+        "total": 44.0,
+        "fulfilled": 7.0,
+        "score": 15.9
       },
       "education": {
-        "total": 11,
-        "fulfilled": 5,
-        "score": 45.5
+        "total": 11.0,
+        "fulfilled": 3.0,
+        "score": 27.3
       },
       "agriculture": {
-        "total": 18,
-        "fulfilled": 10,
-        "score": 55.6
+        "total": 18.0,
+        "fulfilled": 3.0,
+        "score": 16.7
       }
     }
   },
@@ -96,44 +96,44 @@
     "period": "2016-2021",
     "note": "DMK in opposition 2016-2021; score = promises advocated for",
     "total": 699,
-    "fulfilled": 469,
-    "score": 67.1,
+    "fulfilled": 189.0,
+    "score": 27.0,
     "avg_llm_confidence": 0.0,
     "categories": {
       "education": {
-        "total": 34,
-        "fulfilled": 28,
-        "score": 82.4
+        "total": 34.0,
+        "fulfilled": 9.0,
+        "score": 26.5
       },
       "women and youth": {
-        "total": 11,
-        "fulfilled": 5,
-        "score": 45.5
+        "total": 11.0,
+        "fulfilled": 1.0,
+        "score": 9.1
       },
       "economy": {
-        "total": 63,
-        "fulfilled": 36,
-        "score": 57.1
+        "total": 63.0,
+        "fulfilled": 16.0,
+        "score": 25.4
       },
       "employment": {
-        "total": 191,
-        "fulfilled": 131,
-        "score": 68.6
+        "total": 191.0,
+        "fulfilled": 60.0,
+        "score": 31.4
       },
       "infrastructure": {
-        "total": 272,
-        "fulfilled": 201,
-        "score": 73.9
+        "total": 272.0,
+        "fulfilled": 81.0,
+        "score": 29.8
       },
       "healthcare": {
-        "total": 74,
-        "fulfilled": 35,
-        "score": 47.3
+        "total": 74.0,
+        "fulfilled": 12.0,
+        "score": 16.2
       },
       "agriculture": {
-        "total": 54,
-        "fulfilled": 33,
-        "score": 61.1
+        "total": 54.0,
+        "fulfilled": 10.0,
+        "score": 18.5
       }
     }
   },
@@ -142,44 +142,44 @@
     "period": "2021-2026",
     "note": "DMK ruled TN 2021-2026; score = promises implemented",
     "total": 650,
-    "fulfilled": 450,
-    "score": 69.2,
+    "fulfilled": 320.2,
+    "score": 49.3,
     "avg_llm_confidence": 0.0,
     "categories": {
       "employment": {
-        "total": 165,
-        "fulfilled": 112,
-        "score": 67.9
+        "total": 165.0,
+        "fulfilled": 81.4,
+        "score": 49.3
       },
       "education": {
-        "total": 42,
-        "fulfilled": 35,
-        "score": 83.3
+        "total": 42.0,
+        "fulfilled": 18.6,
+        "score": 44.3
       },
       "infrastructure": {
-        "total": 238,
-        "fulfilled": 169,
-        "score": 71.0
+        "total": 238.0,
+        "fulfilled": 112.0,
+        "score": 47.1
       },
       "healthcare": {
-        "total": 71,
-        "fulfilled": 45,
-        "score": 63.4
+        "total": 71.0,
+        "fulfilled": 34.19999999999999,
+        "score": 48.2
       },
       "economy": {
-        "total": 45,
-        "fulfilled": 27,
-        "score": 60.0
+        "total": 45.0,
+        "fulfilled": 28.79999999999999,
+        "score": 64.0
       },
       "agriculture": {
-        "total": 75,
-        "fulfilled": 51,
-        "score": 68.0
+        "total": 75.0,
+        "fulfilled": 36.8,
+        "score": 49.1
       },
       "women and youth": {
-        "total": 14,
-        "fulfilled": 11,
-        "score": 78.6
+        "total": 14.0,
+        "fulfilled": 8.4,
+        "score": 60.0
       }
     }
   }
