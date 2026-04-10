@@ -182,15 +182,30 @@ def read_root():
 @app.get("/health")
 def health():
     """Liveness / readiness check + data freshness."""
+    metadata_path = DATA_DIR / "metadata.json"
     score_path = DATA_DIR / "scores.json"
     age_hours = 0
     data_stale = False
 
-    if score_path.exists():
+    # Try metadata.json first (source of truth from pipeline)
+    if metadata_path.exists():
+        meta = safe_load_json(metadata_path, {})
+        last_updated_str = meta.get("last_updated")
+        if last_updated_str:
+            try:
+                # ISO format: 2026-04-10T09:34:43Z
+                last_updated = datetime.fromisoformat(last_updated_str.replace("Z", "+00:00"))
+                age_hours = round((datetime.now(timezone.utc) - last_updated).total_seconds() / 3600, 1)
+            except Exception:
+                pass
+
+    # Fallback to file mtime if metadata failed or missing
+    if age_hours == 0 and score_path.exists():
         mtime = score_path.stat().st_mtime
         age_hours = round((time.time() - mtime) / 3600, 1)
-        if age_hours > 25:
-            data_stale = True
+
+    if age_hours > 25:
+        data_stale = True
 
     return {
         "status": "ok",

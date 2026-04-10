@@ -165,7 +165,7 @@ export default function Home() {
             </span>
           </div>
           <span className="text-xs text-on-surface-variant/60 font-light">
-            {t('home.lastUpdated')} {health?.last_updated_hours || 3} {t('home.hrsAgo')}
+            {t('home.lastUpdated')} {health?.last_updated_hours ?? '--'} {t('home.hrsAgo')}
           </span>
         </div>
 
