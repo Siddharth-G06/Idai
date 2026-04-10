@@ -2,7 +2,7 @@ name: IDAI Data Pipeline
 
 on:
   schedule:
-    - cron: '0 */6 * * *'   # Every 6 hours
+    - cron: '0 0,6,12,18 * * *'   # Run every 6 hours explicitly
   workflow_dispatch:          # Also allow manual trigger from GitHub UI
 
 jobs:
