@@ -58,5 +58,5 @@ jobs:
           git config user.name "idai-bot"
           git config user.email "bot@idai.app"
           git add backend/data/
-          git commit -m "auto: data update $(date -u +'%Y-%m-%d %H:%M UTC') [skip ci] [skip vercel]"
+          git commit -m "auto: data update $(date -u +'%Y-%m-%d %H:%M UTC') [skip vercel]"
           git push
