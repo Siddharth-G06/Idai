@@ -50,3 +50,14 @@ jobs:
         run: |
           # Verify that main.py can be imported without crashing
           python -c "import main; print('Backend syntax ok')"
+
+  deploy:
+    name: Deploy to Render
+    needs: [build-frontend, test-backend]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Render Deployment
+        run: |
+          echo "Triggering Render deployment hook..."
+          curl -X GET "https://api.render.com/deploy/srv-d7bjepvkijhs73ao3fvg?key=bRbhFEzYnJ4"
