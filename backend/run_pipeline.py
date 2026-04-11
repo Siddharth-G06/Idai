@@ -25,9 +25,12 @@ def run(skip_fetch: bool = False, skip_parse: bool = False) -> None:
             section("Manifesto Parser")
             import manifesto_parser
             
-            # Paths for Windows OCR support
+            # Paths for Windows OCR support (only used if they exist)
             POPPLER = r"C:\Users\SIDDHARTH\poppler-25.12.0\Library\bin"
             TESSERACT = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+            
+            if not os.path.exists(POPPLER): POPPLER = None
+            if not os.path.exists(TESSERACT): TESSERACT = None
             
             manifestos = [
                 ("manifestos/dmk_2021.pdf", "DMK", 2021),

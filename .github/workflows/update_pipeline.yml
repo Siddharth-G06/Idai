@@ -22,6 +22,11 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Install System Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils tesseract-ocr tesseract-ocr-tam tesseract-ocr-eng
+
       - name: Cache pip packages
         uses: actions/cache@v3
         with:
