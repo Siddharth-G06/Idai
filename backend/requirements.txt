@@ -15,3 +15,5 @@ numpy
 newspaper3k
 pdf2image
 pytesseract
+sentencepiece
+sacremoses
