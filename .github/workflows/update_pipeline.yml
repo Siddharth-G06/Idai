@@ -71,12 +71,7 @@ jobs:
 
       - name: Trigger Render Deploy
         if: steps.changes.outputs.changed == 'true'
-        env:
-          deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK }}
         run: |
-          if [ -n "$deploy_url" ]; then
-            curl -X GET "$deploy_url"
-          else
-            echo "RENDER_DEPLOY_HOOK not set, skipping manual trigger"
-          fi
+          echo "Triggering Render deployment hook..."
+          curl -X GET "https://api.render.com/deploy/srv-d7bjepvkijhs73ao3fvg?key=bRbhFEzYnJ4"
 
