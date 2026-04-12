@@ -13,7 +13,7 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 w-full bg-[#061423]/80 backdrop-blur-xl flex justify-between items-center px-6 h-16 z-50 shadow-[0_40px_80px_-15px_rgba(2,15,30,0.1)]">
-      <Link to="/" className="text-xl font-bold tracking-tighter text-white hover:opacity-80 transition-opacity">IDAI</Link>
+      <Link to="/" className="text-xl font-bold tracking-tighter text-white hover:opacity-80 transition-opacity">{t('appName')}</Link>
       
       <div className="flex items-center gap-4">
         <button 

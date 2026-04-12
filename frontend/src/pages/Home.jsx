@@ -31,7 +31,7 @@ export default function Home() {
   if (isError) return (
     <div className="min-h-screen bg-background flex items-center justify-center p-6">
       <ErrorState 
-        message="Unable to load the accountability summary. Please check your internet connection." 
+        message={t('error.apiError')} 
         onRetry={refetch} 
       />
     </div>
@@ -93,7 +93,7 @@ export default function Home() {
                       <span className={`text-[9px] px-2 py-0.5 rounded-full font-bold uppercase tracking-widest ${
                         isRuling ? 'bg-secondary/20 text-secondary' : 'bg-white/10 text-white/40'
                       }`}>
-                        {isRuling ? 'Ruling' : 'Opposition'}
+                        {isRuling ? t('status.ruling') : t('status.opposition')}
                       </span>
                     </div>
                     <p className="text-[10px] tracking-widest text-on-surface-variant uppercase mt-1">
@@ -124,17 +124,17 @@ export default function Home() {
                 
                 <div className="grid grid-cols-3 gap-4 mb-8">
                   <div className="bg-surface-container-lowest/50 p-3 rounded-md border border-white/5">
-                    <span className="block text-[10px] text-on-surface-variant font-headline tracking-wider uppercase mb-1">Total</span>
+                    <span className="block text-[10px] text-on-surface-variant font-headline tracking-wider uppercase mb-1">{t('party.totalLabel')}</span>
                     <span className="text-lg font-headline font-bold text-white">{Math.round(entry.total)}</span>
                   </div>
                   <div className="bg-surface-container-lowest/50 p-3 rounded-md border border-white/5">
-                    <span className="block text-[10px] text-on-surface-variant font-headline tracking-wider uppercase mb-1">Fulfilled</span>
+                    <span className="block text-[10px] text-on-surface-variant font-headline tracking-wider uppercase mb-1">{t('party.fulfilledLabel')}</span>
                     <span className="text-lg font-headline font-bold text-white">{Math.round(entry.fulfilled)}</span>
                   </div>
                   <div className="bg-surface-container-lowest/50 p-3 rounded-md border border-white/5 text-ellipsis overflow-hidden">
-                    <span className="block text-[10px] text-on-surface-variant font-headline tracking-wider uppercase mb-1">Top Cat.</span>
+                    <span className="block text-[10px] text-on-surface-variant font-headline tracking-wider uppercase mb-1">{t('party.topCatLabel')}</span>
                     <span className="text-xs font-headline font-bold leading-tight text-white capitalize">
-                      {entry.top_category?.split(' ')[0] || '—'}
+                      {t(`filters.${entry.top_category?.toLowerCase().replace(/\s+/g, '')}`) || entry.top_category?.split(' ')[0] || '—'}
                     </span>
                   </div>
                 </div>
@@ -152,7 +152,7 @@ export default function Home() {
               </div>
             );
           }) : (
-            <EmptyState message="No party data available at the moment." />
+            <EmptyState message={t('party.noResults')} />
           )}
         </div>
 

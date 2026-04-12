@@ -14,6 +14,10 @@ export default {
     lastUpdated: "Updated",
     hrsAgo: "hrs ago",
   },
+  status: {
+    ruling: "Ruling",
+    opposition: "Opposition",
+  },
   party: {
     manifesto: "Manifesto",
     initTitle: "Manifesto",
@@ -33,6 +37,14 @@ export default {
     invalidDate: "Invalid Source Date",
     searchTopic: "Search Topic",
     linkDead: "Source potentially unavailable",
+    totalLabel: "Total",
+    fulfilledLabel: "Fulfilled",
+    topCatLabel: "Top Cat.",
+    scoreLabel: "Efficiency",
+    governanceScore: "Governance Score",
+    impactScore: "Proposed Impact Score",
+    loadingMore: "Loading more...",
+    noMore: "No more promises to show",
   },
   filters: {
     all: "All",
@@ -41,9 +53,10 @@ export default {
     infrastructure: "Infrastructure",
     agriculture: "Agriculture",
     economy: "Economy",
-    employment: "Employment",
+    employment: "Job Creation",
     womenandyouth: "Women & Youth",
-    statusAll: "All",
+    general: "General",
+    statusAll: "All Status",
     fulfilled: "Addressed",
     unfulfilled: "Not Addressed",
     status: {
@@ -53,6 +66,17 @@ export default {
       ruling: "Ruling",
       opposition: "Opposition",
     }
+  },
+  health: {
+    waking: "Waking up decentralized intelligence server... Please wait.",
+    slow: "Server is taking longer than expected. Please refresh.",
+    coldStart: "Cold Start in progress",
+  },
+  error: {
+    apiError: "Unable to load data. Please check your connection.",
+  },
+  common: {
+    loadMore: "Load More",
   },
   specificity: {
     high: "High",
@@ -65,6 +89,8 @@ export default {
     dmkSummary: "Stable growth in infrastructure and social welfare metrics over the last cycle.",
     aiadmkSummary: "Strong momentum in agricultural subsidies and rural development initiatives.",
     leadsOverall: "leads overall",
+    dmkLeads: "DMK leads overall",
+    aiadmkLeads: "AIADMK leads overall",
     insufficientData: "Comparison data is currently incomplete. We're updating our records.",
     vs: "VS",
     efficiency: "Efficiency",

@@ -139,9 +139,9 @@ export default function PromiseCard({ promise, partyColor }) {
             <div className="w-6 h-6 rounded-full border border-background" style={{ backgroundColor: promise.credit_party === 'DMK' ? '#E63946' : '#2DC653' }} />
           </div>
           <p className="text-[10px] text-on-surface-variant leading-tight">
-            Promised by <span className="text-white font-bold">{promise.promising_party}</span> in {promise.year || '2016'}
+            {lang === 'ta' ? 'வாக்குறுதி அளித்தவர்' : 'Promised by'} <span className="text-white font-bold">{t(`parties.${promise.promising_party.toLowerCase()}`)}</span> {lang === 'ta' ? 'ஆண்டு' : 'in'} {promise.year || '2016'}
             <br />
-            Completed under <span className="text-white font-bold">{promise.credit_party}</span> in {new Date(promise.matched_date).getFullYear() || '2023'}
+            {lang === 'ta' ? 'நிறைவேற்றப்பட்டது' : 'Completed under'} <span className="text-white font-bold">{t(`parties.${promise.credit_party.toLowerCase()}`)}</span> {lang === 'ta' ? 'ஆண்டு' : 'in'} {new Date(promise.matched_date).getFullYear() || '2023'}
           </p>
         </div>
       )}
@@ -193,9 +193,9 @@ export default function PromiseCard({ promise, partyColor }) {
             <Search size={14} />
             {promise.matched_url ? (
               <span className="flex items-center gap-1">
-                Link potentially dead <span className="mx-1">·</span> Search Topic
+                {t('party.linkDead')} <span className="mx-1">·</span> {t('party.searchTopic')}
               </span>
-            ) : "Search Topic"}
+            ) : t('party.searchTopic')}
             <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
           </a>
         )}

@@ -107,7 +107,7 @@ export default function PartyPage() {
   if (promisesError || scoresError) return (
     <div className="min-h-screen bg-[#061423] flex items-center justify-center p-6">
       <ErrorState 
-        message="We encountered an issue connecting to our servers. Please check your connection and try again."
+        message={t('error.apiError')}
         onRetry={() => { refetchPromises(); refetchScores(); }} 
       />
     </div>
@@ -133,7 +133,7 @@ export default function PartyPage() {
               <span className={`text-[8px] px-1.5 py-0.5 rounded-full font-bold uppercase tracking-widest ${
                 isRuling ? 'bg-secondary/20 text-secondary' : 'bg-white/10 text-white/40'
               }`}>
-                {isRuling ? 'Ruling' : 'Opposition'}
+                {isRuling ? t('status.ruling') : t('status.opposition')}
               </span>
             </div>
           </div>
@@ -181,7 +181,7 @@ export default function PartyPage() {
                     />
                   </div>
                   <span className="text-white/60 text-[9px] font-label uppercase tracking-widest">
-                    {isRuling ? 'Governance Score' : 'Proposed Impact Score'}
+                    {isRuling ? t('party.scoreLabel') : t('party.impactScore')}
                   </span>
                 </div>
               </div>
@@ -247,7 +247,7 @@ export default function PartyPage() {
             {isFetchingNextPage ? (
               <div className="flex items-center gap-3 text-secondary animate-pulse py-4">
                 <Loader2 className="w-5 h-5 animate-spin" />
-                <span className="text-[10px] font-bold uppercase tracking-widest">Loading more...</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest">{t('party.loadingMore')}</span>
               </div>
             ) : hasNextPage ? (
               <button 
@@ -258,7 +258,7 @@ export default function PartyPage() {
               </button>
             ) : allPromises.length > 0 && (
               <p className="text-[10px] text-white/20 uppercase tracking-widest">
-                No more promises to show
+                {t('party.noMore')}
               </p>
             )}
           </div>

@@ -52,7 +52,7 @@ export default function About() {
         {/* Section 3: Disclaimer */}
         <section className="glass-card p-6 animate-in" style={{ animationDelay: '0.2s' }}>
           <h2 className="text-xs font-bold uppercase tracking-widest text-white/40 mb-3">
-             {t('nav.about')} Disclaimer
+             {t('nav.about')}
           </h2>
           <p className="text-[11px] leading-relaxed text-white/50">
             {t('disclaimer')}

@@ -53,13 +53,13 @@ const HealthBanner = () => {
         )}
         <p className="text-xs font-bold uppercase tracking-widest text-white">
           {retryCount < 10 
-            ? "Waking up decentralized intelligence server... Please wait." 
-            : "Server is taking longer than expected. Please refresh."}
+            ? t('health.waking')
+            : t('health.slow')}
         </p>
       </div>
       <div className="hidden md:flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full text-[9px] font-black uppercase text-white/80">
         <Power className="w-3 h-3" />
-        Cold Start in progress
+        {t('health.coldStart')}
       </div>
       
       {/* Progress Bar */}

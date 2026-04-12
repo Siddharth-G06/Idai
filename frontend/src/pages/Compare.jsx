@@ -105,28 +105,32 @@ export default function Compare() {
         <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
           <div className="surface-container-low rounded-lg p-10 flex flex-col items-center relative overflow-hidden group animate-in" style={{ animationDelay: '0.1s' }}>
             <div className="absolute inset-0 bg-gradient-to-br from-error/5 to-transparent"></div>
-            <ScoreRing score={dmkData.score} color={COLORS.dmk.primary} size={192} label={t('compare.efficiency')} />
+            <ScoreRing score={dmkData.score} color={COLORS.dmk.primary} size={192} label={t('party.governanceScore')} />
             <h3 className="mt-8 font-headline text-xl text-error font-bold tracking-tight">{t('parties.dmk')} {t('compare.performance')}</h3>
             <p className="text-on-surface-variant text-sm mt-2 text-center max-w-[240px]">
-              {t('compare.dmkSummary') || 'Stable growth in infrastructure and social welfare metrics over the last cycle.'}
+              {t('compare.dmkSummary')}
             </p>
           </div>
 
           <div className="surface-container-low rounded-lg p-10 flex flex-col items-center relative overflow-hidden group animate-in" style={{ animationDelay: '0.2s' }}>
             <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent"></div>
-            <ScoreRing score={aiadmkData.score} color={COLORS.aiadmk.primary} size={192} label={t('compare.efficiency')} />
+            <ScoreRing score={aiadmkData.score} color={COLORS.aiadmk.primary} size={192} label={t('party.impactScore')} />
             <h3 className="mt-8 font-headline text-xl text-secondary font-bold tracking-tight">{t('parties.aiadmk')} {t('compare.performance')}</h3>
             <p className="text-on-surface-variant text-sm mt-2 text-center max-w-[240px]">
-              {t('compare.aiadmkSummary') || 'Strong momentum in agricultural subsidies and rural development initiatives.'}
+              {t('compare.aiadmkSummary')}
             </p>
           </div>
         </section>
 
-        {/* Comparison Rows */}
-        <section className="space-y-12 mb-24 px-0 max-w-3xl mx-auto animate-in" style={{ animationDelay: '0.3s' }}>
-          <div className="flex justify-between items-end mb-4 px-2 opacity-60 font-label text-[10px] uppercase tracking-widest text-on-surface-variant">
-            <div className="w-1/2 text-left">DMK Impact Score</div>
-            <div className="w-1/2 text-right">AIADMK Impact Score</div>
+        {/* Categories Matrix */}
+        <section className="animate-in" style={{ animationDelay: '0.3s' }}>
+          <div className="flex items-center justify-between mb-10 border-b border-white/5 pb-6">
+            <h2 className="text-2xl font-headline font-bold text-white/90">
+              {dmkData.score > aiadmkData.score ? t('compare.dmkLeads') : t('compare.aiadmkLeads')}
+            </h2>
+          <div className="flex justify-between items-end mt-12 mb-4 px-2 opacity-50 font-label text-[9px] uppercase tracking-widest text-on-surface-variant">
+            <div className="w-1/2 text-left">{t('parties.dmk')} {t('party.scoreLabel')}</div>
+            <div className="w-1/2 text-right">{t('parties.aiadmk')} {t('party.scoreLabel')}</div>
           </div>
           
           <div className="flex flex-col gap-4">
@@ -151,7 +155,7 @@ export default function Compare() {
           />
           <div className="flex items-center gap-3 relative z-10">
             <span className="text-white font-headline font-bold text-lg tracking-tight">
-              {winner} {t('compare.leadsOverall') || 'leads overall'}
+              {t(`parties.${winner.toLowerCase()}`)} {t('compare.leadsOverall') || 'leads overall'}
             </span>
           </div>
           <div className="text-white/80 font-label font-medium tracking-wider relative z-10">
