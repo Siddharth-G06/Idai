@@ -16,7 +16,7 @@ from typing import Any
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, Response
 from dotenv import load_dotenv
 
 # ─────────────────────────────────────────────
@@ -180,12 +180,17 @@ def read_root():
     return {"status": "ok", "app": "Vaakazhipeer API"}
 
 @app.get("/health")
-def health():
+def health(response: Response):
     """Liveness / readiness check + data freshness."""
+    response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
+    
     metadata_path = DATA_DIR / "metadata.json"
     score_path = DATA_DIR / "scores.json"
     age_hours = 0
     data_stale = False
+    last_updated_at = None
 
     # Try metadata.json first (source of truth from pipeline)
     if metadata_path.exists():
@@ -195,6 +200,7 @@ def health():
             try:
                 # ISO format: 2026-04-10T09:34:43Z
                 last_updated = datetime.fromisoformat(last_updated_str.replace("Z", "+00:00"))
+                last_updated_at = last_updated_str
                 age_hours = round((datetime.now(timezone.utc) - last_updated).total_seconds() / 3600, 1)
             except Exception:
                 pass
@@ -202,6 +208,7 @@ def health():
     # Fallback to file mtime if metadata failed or missing
     if age_hours == 0 and score_path.exists():
         mtime = score_path.stat().st_mtime
+        last_updated_at = datetime.fromtimestamp(mtime, tz=timezone.utc).isoformat()
         age_hours = round((time.time() - mtime) / 3600, 1)
 
     if age_hours > 25:
@@ -211,6 +218,7 @@ def health():
         "status": "ok",
         "data_stale": data_stale,
         "last_updated_hours": age_hours,
+        "last_updated_at": last_updated_at or "unknown",
         "uptime": "active"
     }
 

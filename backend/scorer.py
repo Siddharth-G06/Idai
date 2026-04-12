@@ -11,6 +11,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
 OUTPUT   = DATA_DIR / "scores.json"
+META_OUT = DATA_DIR / "metadata.json"
 
 FILE_META = {
     "aiadmk_2016_promises": {
@@ -124,6 +125,13 @@ def run():
     with open(OUTPUT, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
     print(f"\nSaved → {OUTPUT}")
+
+    # Update metadata.json
+    from datetime import datetime, timezone
+    meta_content = {"last_updated": datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}
+    with open(META_OUT, "w", encoding="utf-8") as f:
+        json.dump(meta_content, f, indent=2)
+    print(f"Updated → {META_OUT}")
 
 
 if __name__ == "__main__":
