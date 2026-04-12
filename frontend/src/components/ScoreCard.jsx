@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 
 const PARTY_COLORS = {
-  DMK:    { accent: '#22d3ee', track: 'rgba(34,211,238,.15)', glow: 'glow-dmk'  },
-  AIADMK: { accent: '#f59e0b', track: 'rgba(245,158,11,.15)', glow: 'glow-AIADMK' },
+  dmk:    { accent: '#22d3ee', track: 'rgba(34,211,238,.15)', glow: 'glow-dmk'  },
+  aiadmk: { accent: '#f59e0b', track: 'rgba(245,158,11,.15)', glow: 'glow-aiadmk' },
 }
 
 export default function ScoreCard({ partyKey, data }) {
   const [animated, setAnimated] = useState(false)
-  const party = partyKey.split(' ')[0]                    // 'DMK' or 'AIADMK'
+  const party = partyKey.split(' ')[0].toLowerCase()                    // 'dmk' or 'aiadmk'
   const year  = partyKey.split(' ')[1] || ''
   const color = PARTY_COLORS[party] || PARTY_COLORS.DMK
 

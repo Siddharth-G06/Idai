@@ -23,7 +23,7 @@ export const COLORS = {
     light:   '#ffb3b1',
     glow:    'rgba(230, 57, 70, 0.2)',
   },
-  AIADMK: {
+  aiadmk: {
     primary: '#2DC653',
     light:   '#4fe16a',
     glow:    'rgba(45, 198, 83, 0.2)',
@@ -58,5 +58,5 @@ export const FONTS = {
 export const SHADOWS = {
   card:    '0 40px 80px -15px rgba(2,15,30,0.1)',
   glow_dmk:  '0 0 20px rgba(230,57,70,0.2)',
-  glow_admk: '0 0 20px rgba(45,198,83,0.2)',
+  glow_aiadmk: '0 0 20px rgba(45,198,83,0.2)',
 }
