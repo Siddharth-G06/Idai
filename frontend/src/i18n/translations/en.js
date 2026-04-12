@@ -25,10 +25,14 @@ export default {
     showing: "Showing",
     of: "of",
     promises: "promises",
-    readArticle: "Read article →",
-    matchScore: "Match",
-    noResults: "No promises found for these filters.",
+    readArticle: "Read Evidence →",
+    matchScore: "Proof Score",
+    noResults: "No promises found matching this criteria.",
     leadsOverall: "leads overall",
+    specificity: "specificity",
+    invalidDate: "Invalid Source Date",
+    searchTopic: "Search Topic",
+    linkDead: "Source potentially unavailable",
   },
   filters: {
     all: "All",
@@ -44,16 +48,27 @@ export default {
     unfulfilled: "Not Addressed",
     status: {
       completedBy: "Completed by",
-      pending: "Ongoing",
-      unverified: "Unverified"
+      pending: "In-Progress",
+      unverified: "To be re-verified",
+      ruling: "Ruling",
+      opposition: "Opposition",
     }
+  },
+  specificity: {
+    high: "High",
+    medium: "Medium",
+    low: "Low",
   },
   compare: {
     title: "DMK vs AIADMK",
     matrixTitle: "Party Accountability Comparison Matrix",
     dmkSummary: "Stable growth in infrastructure and social welfare metrics over the last cycle.",
     aiadmkSummary: "Strong momentum in agricultural subsidies and rural development initiatives.",
-    leadsOverall: "leads overall"
+    leadsOverall: "leads overall",
+    insufficientData: "Comparison data is currently incomplete. We're updating our records.",
+    vs: "VS",
+    efficiency: "Efficiency",
+    performance: "Performance",
   },
   disclaimer: "Data sourced from publicly available election manifestos and verified news publications. This platform is independent and non-partisan. AI-assisted promise matching is for informational purposes only. Not affiliated with any political party.",
   footer: {

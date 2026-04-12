@@ -92,7 +92,7 @@ export default function Compare() {
           <div className="inline-flex items-center gap-6 md:gap-12">
             <h1 className="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-error">{t('parties.dmk')}</h1>
             <div className="h-12 w-px bg-white/10 rotate-12"></div>
-            <span className="text-2xl md:text-3xl font-headline font-light tracking-[0.2em] text-white/30 truncate">VS</span>
+            <span className="text-2xl md:text-3xl font-headline font-light tracking-[0.2em] text-white/30 truncate">{t('compare.vs')}</span>
             <div className="h-12 w-px bg-white/10 rotate-12"></div>
             <h1 className="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-secondary">{t('parties.aiadmk')}</h1>
           </div>
@@ -105,8 +105,8 @@ export default function Compare() {
         <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
           <div className="surface-container-low rounded-lg p-10 flex flex-col items-center relative overflow-hidden group animate-in" style={{ animationDelay: '0.1s' }}>
             <div className="absolute inset-0 bg-gradient-to-br from-error/5 to-transparent"></div>
-            <ScoreRing score={dmkData.score} color={COLORS.dmk.primary} size={192} label="Efficiency" />
-            <h3 className="mt-8 font-headline text-xl text-error font-bold tracking-tight">DMK Performance</h3>
+            <ScoreRing score={dmkData.score} color={COLORS.dmk.primary} size={192} label={t('compare.efficiency')} />
+            <h3 className="mt-8 font-headline text-xl text-error font-bold tracking-tight">{t('parties.dmk')} {t('compare.performance')}</h3>
             <p className="text-on-surface-variant text-sm mt-2 text-center max-w-[240px]">
               {t('compare.dmkSummary') || 'Stable growth in infrastructure and social welfare metrics over the last cycle.'}
             </p>
@@ -114,8 +114,8 @@ export default function Compare() {
 
           <div className="surface-container-low rounded-lg p-10 flex flex-col items-center relative overflow-hidden group animate-in" style={{ animationDelay: '0.2s' }}>
             <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent"></div>
-            <ScoreRing score={aiadmkData.score} color={COLORS.aiadmk.primary} size={192} label="Efficiency" />
-            <h3 className="mt-8 font-headline text-xl text-secondary font-bold tracking-tight">AIADMK Performance</h3>
+            <ScoreRing score={aiadmkData.score} color={COLORS.aiadmk.primary} size={192} label={t('compare.efficiency')} />
+            <h3 className="mt-8 font-headline text-xl text-secondary font-bold tracking-tight">{t('parties.aiadmk')} {t('compare.performance')}</h3>
             <p className="text-on-surface-variant text-sm mt-2 text-center max-w-[240px]">
               {t('compare.aiadmkSummary') || 'Strong momentum in agricultural subsidies and rural development initiatives.'}
             </p>

@@ -104,17 +104,17 @@ export default function PromiseCard({ promise, partyColor }) {
         </div>
         
         <div className="flex items-center gap-2">
-           <span className={`px-2 py-0.5 rounded text-[8px] font-bold uppercase tracking-tighter ${
-             promise.specificity === 'high' ? 'bg-secondary/10 text-secondary' : 
-             promise.specificity === 'low' ? 'bg-error/10 text-error' : 'bg-white/5 text-white/40'
-           }`}>
-             {promise.specificity || 'medium'} specificity
-           </span>
-           {promise.match_valid === false && (
-             <span className="px-2 py-0.5 rounded text-[8px] font-bold uppercase tracking-tighter bg-error/10 text-error animate-pulse">
-               Invalid Source Date
-             </span>
-           )}
+            <span className={`px-2 py-0.5 rounded text-[8px] font-bold uppercase tracking-tighter ${
+              promise.specificity === 'high' ? 'bg-secondary/10 text-secondary' : 
+              promise.specificity === 'low' ? 'bg-error/10 text-error' : 'bg-white/5 text-white/40'
+            }`}>
+              {t(`specificity.${promise.specificity || 'medium'}`)} {t('party.specificity')}
+            </span>
+            {promise.match_valid === false && (
+              <span className="px-2 py-0.5 rounded text-[8px] font-bold uppercase tracking-tighter bg-error/10 text-error animate-pulse">
+                {t('party.invalidDate')}
+              </span>
+            )}
            <span className={`flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider ${statusConfig.color}`}>
              {statusConfig.icon}
              {statusConfig.label}
