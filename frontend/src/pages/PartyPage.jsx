@@ -125,10 +125,10 @@ export default function PartyPage() {
             <ArrowLeft className="text-secondary" size={24} />
           </button>
           <div className="flex flex-col">
-            <h1 className="text-xl font-bold tracking-widest text-slate-100 font-headline">IDAI</h1>
+            <h1 className="text-xl font-bold tracking-widest text-slate-100 font-headline">{t('appName')}</h1>
             <div className="flex items-center gap-2">
               <p className="text-[10px] uppercase tracking-widest text-on-surface-variant/60 font-label">
-                {partyId.toUpperCase()} {partyData?.year || yearParam}
+                {t(`parties.${partyId.toLowerCase()}`) || partyId.toUpperCase()} {partyData?.year || yearParam}
               </p>
               <span className={`text-[8px] px-1.5 py-0.5 rounded-full font-bold uppercase tracking-widest ${
                 isRuling ? 'bg-secondary/20 text-secondary' : 'bg-white/10 text-white/40'
@@ -165,7 +165,7 @@ export default function PartyPage() {
                 <div>
                   <div className="flex items-center gap-3 mb-1">
                     <h2 className="text-5xl font-extrabold text-white font-headline tracking-tighter">
-                      {partyId.toUpperCase()}
+                      {t(`parties.${partyId.toLowerCase()}`) || partyId.toUpperCase()}
                     </h2>
                     <span className="text-white/60 text-xl font-light font-headline">{partyData?.year || yearParam}</span>
                   </div>

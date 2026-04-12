@@ -1,5 +1,6 @@
 export default {
   appName: "IDAI",
+  parties: { dmk: "DMK", aiadmk: "AIADMK" },
   tagline: "Closing the gap between promises and proof",
   nav: { home: "Home", compare: "Compare", about: "About" },
   home: {
@@ -48,10 +49,10 @@ export default {
     }
   },
   compare: {
-    title: "DMK vs ADMK",
+    title: "DMK vs AIADMK",
     matrixTitle: "Party Accountability Comparison Matrix",
     dmkSummary: "Stable growth in infrastructure and social welfare metrics over the last cycle.",
-    admkSummary: "Strong momentum in agricultural subsidies and rural development initiatives.",
+    aiadmkSummary: "Strong momentum in agricultural subsidies and rural development initiatives.",
     leadsOverall: "leads overall"
   },
   disclaimer: "Data sourced from publicly available election manifestos and verified news publications. This platform is independent and non-partisan. AI-assisted promise matching is for informational purposes only. Not affiliated with any political party.",
@@ -62,7 +63,7 @@ export default {
   },
   about: {
     title: "About IDAI",
-    desc: "IDAI tracks political promises made by Tamil Nadu's major parties — DMK and ADMK — and maps them against verified news and government actions.",
+    desc: "IDAI tracks political promises made by Tamil Nadu's major parties — DMK and AIADMK — and maps them against verified news and government actions.",
     howTitle: "How it works",
     step1: "Manifestos from 2016 and 2021 are processed by AI to extract individual promises",
     step2: "Each promise is matched against thousands of news articles using semantic search",

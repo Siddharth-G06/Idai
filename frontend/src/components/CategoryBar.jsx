@@ -40,12 +40,12 @@ export default function CategoryBar({ category, dmkScore = 0, admkScore = 0 }) {
             {Math.round(dmkScore)}
           </div>
 
-          {/* ADMK Score */}
+          {/* AIADMK Score */}
           <div className={`w-10 text-center font-headline font-bold text-sm ${admkWinner ? 'text-secondary' : 'text-white/30'}`}>
             {Math.round(admkScore)}
           </div>
 
-          {/* ADMK Bar */}
+          {/* AIADMK Bar */}
           <div className="flex-1">
             <div 
               className={`h-2.5 rounded-full transition-all duration-1000 ${

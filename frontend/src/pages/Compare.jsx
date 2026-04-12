@@ -60,12 +60,12 @@ export default function Compare() {
   };
 
   const dmkKey = getBestKey('DMK');
-  const admkKey = getBestKey('AIADMK') || getBestKey('ADMK');
+  const aiadmkKey = getBestKey('AIADMK');
 
   const dmkData = dmkKey ? data[dmkKey] : null;
-  const admkData = admkKey ? data[admkKey] : null;
+  const aiadmkData = aiadmkKey ? data[aiadmkKey] : null;
 
-  if (!dmkData || !admkData) {
+  if (!dmkData || !aiadmkData) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center p-6">
         <EmptyState message={t('compare.insufficientData') || "Comparison data is currently incomplete. We're updating our records."} />
@@ -76,11 +76,11 @@ export default function Compare() {
 
   const categories = Object.keys(dmkData.categories || {});
 
-  const winner = dmkData.score > admkData.score ? 'DMK' : 'ADMK';
-  const winnerScore = Math.round(dmkData.score > admkData.score ? dmkData.score : admkData.score);
-  const loserScore = Math.round(dmkData.score > admkData.score ? admkData.score : dmkData.score);
-  const winnerColor = dmkData.score > admkData.score ? (COLORS?.dmk?.primary || '#E63946') : (COLORS?.admk?.primary || '#2DC653');
-  const secondaryColor = dmkData.score > admkData.score ? COLORS.dmk.light : COLORS.admk.light;
+  const winner = dmkData.score > aiadmkData.score ? 'DMK' : 'AIADMK';
+  const winnerScore = Math.round(dmkData.score > aiadmkData.score ? dmkData.score : aiadmkData.score);
+  const loserScore = Math.round(dmkData.score > aiadmkData.score ? aiadmkData.score : dmkData.score);
+  const winnerColor = dmkData.score > aiadmkData.score ? (COLORS?.dmk?.primary || '#E63946') : (COLORS?.aiadmk?.primary || '#2DC653');
+  const secondaryColor = dmkData.score > aiadmkData.score ? COLORS.dmk.light : COLORS.aiadmk.light;
 
   return (
     <div className="min-h-screen pb-32 bg-background">
@@ -90,11 +90,11 @@ export default function Compare() {
         {/* Header */}
         <header className="text-center mb-16 animate-in">
           <div className="inline-flex items-center gap-6 md:gap-12">
-            <h1 className="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-error">DMK</h1>
+            <h1 className="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-error">{t('parties.dmk')}</h1>
             <div className="h-12 w-px bg-white/10 rotate-12"></div>
             <span className="text-2xl md:text-3xl font-headline font-light tracking-[0.2em] text-white/30 truncate">VS</span>
             <div className="h-12 w-px bg-white/10 rotate-12"></div>
-            <h1 className="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-secondary">ADMK</h1>
+            <h1 className="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-secondary">{t('parties.aiadmk')}</h1>
           </div>
           <p className="mt-4 text-on-surface-variant font-label tracking-widest text-xs uppercase">
             {t('compare.matrixTitle') || 'Party Accountability Comparison Matrix'}
@@ -114,10 +114,10 @@ export default function Compare() {
 
           <div className="surface-container-low rounded-lg p-10 flex flex-col items-center relative overflow-hidden group animate-in" style={{ animationDelay: '0.2s' }}>
             <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent"></div>
-            <ScoreRing score={admkData.score} color={COLORS.admk.primary} size={192} label="Efficiency" />
-            <h3 className="mt-8 font-headline text-xl text-secondary font-bold tracking-tight">ADMK Performance</h3>
+            <ScoreRing score={aiadmkData.score} color={COLORS.aiadmk.primary} size={192} label="Efficiency" />
+            <h3 className="mt-8 font-headline text-xl text-secondary font-bold tracking-tight">AIADMK Performance</h3>
             <p className="text-on-surface-variant text-sm mt-2 text-center max-w-[240px]">
-              {t('compare.admkSummary') || 'Strong momentum in agricultural subsidies and rural development initiatives.'}
+              {t('compare.aiadmkSummary') || 'Strong momentum in agricultural subsidies and rural development initiatives.'}
             </p>
           </div>
         </section>
@@ -126,7 +126,7 @@ export default function Compare() {
         <section className="space-y-12 mb-24 px-0 max-w-3xl mx-auto animate-in" style={{ animationDelay: '0.3s' }}>
           <div className="flex justify-between items-end mb-4 px-2 opacity-60 font-label text-[10px] uppercase tracking-widest text-on-surface-variant">
             <div className="w-1/2 text-left">DMK Impact Score</div>
-            <div className="w-1/2 text-right">ADMK Impact Score</div>
+            <div className="w-1/2 text-right">AIADMK Impact Score</div>
           </div>
           
           <div className="flex flex-col gap-4">
@@ -135,7 +135,7 @@ export default function Compare() {
                 key={cat}
                 category={cat} 
                 dmkScore={dmkData.categories?.[cat]?.score || 0} 
-                admkScore={admkData.categories?.[cat]?.score || 0} 
+                aiadmkScore={aiadmkData.categories?.[cat]?.score || 0} 
               />
             ))}
           </div>

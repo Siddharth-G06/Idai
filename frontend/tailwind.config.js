@@ -28,7 +28,7 @@ export default {
         "secondary-container": "#01b343",
         "on-secondary-container": "#003c11",
         dmk:  { primary:"#E63946", light:"#FF6B6B", dark:"#C1121F" },
-        admk: { primary:"#2DC653", light:"#52D680", dark:"#1A7A32" },
+        AIADMK: { primary:"#2DC653", light:"#52D680", dark:"#1A7A32" },
       },
       fontFamily: {
         headline: ["Manrope", "sans-serif"],

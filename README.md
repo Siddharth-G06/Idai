@@ -2,7 +2,7 @@
 
 > **Closing the gap between promises and proof.**
 
-A real-time, AI-powered political accountability dashboard tracking election promises made by Tamil Nadu's two major parties — DMK and ADMK — from 2016 through 2026.
+A real-time, AI-powered political accountability dashboard tracking election promises made by Tamil Nadu's two major parties — DMK and AIADMK — from 2016 through 2026.
 
 Built as an independent, non-partisan civic tool. No affiliations. No agenda. Just evidence.
 
@@ -16,7 +16,7 @@ It represents the gap that exists between what politicians promise and what they
 
 | Party | Manifesto Covered | Governance Period |
 |-------|-------------------|-------------------|
-| ADMK  | 2016 State Election | May 2016 – May 2021 |
+| AIADMK  | 2016 State Election | May 2016 – May 2021 |
 | DMK   | 2021 State Election | May 2021 – May 2026 |
 
 ---
@@ -29,7 +29,7 @@ It represents the gap that exists between what politicians promise and what they
 │                                                                 │
 │   PDF Manifestos  →  manifesto_parser.py  →  promises.json     │
 │   (DMK 2021,           pytesseract OCR         Structured      │
-│    ADMK 2016)          + Groq/Llama 3          categorisation  │
+│    AIADMK 2016)          + Groq/Llama 3          categorisation  │
 └────────────────────────────────┬────────────────────────────────┘
                                  │ git push
                                  ▼
@@ -69,7 +69,7 @@ It represents the gap that exists between what politicians promise and what they
 ### Governance periods used for scoring
 
 ```
-ADMK rule:  May 2016  →  May 2021
+AIADMK rule:  May 2016  →  May 2021
 DMK rule:   May 2021  →  May 2026
 ```
 
@@ -170,7 +170,7 @@ npm run dev
 
 ## Disclaimer
 
-> This platform is **independent and non-partisan**. It is not affiliated with, funded by, or endorsed by the DMK, ADMK, or any political party, government body, or media organisation.
+> This platform is **independent and non-partisan**. It is not affiliated with, funded by, or endorsed by the DMK, AIADMK, or any political party, government body, or media organisation.
 >
 > All data is sourced from **publicly available** election manifestos and published news articles. Sources include The Hindu, NDTV, Times of India, PRS India, and NewsAPI.
 >

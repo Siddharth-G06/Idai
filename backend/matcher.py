@@ -30,8 +30,8 @@ load_dotenv(Path(__file__).parent / ".env")
 # GOVERNANCE CONFIG
 # ─────────────────────────────────────────────
 GOVERNANCE = {
-    "ADMK": {"start": "2016-05-23", "end": "2021-05-07"},
-    "DMK":  {"start": "2021-05-07", "end": None},  # ongoing
+    "AIADMK": {"start": "2016-05-23", "end": "2021-05-07"},
+    "DMK":    {"start": "2021-05-07", "end": None},  # ongoing
 }
 
 def get_ruling_party(date_str: str) -> str:
@@ -54,7 +54,7 @@ def get_ruling_party(date_str: str) -> str:
     admk_end   = datetime(2021, 5, 7)
     
     if admk_start <= dt < admk_end:
-        return "ADMK"
+        return "AIADMK"
     elif dt >= admk_end:
         return "DMK"
     return "unknown"
@@ -121,7 +121,7 @@ NEWS_PATH  = DATA_DIR / "news_articles.json"
 CACHE_PATH = DATA_DIR / "llm_cache.json"
 
 USE_LLM      = True          # False = embedding-only, instant, no Groq needed
-GROQ_MODEL   = "llama3-70b-8192"   # upgraded from decommissioned llama3-8b
+GROQ_MODEL   = "llama-3.3-70b-versatile"   # stable, currently supported model
 
 THRESHOLD       = 0.15          # Minimum baseline to even consider a match
 TOP_K           = 5

@@ -4,6 +4,7 @@ import PromiseCard from '../components/PromiseCard'
 import ErrorState from '../components/ErrorState'
 import EmptyState from '../components/EmptyState'
 import { Search, Filter, Loader2 } from 'lucide-react'
+import { useLanguage } from '../i18n/LanguageContext'
 
 const PARTIES    = ['DMK', 'AIADMK']
 const YEARS      = [2016, 2021]
@@ -24,7 +25,7 @@ function Select({ label, value, onChange, options }) {
         }}
       >
         {options.map(o => (
-          <option key={o} value={o}>{o || `All ${label}s`}</option>
+          <option key={o} value={o}>{t(`parties.${o.toLowerCase()}`) || o || `All ${label}s`}</option>
         ))}
       </select>
     </div>
@@ -32,6 +33,7 @@ function Select({ label, value, onChange, options }) {
 }
 
 export default function Promises() {
+  const { t } = useLanguage()
   const [promises, setPromises] = useState([])
   const [total,    setTotal]    = useState(0)
   const [loading,  setLoading]  = useState(false)
@@ -81,9 +83,9 @@ export default function Promises() {
       {/* Header */}
       <div className="fade-up" style={{ marginBottom: 28 }}>
         <h1 style={{ fontFamily: "'Space Grotesk',sans-serif", fontSize: 28, fontWeight: 800, color: '#f1f5f9', marginBottom: 6 }}>
-          Promise Explorer
+          {t('party.initTitle') || 'Promise Explorer'}
         </h1>
-        <p style={{ fontSize: 13, color: '#64748b' }}>Filter and search {total.toLocaleString()} manifesto promises.</p>
+        <p style={{ fontSize: 13, color: '#64748b' }}>{t('about.step1') || 'Filter and search manifesto promises.'}</p>
       </div>
 
       {/* Filters */}

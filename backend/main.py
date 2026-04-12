@@ -74,8 +74,8 @@ def _load_all_promises() -> dict[str, list[dict]]:
 _promises_by_stem = _load_all_promises()
 
 # Convenience aliases (spec names)
-dmk_promises   = _promises_by_stem.get("dmk_2021",   [])
-admk_promises  = _promises_by_stem.get("aiadmk_2016", [])
+dmk_promises     = _promises_by_stem.get("dmk_2021",   [])
+aiadmk_promises  = _promises_by_stem.get("aiadmk_2016", [])
 
 scores: dict = safe_load_json(DATA_DIR / "scores.json", {})
 

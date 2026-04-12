@@ -68,3 +68,15 @@ jobs:
           git add backend/data/
           git commit -m "auto: pipeline update $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git push
+
+      - name: Trigger Render Deploy
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: |
+          if [ -n "$deploy_url" ]; then
+            curl -X GET "$deploy_url"
+          else
+            echo "RENDER_DEPLOY_HOOK not set, skipping manual trigger"
+          fi
+

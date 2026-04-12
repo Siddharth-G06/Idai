@@ -89,7 +89,7 @@ export default function Home() {
                 <div className="flex justify-between items-start mb-6">
                   <div>
                     <div className="flex items-center gap-2">
-                      <h2 className="font-headline font-bold text-2xl text-white">{partyName}</h2>
+                      <h2 className="font-headline font-bold text-2xl text-white">{t(`parties.${partyId}`) || partyName}</h2>
                       <span className={`text-[9px] px-2 py-0.5 rounded-full font-bold uppercase tracking-widest ${
                         isRuling ? 'bg-secondary/20 text-secondary' : 'bg-white/10 text-white/40'
                       }`}>

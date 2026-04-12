@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 const PARTY_COLORS = {
   DMK:    { accent: '#22d3ee', track: 'rgba(34,211,238,.15)', glow: 'glow-dmk'  },
-  AIADMK: { accent: '#f59e0b', track: 'rgba(245,158,11,.15)', glow: 'glow-admk' },
+  AIADMK: { accent: '#f59e0b', track: 'rgba(245,158,11,.15)', glow: 'glow-AIADMK' },
 }
 
 export default function ScoreCard({ partyKey, data }) {

@@ -23,7 +23,7 @@ export const COLORS = {
     light:   '#ffb3b1',
     glow:    'rgba(230, 57, 70, 0.2)',
   },
-  admk: {
+  AIADMK: {
     primary: '#2DC653',
     light:   '#4fe16a',
     glow:    'rgba(45, 198, 83, 0.2)',
