@@ -4,14 +4,14 @@
     "period": "2016-2021",
     "note": "AIADMK ruled TN 2016-2021; score = promises implemented",
     "total": 103,
-    "fulfilled": 30.0,
-    "score": 29.1,
+    "fulfilled": 31.0,
+    "score": 30.1,
     "avg_llm_confidence": 0.0,
     "categories": {
       "infrastructure": {
         "total": 30.0,
-        "fulfilled": 6.0,
-        "score": 20.0
+        "fulfilled": 7.0,
+        "score": 23.3
       },
       "employment": {
         "total": 9.0,
@@ -96,8 +96,8 @@
     "period": "2016-2021",
     "note": "DMK in opposition 2016-2021; score = promises advocated for",
     "total": 702,
-    "fulfilled": 217.0,
-    "score": 30.9,
+    "fulfilled": 219.0,
+    "score": 31.2,
     "avg_llm_confidence": 0.0,
     "categories": {
       "infrastructure": {
@@ -122,8 +122,8 @@
       },
       "education": {
         "total": 24.5,
-        "fulfilled": 8.0,
-        "score": 32.7
+        "fulfilled": 9.0,
+        "score": 36.7
       },
       "healthcare": {
         "total": 42.0,
@@ -142,14 +142,14 @@
     "period": "2021-2026",
     "note": "DMK ruled TN 2021-2026; score = promises implemented",
     "total": 671,
-    "fulfilled": 325.59999999999917,
-    "score": 48.5,
+    "fulfilled": 326.59999999999917,
+    "score": 48.7,
     "avg_llm_confidence": 0.0,
     "categories": {
       "infrastructure": {
         "total": 160.0,
-        "fulfilled": 67.6,
-        "score": 42.2
+        "fulfilled": 68.6,
+        "score": 42.9
       },
       "agriculture": {
         "total": 51.5,
