@@ -12,6 +12,7 @@ const CATEGORIES = ['', 'infrastructure', 'employment', 'economy', 'healthcare',
 const STATUSES   = ['', 'fulfilled', 'unfulfilled']
 
 function Select({ label, value, onChange, options }) {
+  const { t } = useLanguage()
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
       <label style={{ fontSize: 11, color: '#64748b', textTransform: 'uppercase', letterSpacing: '.06em' }}>{label}</label>

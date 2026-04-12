@@ -128,6 +128,7 @@ export default function Compare() {
             <h2 className="text-2xl font-headline font-bold text-white/90">
               {dmkData.score > aiadmkData.score ? t('compare.dmkLeads') : t('compare.aiadmkLeads')}
             </h2>
+          </div>
           <div className="flex justify-between items-end mt-12 mb-4 px-2 opacity-50 font-label text-[9px] uppercase tracking-widest text-on-surface-variant">
             <div className="w-1/2 text-left">{t('parties.dmk')} {t('party.scoreLabel')}</div>
             <div className="w-1/2 text-right">{t('parties.aiadmk')} {t('party.scoreLabel')}</div>
