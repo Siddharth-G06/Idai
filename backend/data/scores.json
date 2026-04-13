@@ -50,8 +50,8 @@
     "period": "2021-2026",
     "note": "AIADMK in opposition 2021-2026; score = promises advocated for",
     "total": 104,
-    "fulfilled": 24.0,
-    "score": 23.1,
+    "fulfilled": 26.0,
+    "score": 25.0,
     "avg_llm_confidence": 0.0,
     "categories": {
       "infrastructure": {
@@ -96,14 +96,14 @@
     "period": "2016-2021",
     "note": "DMK in opposition 2016-2021; score = promises advocated for",
     "total": 702,
-    "fulfilled": 221.0,
-    "score": 31.5,
+    "fulfilled": 228.0,
+    "score": 32.5,
     "avg_llm_confidence": 0.0,
     "categories": {
       "infrastructure": {
         "total": 173.5,
-        "fulfilled": 49.0,
-        "score": 28.2
+        "fulfilled": 50.0,
+        "score": 28.8
       },
       "agriculture": {
         "total": 47.5,
@@ -112,8 +112,8 @@
       },
       "women and youth": {
         "total": 6.0,
-        "fulfilled": 1.0,
-        "score": 16.7
+        "fulfilled": 2.0,
+        "score": 33.3
       },
       "employment": {
         "total": 93.0,
@@ -122,8 +122,8 @@
       },
       "education": {
         "total": 24.5,
-        "fulfilled": 9.0,
-        "score": 36.7
+        "fulfilled": 10.0,
+        "score": 40.8
       },
       "healthcare": {
         "total": 42.0,
@@ -142,14 +142,14 @@
     "period": "2021-2026",
     "note": "DMK ruled TN 2021-2026; score = promises implemented",
     "total": 671,
-    "fulfilled": 330.79999999999916,
-    "score": 49.3,
+    "fulfilled": 333.59999999999917,
+    "score": 49.7,
     "avg_llm_confidence": 0.0,
     "categories": {
       "infrastructure": {
         "total": 160.0,
-        "fulfilled": 69.60000000000001,
-        "score": 43.5
+        "fulfilled": 69.2,
+        "score": 43.2
       },
       "agriculture": {
         "total": 51.5,
@@ -158,8 +158,8 @@
       },
       "employment": {
         "total": 111.0,
-        "fulfilled": 50.29999999999998,
-        "score": 45.3
+        "fulfilled": 51.29999999999998,
+        "score": 46.2
       },
       "economy": {
         "total": 22.0,
@@ -173,13 +173,13 @@
       },
       "education": {
         "total": 37.0,
-        "fulfilled": 12.600000000000001,
-        "score": 34.1
+        "fulfilled": 13.600000000000001,
+        "score": 36.8
       },
       "healthcare": {
         "total": 49.5,
-        "fulfilled": 26.19999999999999,
-        "score": 52.9
+        "fulfilled": 25.79999999999999,
+        "score": 52.1
       }
     }
   }
