@@ -4,8 +4,8 @@
     "period": "2016-2021",
     "note": "AIADMK ruled TN 2016-2021; score = promises implemented",
     "total": 103,
-    "fulfilled": 33.0,
-    "score": 32.0,
+    "fulfilled": 34.0,
+    "score": 33.0,
     "avg_llm_confidence": 0.0,
     "categories": {
       "infrastructure": {
@@ -30,8 +30,8 @@
       },
       "agriculture": {
         "total": 6.0,
-        "fulfilled": 1.0,
-        "score": 16.7
+        "fulfilled": 2.0,
+        "score": 33.3
       },
       "education": {
         "total": 2.0,
@@ -50,14 +50,14 @@
     "period": "2021-2026",
     "note": "AIADMK in opposition 2021-2026; score = promises advocated for",
     "total": 104,
-    "fulfilled": 27.0,
-    "score": 26.0,
+    "fulfilled": 29.0,
+    "score": 27.9,
     "avg_llm_confidence": 0.0,
     "categories": {
       "infrastructure": {
         "total": 26.5,
-        "fulfilled": 9.5,
-        "score": 35.8
+        "fulfilled": 10.0,
+        "score": 37.7
       },
       "employment": {
         "total": 10.0,
@@ -66,13 +66,13 @@
       },
       "agriculture": {
         "total": 6.5,
-        "fulfilled": 2.0,
-        "score": 30.8
+        "fulfilled": 2.5,
+        "score": 38.5
       },
       "economy": {
         "total": 7.0,
-        "fulfilled": 0.0,
-        "score": 0.0
+        "fulfilled": 1.0,
+        "score": 14.3
       },
       "education": {
         "total": 3.0,
@@ -96,8 +96,8 @@
     "period": "2016-2021",
     "note": "DMK in opposition 2016-2021; score = promises advocated for",
     "total": 702,
-    "fulfilled": 231.0,
-    "score": 32.9,
+    "fulfilled": 235.0,
+    "score": 33.5,
     "avg_llm_confidence": 0.0,
     "categories": {
       "infrastructure": {
@@ -117,8 +117,8 @@
       },
       "employment": {
         "total": 93.0,
-        "fulfilled": 21.5,
-        "score": 23.1
+        "fulfilled": 22.5,
+        "score": 24.2
       },
       "education": {
         "total": 24.5,
@@ -142,8 +142,8 @@
     "period": "2021-2026",
     "note": "DMK ruled TN 2021-2026; score = promises implemented",
     "total": 671,
-    "fulfilled": 337.1999999999992,
-    "score": 50.3,
+    "fulfilled": 346.39999999999924,
+    "score": 51.6,
     "avg_llm_confidence": 0.0,
     "categories": {
       "infrastructure": {
@@ -153,13 +153,13 @@
       },
       "agriculture": {
         "total": 51.5,
-        "fulfilled": 28.299999999999997,
-        "score": 55.0
+        "fulfilled": 31.9,
+        "score": 61.9
       },
       "employment": {
         "total": 111.0,
-        "fulfilled": 52.29999999999998,
-        "score": 47.1
+        "fulfilled": 53.29999999999998,
+        "score": 48.0
       },
       "economy": {
         "total": 22.0,
@@ -173,8 +173,8 @@
       },
       "education": {
         "total": 37.0,
-        "fulfilled": 13.600000000000001,
-        "score": 36.8
+        "fulfilled": 14.200000000000001,
+        "score": 38.4
       },
       "healthcare": {
         "total": 49.5,
