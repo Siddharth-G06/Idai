@@ -1291,15 +1291,15 @@
       "party": "AIADMK",
       "year": 2016,
       "status": "unfulfilled",
-      "similarity_score": 0.3165,
-      "matched_headline": "Tamil Nadu election 2026: Mango farmers reiterate demand for pulp-making factory in K.V. Kuppam constituency",
-      "matched_url": "https://www.thehindu.com/elections/tamil-nadu-assembly/tn-elections-2026-mango-farmers-reiterate-demand-for-pulp-making-factory-in-kv-kuppam-constituency/article70838268.ece",
-      "matched_date": "Tue, 14 Apr 2026 16:25:25 +0530",
+      "similarity_score": 0.3389,
+      "matched_headline": "'BJP planning to plant bombs in Bengal': Mamata Banerjee's massive charge ahead of assembly poll",
+      "matched_url": "https://timesofindia.indiatimes.com/india/bjp-planning-to-plant-bombs-in-bengal-mamata-banerjees-massive-charge-ahead-of-assembly-poll/articleshow/130304621.cms",
+      "matched_date": "2026-04-16T16:20:50+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK"
     },
     {
       "id": "aiadmk_2016_054",
