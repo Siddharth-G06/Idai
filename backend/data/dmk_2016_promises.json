@@ -6067,15 +6067,15 @@
       "party": "DMK",
       "year": 2016,
       "status": "unfulfilled",
-      "similarity_score": 0.2279,
-      "matched_headline": "Sri Krishna Sweets trademark dispute: Madras High Court refuses to summon Deputy Registrar",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/sri-krishna-sweets-trademark-dispute-madras-high-court-refuses-to-summon-deputy-registrar/article70841474.ece",
-      "matched_date": "Thu, 09 Apr 2026 15:50:44 +0530",
+      "similarity_score": 0.2513,
+      "matched_headline": "Jacqueline Fernandez seeks to turn approver in Rs 200 crore Sukesh Chandrashekhar case",
+      "matched_url": "https://timesofindia.indiatimes.com/india/jacqueline-fernandez-seeks-to-turn-approver-in-rs-200-crore-sukesh-chandrashekhar-case/articleshow/130326443.cms",
+      "matched_date": "2026-04-17T14:17:37+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK"
     },
     {
       "id": "dmk_2016_250",
