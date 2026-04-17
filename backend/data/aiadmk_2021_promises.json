@@ -1655,15 +1655,15 @@
       "party": "AIADMK",
       "year": 2021,
       "status": "unfulfilled",
-      "similarity_score": 0.3257,
-      "matched_headline": "Housing for roadside dwellers and traffic solutions are top priorities for Harbour constituency, says Minister Sekarbabu",
-      "matched_url": "https://www.thehindu.com/news/cities/chennai/housing-for-roadside-dwellers-and-traffic-solutions-are-top-priorities-for-harbour-constituency-says-minister-sekarbabu/article70866290.ece",
-      "matched_date": "Thu, 16 Apr 2026 21:41:55 +0530",
+      "similarity_score": 0.3383,
+      "matched_headline": "Housing for roadside dwellers and traffic solutions are top priorities for Harbour constituency: Minister Sekarbabu",
+      "matched_url": "https://www.thehindu.com/elections/tamil-nadu-assembly/housing-for-roadside-dwellers-and-traffic-solutions-are-top-priorities-for-harbour-constituency-says-minister-sekarbabu/article70866290.ece",
+      "matched_date": "Fri, 17 Apr 2026 11:35:18 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK"
     },
     {
       "id": "aiadmk_2021_069",
@@ -1728,15 +1728,15 @@
       "party": "AIADMK",
       "year": 2021,
       "status": "unfulfilled",
-      "similarity_score": 0.2573,
-      "matched_headline": "Housing for roadside dwellers and traffic solutions are top priorities for Harbour constituency, says Minister Sekarbabu",
-      "matched_url": "https://www.thehindu.com/news/cities/chennai/housing-for-roadside-dwellers-and-traffic-solutions-are-top-priorities-for-harbour-constituency-says-minister-sekarbabu/article70866290.ece",
-      "matched_date": "Thu, 16 Apr 2026 21:41:55 +0530",
+      "similarity_score": 0.2614,
+      "matched_headline": "Housing for roadside dwellers and traffic solutions are top priorities for Harbour constituency: Minister Sekarbabu",
+      "matched_url": "https://www.thehindu.com/elections/tamil-nadu-assembly/housing-for-roadside-dwellers-and-traffic-solutions-are-top-priorities-for-harbour-constituency-says-minister-sekarbabu/article70866290.ece",
+      "matched_date": "Fri, 17 Apr 2026 11:35:18 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK"
     },
     {
       "id": "aiadmk_2021_072",
