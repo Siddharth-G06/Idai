@@ -2361,10 +2361,10 @@
       "party": "AIADMK",
       "year": 2021,
       "status": "pending",
-      "similarity_score": 0.2443,
-      "matched_headline": "Congress: Damage is enormous when intent is mischievous",
-      "matched_url": "https://timesofindia.indiatimes.com/india/congress-damage-is-enormous-when-intent-is-mischievous/articleshow/130270340.cms",
-      "matched_date": "2026-04-15T04:31:06+05:30",
+      "similarity_score": 0.2473,
+      "matched_headline": "'This victory is just a trailer': Stalin reacts to Constitution Amendment Bill's defeat in Lok Sabha",
+      "matched_url": "https://timesofindia.indiatimes.com/india/this-victory-is-just-a-trailer-stalin-reacts-to-constitution-amendment-bills-defeat-in-lok-sabha/articleshow/130337919.cms",
+      "matched_date": "2026-04-17T21:45:25+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
@@ -2529,15 +2529,15 @@
       "party": "AIADMK",
       "year": 2021,
       "status": "unfulfilled",
-      "similarity_score": 0.272,
-      "matched_headline": "A recognition for emerging Tamil Nadu sportspersons",
-      "matched_url": "https://www.thehindu.com/sport/a-recognition-for-emerging-tamil-nadu-sportspersons/article70835256.ece",
-      "matched_date": "Tue, 07 Apr 2026 21:04:55 +0530",
+      "similarity_score": 0.3021,
+      "matched_headline": "EC assures High Court of action on complaint regarding distribution of ₹10,000 tokens in Harbour constituency",
+      "matched_url": "https://www.thehindu.com/elections/tamil-nadu-assembly/ec-assures-high-court-of-action-on-complaint-regarding-distribution-of-10000-tokens-in-harbour-constituency/article70873469.ece",
+      "matched_date": "Fri, 17 Apr 2026 18:36:35 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK"
     }
   ]
 }

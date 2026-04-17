@@ -1558,16 +1558,17 @@
       "classification_confidence": "low",
       "party": "AIADMK",
       "year": 2016,
-      "status": "unfulfilled",
-      "similarity_score": 0.2739,
-      "matched_headline": "Rs 90,000 crore from Urban Challenge Fund to back city projects",
-      "matched_url": "https://timesofindia.indiatimes.com/india/rs-90000-crore-from-urban-challenge-fund-to-back-city-projects/articleshow/130290461.cms",
-      "matched_date": "2026-04-15T22:59:36+05:30",
+      "status": "fulfilled",
+      "similarity_score": 0.2937,
+      "matched_headline": "We know how to bring the debt under control, improve the finances of Tamil Nadu, and implement all the welfare schemes completely, says the AIADMK general secretary",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/we-know-how-to-bring-the-debt-under-control-improve-the-finances-of-tamil-nadu-and-implement-all-the-welfare-schemes-completely-says-the-aiadmk-general-secretary/article70875181.ece",
+      "matched_date": "Fri, 17 Apr 2026 22:51:17 +0530",
       "match_valid": true,
       "specificity_score": 0.3,
       "specificity": "medium",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "DMK",
+      "credit_party": "DMK"
     },
     {
       "id": "aiadmk_2016_065",
