@@ -702,16 +702,17 @@
       "classification_confidence": "medium",
       "party": "AIADMK",
       "year": 2021,
-      "status": "unfulfilled",
-      "similarity_score": 0.3307,
-      "matched_headline": "T.N. Assembly election: Concerned over stalled growth, Ambattur constituency residents demand GH, sewer network, wider roads",
-      "matched_url": "https://www.thehindu.com/elections/tamil-nadu-assembly/concerned-over-stalled-growth-residents-demandgh-sewer-network-wider-roads/article70823462.ece",
-      "matched_date": "Mon, 06 Apr 2026 00:59:19 +0530",
+      "status": "fulfilled",
+      "similarity_score": 0.3613,
+      "matched_headline": "Tamil Nadu election 2026: Andipatti constituency people’s woes remain unresolved",
+      "matched_url": "https://www.thehindu.com/elections/tamil-nadu-assembly/andipatti-peoples-woes-remain-unresolved/article70822610.ece",
+      "matched_date": "Sun, 19 Apr 2026 21:12:51 +0530",
       "match_valid": true,
       "specificity_score": 0.2,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "DMK",
+      "credit_party": "DMK"
     },
     {
       "id": "aiadmk_2021_030",
