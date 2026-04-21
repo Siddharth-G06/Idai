@@ -655,15 +655,15 @@
       "party": "AIADMK",
       "year": 2021,
       "status": "pending",
-      "similarity_score": 0.2254,
-      "matched_headline": "Delimitation bill has provision for EC to conduct exercise in Pak-occupied J&amp;K",
-      "matched_url": "https://timesofindia.indiatimes.com/india/delimitation-bill-has-provision-for-ec-to-conduct-exercise-in-pak-occupied-jk/articleshow/130270458.cms",
-      "matched_date": "2026-04-15T05:04:59+05:30",
+      "similarity_score": 0.2485,
+      "matched_headline": "Tamil Nadu election 2026: Powerloom weavers caught in a web of woes in Aruppukottai constituency",
+      "matched_url": "https://www.thehindu.com/elections/tamil-nadu-assembly/tn-election-2026-powerloom-weavers-caught-in-a-web-of-woes-in-aruppukottai-constituency/article70857816.ece",
+      "matched_date": "Tue, 21 Apr 2026 21:43:17 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "unknown"
     },
     {
       "id": "aiadmk_2021_028",
@@ -1238,7 +1238,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.2445,
+      "confidence": 0.2446,
       "classification_confidence": "low",
       "party": "AIADMK",
       "year": 2021,
@@ -1409,7 +1409,7 @@
         "agriculture"
       ],
       "multi_category": false,
-      "confidence": 0.6714,
+      "confidence": 0.6713,
       "classification_confidence": "medium",
       "party": "AIADMK",
       "year": 2021,
@@ -2193,15 +2193,15 @@
       "party": "AIADMK",
       "year": 2021,
       "status": "unfulfilled",
-      "similarity_score": 0.2789,
-      "matched_headline": "Tamil Nadu election 2026: Once a Chief Minister’s citadel, Srirangam constituency yearns for more infrastructure development",
-      "matched_url": "https://www.thehindu.com/elections/tamil-nadu-assembly/once-a-chief-minister-citadel-srirangam-constituency-yearns-for-more-infrastructure-development/article70779334.ece",
-      "matched_date": "Sat, 18 Apr 2026 22:11:28 +0530",
+      "similarity_score": 0.3225,
+      "matched_headline": "T.N. government extends ban on mayonnaise for another year",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/tn-government-extends-ban-on-mayonnaise-for-another-year/article70888982.ece",
+      "matched_date": "Tue, 21 Apr 2026 23:01:36 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "unknown"
     },
     {
       "id": "aiadmk_2021_091",
