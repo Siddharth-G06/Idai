@@ -4,14 +4,14 @@
     "period": "2016-2021",
     "note": "AIADMK ruled TN 2016-2021; score = promises implemented",
     "total": 103,
-    "fulfilled": 38.0,
-    "score": 36.9,
+    "fulfilled": 40.0,
+    "score": 38.8,
     "avg_llm_confidence": 0.0,
     "categories": {
       "infrastructure": {
         "total": 30.0,
-        "fulfilled": 8.0,
-        "score": 26.7
+        "fulfilled": 9.0,
+        "score": 30.0
       },
       "employment": {
         "total": 9.0,
@@ -30,8 +30,8 @@
       },
       "agriculture": {
         "total": 6.0,
-        "fulfilled": 2.0,
-        "score": 33.3
+        "fulfilled": 3.0,
+        "score": 50.0
       },
       "education": {
         "total": 2.0,
@@ -50,14 +50,14 @@
     "period": "2021-2026",
     "note": "AIADMK in opposition 2021-2026; score = promises advocated for",
     "total": 104,
-    "fulfilled": 35.0,
-    "score": 33.7,
+    "fulfilled": 37.0,
+    "score": 35.6,
     "avg_llm_confidence": 0.0,
     "categories": {
       "infrastructure": {
         "total": 26.5,
-        "fulfilled": 11.0,
-        "score": 41.5
+        "fulfilled": 12.0,
+        "score": 45.3
       },
       "employment": {
         "total": 10.0,
@@ -96,8 +96,8 @@
     "period": "2016-2021",
     "note": "DMK in opposition 2016-2021; score = promises advocated for",
     "total": 702,
-    "fulfilled": 291.0,
-    "score": 41.5,
+    "fulfilled": 293.0,
+    "score": 41.7,
     "avg_llm_confidence": 0.0,
     "categories": {
       "infrastructure": {
@@ -142,8 +142,8 @@
     "period": "2021-2026",
     "note": "DMK ruled TN 2021-2026; score = promises implemented",
     "total": 671,
-    "fulfilled": 405.7999999999995,
-    "score": 60.5,
+    "fulfilled": 406.3999999999995,
+    "score": 60.6,
     "avg_llm_confidence": 0.0,
     "categories": {
       "infrastructure": {
@@ -158,8 +158,8 @@
       },
       "employment": {
         "total": 111.0,
-        "fulfilled": 65.69999999999999,
-        "score": 59.2
+        "fulfilled": 66.3,
+        "score": 59.7
       },
       "economy": {
         "total": 22.0,
