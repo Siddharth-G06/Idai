@@ -832,16 +832,17 @@
       "classification_confidence": "medium",
       "party": "AIADMK",
       "year": 2016,
-      "status": "unfulfilled",
-      "similarity_score": 0.3412,
-      "matched_headline": "Tamil Nadu election 2026: Reviving powerloom sector, addressing farmers’ needs key demands in Sulur constituency",
-      "matched_url": "https://www.thehindu.com/elections/tamil-nadu-assembly/reviving-powerloom-sector-addressing-farmers-needs-key-demands-in-sulur-assembly-constituency/article70776937.ece",
-      "matched_date": "Sat, 18 Apr 2026 22:03:06 +0530",
+      "status": "fulfilled",
+      "similarity_score": 0.3542,
+      "matched_headline": "Tamil Nadu election 2026: Salt pan workers indignant about lack of better amenities in Thoothukudi constituency",
+      "matched_url": "https://www.thehindu.com/elections/tamil-nadu-assembly/salt-pan-workers-indignant-about-lack-of-better-amenities-in-thoothukudi-constituency/article70869340.ece",
+      "matched_date": "Wed, 22 Apr 2026 00:35:38 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "DMK",
+      "credit_party": "DMK"
     },
     {
       "id": "aiadmk_2016_035",
@@ -1559,7 +1560,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.2199,
+      "confidence": 0.2198,
       "classification_confidence": "low",
       "party": "AIADMK",
       "year": 2016,
