@@ -120,15 +120,15 @@
       "party": "AIADMK",
       "year": 2021,
       "status": "unfulfilled",
-      "similarity_score": 0.3201,
-      "matched_headline": "Post-SIR electorate drop drives turnout surge; votes remain steady compared to 2021 election",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/post-sir-electorate-drop-drives-turnout-surge-votes-remain-steady-compared-to-2021-election/article70898707.ece",
-      "matched_date": "Fri, 24 Apr 2026 01:30:19 +0530",
+      "similarity_score": 0.3296,
+      "matched_headline": "Tamil Nadu does it again with double-digit economic growth",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/tamil-nadu-does-it-again-with-double-digit-economic-growth/article70913645.ece",
+      "matched_date": "Tue, 28 Apr 2026 00:51:11 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "unknown"
     },
     {
       "id": "aiadmk_2021_006",
