@@ -70,15 +70,15 @@
       "party": "AIADMK",
       "year": 2021,
       "status": "unfulfilled",
-      "similarity_score": 0.266,
-      "matched_headline": "Assembly Election 2026: What is the 48-hour ‘silent period’ ahead of voting?",
-      "matched_url": "https://www.thehindu.com/elections/assembly-elections-2026-48-hour-silent-period-kerala-puducherry-west-bengal-assam-tamil-nadu-election-rules-guidelines/article70833307.ece",
-      "matched_date": "Tue, 07 Apr 2026 13:36:34 +0530",
+      "similarity_score": 0.3382,
+      "matched_headline": "Tamil Nadu government cannot restrict maternity leave to just 12 weeks for third pregnancy: Madras High Court",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/tamil-nadu-government-cannot-restrict-maternity-leave-to-just-12-weeks-for-third-pregnancy-rules-madras-high-court/article70919207.ece",
+      "matched_date": "Wed, 29 Apr 2026 12:40:24 +0530",
       "match_valid": true,
       "specificity_score": 0.1,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK"
     },
     {
       "id": "aiadmk_2021_004",
