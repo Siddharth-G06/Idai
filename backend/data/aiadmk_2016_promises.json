@@ -2345,15 +2345,15 @@
       "party": "AIADMK",
       "year": 2016,
       "status": "unfulfilled",
-      "similarity_score": 0.1986,
-      "matched_headline": "Steady voting push Thoothukudi turnout past 80%",
-      "matched_url": "https://www.thehindu.com/elections/tamil-nadu-assembly/steady-voting-push-thoothukudi-turnout-past-80/article70898724.ece",
-      "matched_date": "Thu, 23 Apr 2026 22:16:49 +0530",
+      "similarity_score": 0.2097,
+      "matched_headline": "Kozhikode South",
+      "matched_url": "https://timesofindia.indiatimes.com/india/kozhikode-south/articleshow/130645439.cms",
+      "matched_date": "2026-04-30T23:03:47+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK"
     },
     {
       "id": "aiadmk_2016_097",
