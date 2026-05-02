@@ -556,7 +556,7 @@
         "healthcare"
       ],
       "multi_category": false,
-      "confidence": 0.4053,
+      "confidence": 0.4054,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
@@ -925,7 +925,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.5159,
+      "confidence": 0.5158,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
@@ -6707,7 +6707,7 @@
       "party": "DMK",
       "year": 2016,
       "status": "fulfilled",
-      "similarity_score": 0.3522,
+      "similarity_score": 0.3523,
       "matched_headline": "T.N. legislature fully empowered to take away power to appoint Vice-Chancellors from Governor: State tells Madras High Court",
       "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/tn-legislature-fully-empowered-to-take-away-power-to-appoint-vice-chancellors-from-governor-state-tells-madras-high-court/article70815904.ece",
       "matched_date": "Fri, 03 Apr 2026 00:41:51 +0530",
@@ -7319,7 +7319,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.8517,
+      "confidence": 0.8516,
       "classification_confidence": "high",
       "party": "DMK",
       "year": 2016,
@@ -8667,7 +8667,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.6655,
+      "confidence": 0.6654,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
