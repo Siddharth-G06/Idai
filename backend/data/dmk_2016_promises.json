@@ -15775,16 +15775,17 @@
       "classification_confidence": "low",
       "party": "DMK",
       "year": 2016,
-      "status": "unfulfilled",
-      "similarity_score": 0.3363,
-      "matched_headline": "Two-phase census 2027 in UP to begin may with 5 lakh personnel deployment",
-      "matched_url": "https://timesofindia.indiatimes.com/india/two-phase-census-2027-in-up-to-begin-may-with-5-lakh-personnel-deployment/articleshow/130716566.cms",
-      "matched_date": "2026-05-02T18:05:22+05:30",
+      "status": "fulfilled",
+      "similarity_score": 0.3521,
+      "matched_headline": "Kerala’s alternating cycle on trial: Will Left front extend run or UDF return?",
+      "matched_url": "https://timesofindia.indiatimes.com/india/keralas-alternating-cycle-on-trial-will-left-front-extend-run-or-udf-return/articleshow/130681026.cms",
+      "matched_date": "2026-05-03T15:09:00+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "DMK",
+      "credit_party": "DMK"
     },
     {
       "id": "dmk_2016_645",
