@@ -96,14 +96,14 @@
     "period": "2016-2021",
     "note": "DMK in opposition 2016-2021; score = promises advocated for",
     "total": 702,
-    "fulfilled": 333.0,
-    "score": 47.4,
+    "fulfilled": 334.0,
+    "score": 47.6,
     "avg_llm_confidence": 0.0,
     "categories": {
       "infrastructure": {
         "total": 173.5,
-        "fulfilled": 82.5,
-        "score": 47.6
+        "fulfilled": 83.5,
+        "score": 48.1
       },
       "agriculture": {
         "total": 47.5,
@@ -142,8 +142,8 @@
     "period": "2021-2026",
     "note": "DMK ruled TN 2021-2026; score = promises implemented",
     "total": 671,
-    "fulfilled": 438.7999999999997,
-    "score": 65.4,
+    "fulfilled": 441.7999999999997,
+    "score": 65.8,
     "avg_llm_confidence": 0.0,
     "categories": {
       "infrastructure": {
