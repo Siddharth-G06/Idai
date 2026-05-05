@@ -1544,15 +1544,15 @@
       "party": "AIADMK",
       "year": 2016,
       "status": "unfulfilled",
-      "similarity_score": 0.1913,
-      "matched_headline": "Saffron spreads, a splash of new colour: How India's power map has changed after 2026 assembly elections",
-      "matched_url": "https://timesofindia.indiatimes.com/india/saffron-spreads-a-splash-of-new-colour-how-indias-power-map-has-changed/articleshow/130770257.cms",
-      "matched_date": "2026-05-04T18:28:51+05:30",
+      "similarity_score": 0.2116,
+      "matched_headline": "Southern Railway’s traction distribution assets register best-ever performance in 2025-26; minimal disruption on electrified routes",
+      "matched_url": "https://www.thehindu.com/news/cities/Mangalore/southern-railways-traction-distribution-assets-register-best-ever-performance-in-2025-26-minimal-disruption-on-electrified-routes/article70941909.ece",
+      "matched_date": "Tue, 05 May 2026 14:24:43 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "unknown"
     },
     {
       "id": "aiadmk_2016_064",
