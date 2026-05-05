@@ -41,7 +41,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.1919,
+      "confidence": 0.1918,
       "classification_confidence": "low",
       "party": "AIADMK",
       "year": 2021,
@@ -976,15 +976,15 @@
       "party": "AIADMK",
       "year": 2021,
       "status": "unfulfilled",
-      "similarity_score": 0.3405,
-      "matched_headline": "Tamil Nadu election 2026: Travel fares skyrocket as voters head home on polling day",
-      "matched_url": "https://www.thehindu.com/elections/tamil-nadu-assembly/travel-fares-skyrocket-as-voters-head-home-to-tn-on-poll-day/article70893469.ece",
-      "matched_date": "Tue, 28 Apr 2026 17:34:37 +0530",
+      "similarity_score": 0.3413,
+      "matched_headline": "Not paying toll through FASTag at barrier-less plazas will lead to suspension of services till dues cleared",
+      "matched_url": "https://timesofindia.indiatimes.com/india/not-paying-toll-through-fastag-at-barrier-less-plazas-will-lead-to-suspension-of-services-till-dues-cleared/articleshow/130834719.cms",
+      "matched_date": "2026-05-05T22:31:49+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK"
     },
     {
       "id": "aiadmk_2021_041",
@@ -1241,7 +1241,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.2445,
+      "confidence": 0.2446,
       "classification_confidence": "low",
       "party": "AIADMK",
       "year": 2021,
@@ -1413,7 +1413,7 @@
         "agriculture"
       ],
       "multi_category": false,
-      "confidence": 0.6714,
+      "confidence": 0.6713,
       "classification_confidence": "medium",
       "party": "AIADMK",
       "year": 2021,
