@@ -1347,16 +1347,17 @@
       "classification_confidence": "medium",
       "party": "AIADMK",
       "year": 2016,
-      "status": "unfulfilled",
-      "similarity_score": 0.2532,
-      "matched_headline": "Thirumalai Mission Hospital and Research Institute in Ranipet opened after upgrade",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/thirumalai-mission-hospital-and-research-institute-in-ranipet-opened-after-upgrade/article70861694.ece",
-      "matched_date": "Wed, 15 Apr 2026 00:05:13 +0530",
+      "status": "fulfilled",
+      "similarity_score": 0.3207,
+      "matched_headline": "18 Russian medical varsities to take part in education fair",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/18-russian-medical-varsities-to-take-part-in-education-fair/article70947359.ece",
+      "matched_date": "Thu, 07 May 2026 00:43:38 +0530",
       "match_valid": true,
       "specificity_score": 0.3,
       "specificity": "medium",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "unknown",
+      "credit_party": "DMK"
     },
     {
       "id": "aiadmk_2016_056",
