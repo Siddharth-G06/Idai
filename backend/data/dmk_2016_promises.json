@@ -2132,15 +2132,15 @@
       "party": "DMK",
       "year": 2016,
       "status": "unfulfilled",
-      "similarity_score": 0.2465,
-      "matched_headline": "Dog show to be conducted in Ooty from May 9",
-      "matched_url": "https://www.thehindu.com/news/cities/Coimbatore/dog-show-to-be-conducted-in-ooty-from-may-9/article70950515.ece",
-      "matched_date": "Thu, 07 May 2026 17:18:04 +0530",
+      "similarity_score": 0.2625,
+      "matched_headline": "Dog show begins in Udhagamandalam; to feature 55 different breeds",
+      "matched_url": "https://www.thehindu.com/news/cities/Coimbatore/dog-show-begins-in-udhagamandalam-to-feature-55-different-breeds/article70954432.ece",
+      "matched_date": "Fri, 08 May 2026 19:21:25 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK"
     },
     {
       "id": "dmk_2016_088",
