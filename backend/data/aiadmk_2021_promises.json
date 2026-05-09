@@ -362,16 +362,17 @@
       "classification_confidence": "medium",
       "party": "AIADMK",
       "year": 2021,
-      "status": "unfulfilled",
-      "similarity_score": 0.3454,
-      "matched_headline": "AIADMK hopes to take advantage of ‘anti-incumbency’, solid vote base in coastal districts",
-      "matched_url": "https://www.thehindu.com/elections/tamil-nadu-assembly/aiadmk-hopes-to-take-advantage-of-anti-incumbency-solid-vote-base-in-coastal-districts/article70826844.ece",
-      "matched_date": "Mon, 06 Apr 2026 13:20:30 +0530",
+      "status": "fulfilled",
+      "similarity_score": 0.3521,
+      "matched_headline": "AI tools to help centre catch fake Ayushman claims",
+      "matched_url": "https://timesofindia.indiatimes.com/india/ai-tools-to-help-centre-catch-fake-ayushman-claims/articleshow/130969388.cms",
+      "matched_date": "2026-05-09T07:29:07+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "DMK",
+      "credit_party": "DMK"
     },
     {
       "id": "aiadmk_2021_016",

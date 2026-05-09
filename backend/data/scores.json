@@ -50,14 +50,14 @@
     "period": "2021-2026",
     "note": "AIADMK in opposition 2021-2026; score = promises advocated for",
     "total": 104,
-    "fulfilled": 42.0,
-    "score": 40.4,
+    "fulfilled": 43.0,
+    "score": 41.3,
     "avg_llm_confidence": 0.0,
     "categories": {
       "infrastructure": {
         "total": 26.5,
-        "fulfilled": 14.0,
-        "score": 52.8
+        "fulfilled": 15.0,
+        "score": 56.6
       },
       "employment": {
         "total": 10.0,
