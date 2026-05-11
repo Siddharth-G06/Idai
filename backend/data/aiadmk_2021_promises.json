@@ -1028,15 +1028,15 @@
       "party": "AIADMK",
       "year": 2021,
       "status": "fulfilled",
-      "similarity_score": 0.3016,
-      "matched_headline": "Residents demand boost for small industries and water supply for agriculture in Jolarpet",
-      "matched_url": "https://www.thehindu.com/elections/tamil-nadu-assembly/residents-demand-boost-for-small-industries-and-water-supply-for-agriculture-in-jolarpet/article70865657.ece",
-      "matched_date": "Thu, 16 Apr 2026 00:41:53 +0530",
+      "similarity_score": 0.3566,
+      "matched_headline": "57,670 environment and pollution-related crimes in 2024, most were under anti-tobacco law",
+      "matched_url": "https://timesofindia.indiatimes.com/india/57670-environment-and-pollution-related-crimes-in-2024-most-were-under-anti-tobacco-law/articleshow/131017435.cms",
+      "matched_date": "2026-05-11T20:42:20+05:30",
       "match_valid": true,
       "specificity_score": 0.3,
       "specificity": "medium",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown",
+      "ruling_at_time": "DMK",
       "credit_party": "DMK"
     },
     {
@@ -1244,7 +1244,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.2446,
+      "confidence": 0.2445,
       "classification_confidence": "low",
       "party": "AIADMK",
       "year": 2021,
@@ -1416,7 +1416,7 @@
         "agriculture"
       ],
       "multi_category": false,
-      "confidence": 0.6713,
+      "confidence": 0.6714,
       "classification_confidence": "medium",
       "party": "AIADMK",
       "year": 2021,
