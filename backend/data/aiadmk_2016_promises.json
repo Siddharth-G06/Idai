@@ -2515,16 +2515,17 @@
       "classification_confidence": "low",
       "party": "AIADMK",
       "year": 2016,
-      "status": "unfulfilled",
-      "similarity_score": 0.3032,
-      "matched_headline": "Evening news wrap: US and Iran close to one-page memo to end war; Congress offers conditional support to TVK &amp; more",
-      "matched_url": "https://timesofindia.indiatimes.com/india/evening-news-wrap-us-and-iran-close-to-one-page-memo-to-end-war-congress-offers-conditional-support-to-tvk-more/articleshow/130853601.cms",
-      "matched_date": "2026-05-06T17:16:49+05:30",
+      "status": "fulfilled",
+      "similarity_score": 0.3632,
+      "matched_headline": "Kerala CM suspense may end today, Congress wraps up final huddle",
+      "matched_url": "https://timesofindia.indiatimes.com/india/kerala-cm-suspense-may-end-today-congress-wraps-up-final-huddle/articleshow/131051989.cms",
+      "matched_date": "2026-05-13T05:32:12+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "DMK",
+      "credit_party": "DMK"
     }
   ]
 }
