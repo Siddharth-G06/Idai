@@ -6666,7 +6666,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.2279,
+      "confidence": 0.2278,
       "classification_confidence": "low",
       "party": "DMK",
       "year": 2021,
@@ -7784,7 +7784,7 @@
         "healthcare"
       ],
       "multi_category": false,
-      "confidence": 0.7,
+      "confidence": 0.7001,
       "classification_confidence": "high",
       "party": "DMK",
       "year": 2021,
@@ -10437,15 +10437,15 @@
       "party": "DMK",
       "year": 2021,
       "status": "unfulfilled",
-      "similarity_score": 0.3174,
-      "matched_headline": "Ensure adequate supply of drinking water during summer: T.N. CM Vijay instructs officials",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/ensure-adequate-supply-of-drinking-water-during-summer-tn-cm-vijay-instructs-officials/article70968960.ece",
-      "matched_date": "Tue, 12 May 2026 15:50:14 +0530",
+      "similarity_score": 0.3315,
+      "matched_headline": "Remove import duty on cotton to ensure supply, CM Vijay urges Modi",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/remove-import-duty-on-cotton-to-ensure-supply-cm-vijay-urges-modi/article70979198.ece",
+      "matched_date": "Fri, 15 May 2026 00:41:31 +0530",
       "match_valid": true,
       "specificity_score": 0.1,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK"
     },
     {
       "id": "dmk_2021_422",
@@ -15185,16 +15185,17 @@
       "classification_confidence": "low",
       "party": "DMK",
       "year": 2021,
-      "status": "unfulfilled",
-      "similarity_score": 0.259,
-      "matched_headline": "TNEA 2026 process kicks off with release of tentative schedule",
-      "matched_url": "https://www.thehindu.com/education/tnea-2026-process-kicks-off-with-release-of-tentative-schedule/article70934563.ece",
-      "matched_date": "Sun, 03 May 2026 12:17:28 +0530",
+      "status": "fulfilled",
+      "similarity_score": 0.3274,
+      "matched_headline": "NLCIL clocks record power generation of 28.95 billion units in 2025-26",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/nlcil-clocks-record-power-generation-of-2895-billion-units-in-2025-26/article70978304.ece",
+      "matched_date": "Thu, 14 May 2026 20:14:13 +0530",
       "match_valid": true,
       "specificity_score": 0.5,
       "specificity": "medium",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "unknown",
+      "credit_party": "DMK"
     },
     {
       "id": "dmk_2021_615",
@@ -15358,15 +15359,15 @@
       "party": "DMK",
       "year": 2021,
       "status": "unfulfilled",
-      "similarity_score": 0.3087,
-      "matched_headline": "Tamil Nadu Assembly election: Chief Election Commissioner chairs meeting with 326 Central observers deployed across T.N.",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/tamil-nadu-assembly-election-chief-election-commissioner-chairs-meeting-with-326-central-observers-deployed-across-tn/article70848232.ece",
-      "matched_date": "Fri, 10 Apr 2026 21:27:03 +0530",
+      "similarity_score": 0.3123,
+      "matched_headline": "Congress to join TVK-led govt. in T.N.; number of Cabinet berths to be finalised: Girish Chodankar",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/congress-to-join-tvk-led-govt-in-tn-number-of-cabinet-berths-to-be-finalised-girish-chodankar/article70979278.ece",
+      "matched_date": "Thu, 14 May 2026 20:08:18 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "unknown"
     },
     {
       "id": "dmk_2021_622",
@@ -15694,7 +15695,7 @@
         "education"
       ],
       "multi_category": false,
-      "confidence": 0.6011,
+      "confidence": 0.6012,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2021,
