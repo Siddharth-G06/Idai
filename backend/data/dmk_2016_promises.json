@@ -8400,15 +8400,15 @@
       "party": "DMK",
       "year": 2016,
       "status": "unfulfilled",
-      "similarity_score": 0.3246,
-      "matched_headline": "Camera traps set up to identify animal responsible for woman’s death in Nilgiris",
-      "matched_url": "https://www.thehindu.com/news/cities/Coimbatore/camera-traps-set-up-to-identify-animal-responsible-for-womans-death-in-nilgiris/article70868547.ece",
-      "matched_date": "Thu, 16 Apr 2026 17:08:44 +0530",
+      "similarity_score": 0.3249,
+      "matched_headline": "National Endangered Species Day: Can India’s wildlife laws stop the extinction crisis?",
+      "matched_url": "https://timesofindia.indiatimes.com/india/national-endangered-species-day-can-indias-wildlife-laws-stop-the-extinction-crisis/articleshow/131099423.cms",
+      "matched_date": "2026-05-15T09:30:00+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK"
     },
     {
       "id": "dmk_2016_343",
@@ -16961,15 +16961,15 @@
       "party": "DMK",
       "year": 2016,
       "status": "unfulfilled",
-      "similarity_score": 0.2428,
-      "matched_headline": "Forest fire prevention measures intensified in Erode Division",
-      "matched_url": "https://www.thehindu.com/news/cities/Coimbatore/forest-fire-prevention-measures-intensified-in-erode-division/article70915096.ece",
-      "matched_date": "Tue, 28 Apr 2026 12:50:13 +0530",
+      "similarity_score": 0.3054,
+      "matched_headline": "After NEET UG paper leak, education minister Dharmendra Pradhan announces computer-based exams from next year",
+      "matched_url": "https://timesofindia.indiatimes.com/india/after-neet-ug-paper-leak-education-minister-dharmendra-pradhan-announces-computer-based-exams-from-next-year/articleshow/131109783.cms",
+      "matched_date": "2026-05-15T11:41:25+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK"
     },
     {
       "id": "dmk_2016_692",
