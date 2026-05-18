@@ -3787,7 +3787,7 @@
         "healthcare"
       ],
       "multi_category": false,
-      "confidence": 0.4076,
+      "confidence": 0.4077,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2021,
@@ -6670,7 +6670,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.2278,
+      "confidence": 0.2279,
       "classification_confidence": "low",
       "party": "DMK",
       "year": 2021,
@@ -7638,7 +7638,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.2946,
+      "confidence": 0.2945,
       "classification_confidence": "low",
       "party": "DMK",
       "year": 2021,
@@ -12594,7 +12594,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.1676,
+      "confidence": 0.1677,
       "classification_confidence": "low",
       "party": "DMK",
       "year": 2021,
@@ -15703,7 +15703,7 @@
         "education"
       ],
       "multi_category": false,
-      "confidence": 0.6012,
+      "confidence": 0.6011,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2021,
