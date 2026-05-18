@@ -1741,15 +1741,15 @@
       "party": "AIADMK",
       "year": 2016,
       "status": "unfulfilled",
-      "similarity_score": 0.3432,
-      "matched_headline": "Signal fault disrupts Chennai suburban train services on Tiruvallur-Avadi line",
-      "matched_url": "https://www.thehindu.com/news/cities/chennai/signal-fault-disrupts-chennai-suburban-train-services-on-tiruvallur-avadi-line/article70976868.ece",
-      "matched_date": "Thu, 14 May 2026 11:26:09 +0530",
+      "similarity_score": 0.3452,
+      "matched_headline": "Regular passenger train services on Karaikal-Peralam BG line to start from May 20",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/regular-passenger-train-services-on-karaikal-peralam-bg-line-to-start-from-may-20/article70994592.ece",
+      "matched_date": "Mon, 18 May 2026 19:57:17 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK"
     },
     {
       "id": "aiadmk_2016_072",
