@@ -96,8 +96,8 @@
     "period": "2016-2021",
     "note": "DMK in opposition 2016-2021; score = promises advocated for",
     "total": 702,
-    "fulfilled": 380.0,
-    "score": 54.1,
+    "fulfilled": 381.0,
+    "score": 54.3,
     "avg_llm_confidence": 0.0,
     "categories": {
       "infrastructure": {
