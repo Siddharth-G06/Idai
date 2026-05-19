@@ -16654,15 +16654,15 @@
       "party": "DMK",
       "year": 2016,
       "status": "unfulfilled",
-      "similarity_score": 0.3016,
-      "matched_headline": "Over 42,000 registrations received so far for TNEA 2026",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/over-42000-registrations-received-so-far-for-tnea-2026/article70951887.ece",
-      "matched_date": "Fri, 08 May 2026 00:05:08 +0530",
+      "similarity_score": 0.3179,
+      "matched_headline": "Over 500 participate in RIFAH’s annual conference",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/over-500-participate-in-rifahs-annual-conference/article70995252.ece",
+      "matched_date": "Tue, 19 May 2026 00:49:48 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "unknown"
     },
     {
       "id": "dmk_2016_679",
