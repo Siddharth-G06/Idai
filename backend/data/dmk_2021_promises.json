@@ -6673,7 +6673,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.2278,
+      "confidence": 0.2279,
       "classification_confidence": "low",
       "party": "DMK",
       "year": 2021,
@@ -7791,7 +7791,7 @@
         "healthcare"
       ],
       "multi_category": false,
-      "confidence": 0.7001,
+      "confidence": 0.7,
       "classification_confidence": "high",
       "party": "DMK",
       "year": 2021,
@@ -15709,7 +15709,7 @@
         "education"
       ],
       "multi_category": false,
-      "confidence": 0.6012,
+      "confidence": 0.6011,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2021,
