@@ -96,8 +96,8 @@
     "period": "2016-2021",
     "note": "DMK in opposition 2016-2021; score = promises advocated for",
     "total": 702,
-    "fulfilled": 406.0,
-    "score": 57.8,
+    "fulfilled": 407.0,
+    "score": 58.0,
     "avg_llm_confidence": 0.0,
     "categories": {
       "infrastructure": {
@@ -107,8 +107,8 @@
       },
       "agriculture": {
         "total": 47.5,
-        "fulfilled": 26.5,
-        "score": 55.8
+        "fulfilled": 27.5,
+        "score": 57.9
       },
       "women and youth": {
         "total": 6.0,
