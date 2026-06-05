@@ -1594,16 +1594,16 @@
       "classification_confidence": "low",
       "party": "AIADMK",
       "year": 2021,
-      "status": "pending",
-      "similarity_score": 0.2399,
-      "matched_headline": "Release water from Mettur dam on scheduled date, farmers urge govt.",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/release-water-from-mettur-dam-on-scheduled-date-farmers-urge-govt/article70978275.ece",
-      "matched_date": "Thu, 14 May 2026 17:24:15 +0530",
+      "status": "unfulfilled",
+      "similarity_score": 0.2514,
+      "matched_headline": "India’s 100th wetland, Surha Tal of Balia, enters the global list of Ramsar site",
+      "matched_url": "https://timesofindia.indiatimes.com/india/indias-100th-wetland-surha-tal-of-balia-enters-the-global-list-of-ramsar-site/articleshow/131523875.cms",
+      "matched_date": "2026-06-05T12:09:58+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK"
     },
     {
       "id": "aiadmk_2021_066",
