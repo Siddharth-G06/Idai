@@ -558,7 +558,7 @@
         "healthcare"
       ],
       "multi_category": false,
-      "confidence": 0.4054,
+      "confidence": 0.4053,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
@@ -929,7 +929,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.5158,
+      "confidence": 0.5159,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
@@ -7368,7 +7368,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.8516,
+      "confidence": 0.8517,
       "classification_confidence": "high",
       "party": "DMK",
       "year": 2016,
@@ -7422,15 +7422,15 @@
       "party": "DMK",
       "year": 2016,
       "status": "unfulfilled",
-      "similarity_score": 0.3181,
-      "matched_headline": "Despite having nine large waterbodies, residents do not get clean groundwater",
-      "matched_url": "https://www.thehindu.com/news/cities/chennai/despite-having-nine-large-waterbodies-residents-do-not-get-clean-groundwater/article70839760.ece",
-      "matched_date": "Thu, 09 Apr 2026 01:02:08 +0530",
+      "similarity_score": 0.3445,
+      "matched_headline": "TWAD realigns key water pipelines in Vellore’s Old Town to resume water supply",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/twad-realigns-key-water-pipelines-in-vellores-old-town-to-resume-water-supply/article71073403.ece",
+      "matched_date": "Sun, 07 Jun 2026 21:03:06 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK"
     },
     {
       "id": "dmk_2016_302",
@@ -8723,7 +8723,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.6654,
+      "confidence": 0.6655,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
