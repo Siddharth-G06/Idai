@@ -1032,16 +1032,17 @@
       "classification_confidence": "low",
       "party": "DMK",
       "year": 2016,
-      "status": "unfulfilled",
-      "similarity_score": 0.3335,
-      "matched_headline": "CDSCO review weakens May 20 chemists’ bandh as states opt out",
-      "matched_url": "https://timesofindia.indiatimes.com/india/cdsco-review-weakens-may-20-chemists-bandh-as-states-opt-out/articleshow/131190323.cms",
-      "matched_date": "2026-05-19T09:49:49+05:30",
+      "status": "fulfilled",
+      "similarity_score": 0.3569,
+      "matched_headline": "NCR area unlikely to be reduced",
+      "matched_url": "https://timesofindia.indiatimes.com/india/ncr-area-unlikely-to-be-reduced/articleshow/131615020.cms",
+      "matched_date": "2026-06-09T21:36:33+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "DMK",
+      "credit_party": "DMK"
     },
     {
       "id": "dmk_2016_043",
