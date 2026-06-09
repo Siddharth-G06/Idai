@@ -16187,16 +16187,16 @@
       "classification_confidence": "low",
       "party": "DMK",
       "year": 2021,
-      "status": "pending",
-      "similarity_score": 0.2473,
-      "matched_headline": "Regulated tourism to be introduced at Old Courtallam waterfalls during this season",
-      "matched_url": "https://www.thehindu.com/news/cities/Madurai/regulated-tourism-to-be-introduced-at-old-courtallam-waterfalls-during-this-season/article70951595.ece",
-      "matched_date": "Thu, 07 May 2026 19:38:43 +0530",
+      "status": "unfulfilled",
+      "similarity_score": 0.2952,
+      "matched_headline": "Digital 2.0: Access to mobiles up, but not empowerment",
+      "matched_url": "https://timesofindia.indiatimes.com/india/digital-2-0-access-to-mobiles-up-but-not-empowerment/articleshow/131598964.cms",
+      "matched_date": "2026-06-09T05:01:26+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK"
     },
     {
       "id": "dmk_2021_654",
