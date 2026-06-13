@@ -1327,15 +1327,15 @@
       "party": "AIADMK",
       "year": 2016,
       "status": "unfulfilled",
-      "similarity_score": 0.2269,
-      "matched_headline": "Display fee structure at entrance by June 5, private schools told",
-      "matched_url": "https://www.thehindu.com/news/cities/chennai/display-fee-structure-at-entrance-by-june-5-private-schools-told/article71052903.ece",
-      "matched_date": "Tue, 02 Jun 2026 22:26:01 +0530",
+      "similarity_score": 0.2359,
+      "matched_headline": "Price cap on 2 key cancer drugs increased by 50%",
+      "matched_url": "https://timesofindia.indiatimes.com/india/price-cap-on-2-key-cancer-drugs-increased-by-50/articleshow/131695630.cms",
+      "matched_date": "2026-06-13T04:19:04+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK"
     },
     {
       "id": "aiadmk_2016_055",
