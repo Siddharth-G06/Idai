@@ -14923,15 +14923,15 @@
       "party": "DMK",
       "year": 2021,
       "status": "unfulfilled",
-      "similarity_score": 0.2607,
-      "matched_headline": "Display fee structure at entrance by June 5, private schools told",
-      "matched_url": "https://www.thehindu.com/news/cities/chennai/display-fee-structure-at-entrance-by-june-5-private-schools-told/article71052903.ece",
-      "matched_date": "Tue, 02 Jun 2026 22:26:01 +0530",
+      "similarity_score": 0.3192,
+      "matched_headline": "Govt to compensate NH builders for diesel price surge; parliamentary panel assesses bitumen situation",
+      "matched_url": "https://timesofindia.indiatimes.com/india/govt-to-compensate-nh-builders-for-diesel-price-surge-parliamentary-panel-assesses-bitumen-situation/articleshow/131754856.cms",
+      "matched_date": "2026-06-16T03:26:08+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK"
     },
     {
       "id": "dmk_2021_602",
