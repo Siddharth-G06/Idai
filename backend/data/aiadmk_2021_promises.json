@@ -1354,15 +1354,15 @@
       "party": "AIADMK",
       "year": 2021,
       "status": "pending",
-      "similarity_score": 0.2369,
-      "matched_headline": "Stalin reacts to Tamil Nadu CM Vijay speech: ‘Money is there; what is required is efficient administration’",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/mk-stalin-reacts-to-tamil-nadu-cm-vijay-speech-money-is-there-what-is-required-is-efficient-administration/article70961861.ece",
-      "matched_date": "Sun, 10 May 2026 14:59:26 +0530",
+      "similarity_score": 0.2378,
+      "matched_headline": "Born visually impaired, he is now opening the world of books for others",
+      "matched_url": "https://www.thehindu.com/videos/born-visually-impaired-he-is-now-opening-the-world-of-books-for-others/article71119130.ece",
+      "matched_date": "Thu, 18 Jun 2026 21:58:02 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "unknown"
     },
     {
       "id": "aiadmk_2021_056",
@@ -2013,15 +2013,15 @@
       "party": "AIADMK",
       "year": 2021,
       "status": "unfulfilled",
-      "similarity_score": 0.2943,
-      "matched_headline": "Bankers’ committee raises State’s credit outlay to ₹10.98 lakh crore",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/bankers-committee-raises-states-credit-outlay-to-1098-lakh-crore/article71088463.ece",
-      "matched_date": "Fri, 12 Jun 2026 00:42:55 +0530",
+      "similarity_score": 0.3487,
+      "matched_headline": "Karo Sambhav raises ₹56 crore in pre-series A funding round",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/karo-sambhav-raises-56-crore-in-pre-series-a-funding-round/article71118678.ece",
+      "matched_date": "Thu, 18 Jun 2026 22:32:52 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "unknown"
     },
     {
       "id": "aiadmk_2021_083",
