@@ -3036,16 +3036,17 @@
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
-      "status": "unfulfilled",
-      "similarity_score": 0.3234,
-      "matched_headline": "Bhojshala dispute: Hindu outfit cites ASI report claiming temple preceded mosque",
-      "matched_url": "https://timesofindia.indiatimes.com/india/bhojshala-dispute-hindu-outfit-cites-asi-report-claiming-temple-preceded-mosque/articleshow/130148549.cms",
-      "matched_date": "2026-04-09T21:45:18+05:30",
+      "status": "fulfilled",
+      "similarity_score": 0.3644,
+      "matched_headline": "High Court stays construction of church near Hindu temple",
+      "matched_url": "https://timesofindia.indiatimes.com/india/high-court-stays-construction-of-church-near-hindu-temple/articleshow/131812343.cms",
+      "matched_date": "2026-06-18T01:45:44+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "DMK",
+      "credit_party": "DMK"
     },
     {
       "id": "dmk_2016_124",
@@ -7378,7 +7379,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.8517,
+      "confidence": 0.8516,
       "classification_confidence": "high",
       "party": "DMK",
       "year": 2016,
