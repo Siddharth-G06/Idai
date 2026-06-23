@@ -41,7 +41,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.1919,
+      "confidence": 0.1918,
       "classification_confidence": "low",
       "party": "AIADMK",
       "year": 2021,
@@ -1157,15 +1157,15 @@
       "party": "AIADMK",
       "year": 2021,
       "status": "fulfilled",
-      "similarity_score": 0.3169,
-      "matched_headline": "Restore Sathangadu Lake to original extent of 135 acres, remove encroachments on 65 acres: TNIC",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/restore-sathangadu-lake-to-original-extent-of-135-acres-remove-encroachments-on-65-acres-tnic/article71101390.ece",
-      "matched_date": "Sun, 14 Jun 2026 23:05:43 +0530",
+      "similarity_score": 0.3267,
+      "matched_headline": "Parambikulam-Aliyar Project: CAG pulls up Kerala Forest dept for failing to revise licence fee on land leased to Tamil Nadu",
+      "matched_url": "https://www.thehindu.com/news/national/kerala/parambikulam-aliyar-project-cag-pulls-up-kerala-forest-dept-for-failing-to-revise-licence-fee-on-land-leased-to-tamil-nadu/article71136787.ece",
+      "matched_date": "Tue, 23 Jun 2026 14:29:38 +0530",
       "match_valid": true,
       "specificity_score": 0.3,
       "specificity": "medium",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK",
+      "ruling_at_time": "unknown",
       "credit_party": "DMK"
     },
     {
@@ -1250,7 +1250,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.2445,
+      "confidence": 0.2446,
       "classification_confidence": "low",
       "party": "AIADMK",
       "year": 2021,
@@ -1422,7 +1422,7 @@
         "agriculture"
       ],
       "multi_category": false,
-      "confidence": 0.6714,
+      "confidence": 0.6713,
       "classification_confidence": "medium",
       "party": "AIADMK",
       "year": 2021,
