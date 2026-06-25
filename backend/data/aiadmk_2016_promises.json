@@ -1988,16 +1988,17 @@
       "classification_confidence": "high",
       "party": "AIADMK",
       "year": 2016,
-      "status": "unfulfilled",
-      "similarity_score": 0.3448,
-      "matched_headline": "TVK government’s White Paper puts Tamil Nadu’s debt at ₹13.18 lakh crore",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/tvkgovernments-white-paper-putstamil-nadus-debt-at-1318lakhcrore/article71109675.ece",
-      "matched_date": "Tue, 16 Jun 2026 22:56:21 +0530",
+      "status": "fulfilled",
+      "similarity_score": 0.3766,
+      "matched_headline": "White Paper on T.N. electricity department puts debt at ₹2.47 lakh crore: Minister Nirmalkumar",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/white-paper-of-tn-electricity-department-puts-debt-at-247-lakh-crore-minister-nirmalkumar/article71145542.ece",
+      "matched_date": "Thu, 25 Jun 2026 19:19:28 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "unknown",
+      "credit_party": "DMK"
     },
     {
       "id": "aiadmk_2016_082",
