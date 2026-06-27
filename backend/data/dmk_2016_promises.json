@@ -559,7 +559,7 @@
         "healthcare"
       ],
       "multi_category": false,
-      "confidence": 0.4053,
+      "confidence": 0.4054,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
@@ -931,7 +931,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.5159,
+      "confidence": 0.5158,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
@@ -7381,7 +7381,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.8517,
+      "confidence": 0.8516,
       "classification_confidence": "high",
       "party": "DMK",
       "year": 2016,
@@ -8741,7 +8741,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.6655,
+      "confidence": 0.6654,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
