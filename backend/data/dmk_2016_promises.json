@@ -559,7 +559,7 @@
         "healthcare"
       ],
       "multi_category": false,
-      "confidence": 0.4054,
+      "confidence": 0.4053,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
@@ -931,7 +931,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.5158,
+      "confidence": 0.5159,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
@@ -7384,7 +7384,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.8516,
+      "confidence": 0.8517,
       "classification_confidence": "high",
       "party": "DMK",
       "year": 2016,
@@ -8744,7 +8744,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.6654,
+      "confidence": 0.6655,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
@@ -10898,16 +10898,17 @@
       "classification_confidence": "low",
       "party": "DMK",
       "year": 2016,
-      "status": "unfulfilled",
-      "similarity_score": 0.3274,
-      "matched_headline": "'No ban': Nepal denies any restrictions on Indian mango imports",
-      "matched_url": "https://timesofindia.indiatimes.com/india/no-ban-nepal-denies-any-restrictions-on-indian-mango-imports/articleshow/131653025.cms",
-      "matched_date": "2026-06-11T14:29:32+05:30",
+      "status": "fulfilled",
+      "similarity_score": 0.3506,
+      "matched_headline": "Indian Army denies reports of Chinese incursions in Arunachal Pradesh",
+      "matched_url": "https://timesofindia.indiatimes.com/india/indian-army-denies-reports-of-chinese-incursions-in-arunachal-pradesh/articleshow/132076931.cms",
+      "matched_date": "2026-06-29T23:18:36+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "DMK",
+      "credit_party": "DMK"
     },
     {
       "id": "dmk_2016_442",
