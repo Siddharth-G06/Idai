@@ -1670,16 +1670,17 @@
       "classification_confidence": "medium",
       "party": "AIADMK",
       "year": 2016,
-      "status": "unfulfilled",
-      "similarity_score": 0.3427,
-      "matched_headline": "Prices of petrol, diesel hiked again by 90p, up by nearly Rs 4 in a week",
-      "matched_url": "https://timesofindia.indiatimes.com/india/prices-of-petrol-diesel-hiked-again-by-90p-up-by-nearly-rs-4-in-a-week/articleshow/131211063.cms",
-      "matched_date": "2026-05-20T02:48:27+05:30",
+      "status": "fulfilled",
+      "similarity_score": 0.3668,
+      "matched_headline": "Petrol, diesel retail sale curbs for commercial users lifted",
+      "matched_url": "https://timesofindia.indiatimes.com/india/petrol-diesel-retail-sale-curbs-for-commercial-users-lifted/articleshow/132079278.cms",
+      "matched_date": "2026-06-30T01:48:44+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "DMK",
+      "credit_party": "DMK"
     },
     {
       "id": "aiadmk_2016_069",
