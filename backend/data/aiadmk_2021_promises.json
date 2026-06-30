@@ -219,16 +219,16 @@
       "classification_confidence": "medium",
       "party": "AIADMK",
       "year": 2021,
-      "status": "pending",
-      "similarity_score": 0.2418,
-      "matched_headline": "Centre raises MSP for 14 kharif crops, 3% increase for paddy",
-      "matched_url": "https://timesofindia.indiatimes.com/india/centre-raises-msp-for-14-kharif-crops-3-increase-for-paddy/articleshow/131080260.cms",
-      "matched_date": "2026-05-14T07:21:43+05:30",
+      "status": "unfulfilled",
+      "similarity_score": 0.2617,
+      "matched_headline": "Chennai’s The Indus Valley raises $17 million in Series B round led by Gaja Capital",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/chennais-the-indus-valley-raises-17-million-in-series-b-round-led-by-gaja-capital/article71165792.ece",
+      "matched_date": "Tue, 30 Jun 2026 19:22:54 +0530",
       "match_valid": true,
       "specificity_score": 0.3,
       "specificity": "medium",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "unknown"
     },
     {
       "id": "aiadmk_2021_010",
