@@ -16224,15 +16224,15 @@
       "party": "DMK",
       "year": 2016,
       "status": "unfulfilled",
-      "similarity_score": 0.329,
-      "matched_headline": "Anbumani welcomes TVK government’s assurance on Social Justice Survey",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/anbumani-welcomes-tvk-governments-assurance-on-social-justice-survey/article71118466.ece",
-      "matched_date": "Fri, 19 Jun 2026 11:22:16 +0530",
+      "similarity_score": 0.3474,
+      "matched_headline": "Karnataka CM raising Mekedatu dam issue for political gain: Anbumani Ramadoss",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/karnataka-cm-raising-mekedatu-dam-issue-for-political-gain-anbumani-ramadoss/article71173447.ece",
+      "matched_date": "Thu, 02 Jul 2026 16:45:54 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "unknown"
     },
     {
       "id": "dmk_2016_658",
