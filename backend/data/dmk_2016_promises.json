@@ -13786,16 +13786,17 @@
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
-      "status": "unfulfilled",
-      "similarity_score": 0.3267,
-      "matched_headline": "Government plans childhood cancer registry as India battles 75,000 new cases a year",
-      "matched_url": "https://timesofindia.indiatimes.com/india/govt-plans-childhood-cancer-registry-as-india-battles-75000-new-cases-a-year/articleshow/131255745.cms",
-      "matched_date": "2026-05-22T09:41:42+05:30",
+      "status": "fulfilled",
+      "similarity_score": 0.3607,
+      "matched_headline": "India needs national strategy to improve access to new cancer therapies: Experts",
+      "matched_url": "https://timesofindia.indiatimes.com/india/india-needs-national-strategy-to-improve-access-to-new-cancer-therapies-experts/articleshow/132129042.cms",
+      "matched_date": "2026-07-02T10:11:48+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "DMK",
+      "credit_party": "DMK"
     },
     {
       "id": "dmk_2016_559",
