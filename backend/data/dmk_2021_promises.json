@@ -6694,7 +6694,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.2278,
+      "confidence": 0.2279,
       "classification_confidence": "low",
       "party": "DMK",
       "year": 2021,
@@ -7815,7 +7815,7 @@
         "healthcare"
       ],
       "multi_category": false,
-      "confidence": 0.7001,
+      "confidence": 0.7,
       "classification_confidence": "high",
       "party": "DMK",
       "year": 2021,
@@ -10880,15 +10880,15 @@
       "party": "DMK",
       "year": 2021,
       "status": "unfulfilled",
-      "similarity_score": 0.2761,
-      "matched_headline": "Residents demand boost for small industries and water supply for agriculture in Jolarpet",
-      "matched_url": "https://www.thehindu.com/elections/tamil-nadu-assembly/residents-demand-boost-for-small-industries-and-water-supply-for-agriculture-in-jolarpet/article70865657.ece",
-      "matched_date": "Thu, 16 Apr 2026 00:41:53 +0530",
+      "similarity_score": 0.2986,
+      "matched_headline": "New footwear unit to generate 13,500 jobs, expected to recruit women in a big way",
+      "matched_url": "https://www.thehindu.com/news/cities/Tiruchirapalli/new-footwear-unit-to-generate-13500-jobs-expected-to-recruit-women-in-a-big-way/article71210295.ece",
+      "matched_date": "Sat, 11 Jul 2026 18:23:29 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK"
     },
     {
       "id": "dmk_2021_438",
@@ -15767,7 +15767,7 @@
         "education"
       ],
       "multi_category": false,
-      "confidence": 0.6012,
+      "confidence": 0.6011,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2021,
