@@ -4,14 +4,14 @@
     "period": "2016-2021",
     "note": "AIADMK ruled TN 2016-2021; score = promises implemented",
     "total": 103,
-    "fulfilled": 56.0,
-    "score": 54.4,
+    "fulfilled": 57.0,
+    "score": 55.3,
     "avg_llm_confidence": 0.0,
     "categories": {
       "infrastructure": {
         "total": 30.0,
-        "fulfilled": 13.0,
-        "score": 43.3
+        "fulfilled": 14.0,
+        "score": 46.7
       },
       "employment": {
         "total": 9.0,
@@ -50,14 +50,14 @@
     "period": "2021-2026",
     "note": "AIADMK in opposition 2021-2026; score = promises advocated for",
     "total": 104,
-    "fulfilled": 56.0,
-    "score": 53.8,
+    "fulfilled": 57.0,
+    "score": 54.8,
     "avg_llm_confidence": 0.0,
     "categories": {
       "infrastructure": {
         "total": 26.5,
-        "fulfilled": 16.0,
-        "score": 60.4
+        "fulfilled": 17.0,
+        "score": 64.2
       },
       "employment": {
         "total": 10.0,

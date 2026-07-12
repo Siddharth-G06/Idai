@@ -343,16 +343,17 @@
       "classification_confidence": "medium",
       "party": "AIADMK",
       "year": 2016,
-      "status": "unfulfilled",
-      "similarity_score": 0.3447,
-      "matched_headline": "State seeks assistance from Union govt. for MRTS revamp",
-      "matched_url": "https://www.thehindu.com/news/cities/chennai/state-seeks-assistance-from-union-govt-for-mrts-revamp/article71210220.ece",
-      "matched_date": "Sun, 12 Jul 2026 01:15:35 +0530",
+      "status": "fulfilled",
+      "similarity_score": 0.3699,
+      "matched_headline": "Central Information Commission directs IIT-M to disclose utilisation of grant-in-aid funds",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/central-information-commissiondirects-iit-m-to-disclose-utilisation-of-grant-in-aid-funds/article71213866.ece",
+      "matched_date": "Sun, 12 Jul 2026 19:24:21 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "DMK",
+      "credit_party": "DMK"
     },
     {
       "id": "aiadmk_2016_015",
