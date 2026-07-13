@@ -8556,15 +8556,15 @@
       "party": "DMK",
       "year": 2016,
       "status": "unfulfilled",
-      "similarity_score": 0.279,
-      "matched_headline": "From Andal to the Raman Effect, new book captures Srivilliputhur’s many legacies",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/from-andal-to-the-raman-effect-new-book-captures-srivilliputhurs-many-legacies/article71032750.ece",
-      "matched_date": "Thu, 28 May 2026 18:30:40 +0530",
+      "similarity_score": 0.2798,
+      "matched_headline": "Jammu and Kashmir: 3 publishers held for books in school libraries praising separatists",
+      "matched_url": "https://timesofindia.indiatimes.com/india/jammu-and-kashmir-3-publishers-held-for-books-in-school-libraries-praising-separatists/articleshow/132351534.cms",
+      "matched_date": "2026-07-13T00:30:38+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK"
     },
     {
       "id": "dmk_2016_347",
