@@ -1058,16 +1058,17 @@
       "classification_confidence": "high",
       "party": "AIADMK",
       "year": 2016,
-      "status": "unfulfilled",
-      "similarity_score": 0.3045,
-      "matched_headline": "Tamil Nadu CM Vijay inaugurates two-day training programme for MLAs",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/tamil-nadu-cm-vijay-inaugurates-two-day-training-programme-for-mlas/article71108198.ece",
-      "matched_date": "Tue, 16 Jun 2026 13:27:29 +0530",
+      "status": "fulfilled",
+      "similarity_score": 0.3608,
+      "matched_headline": "NIOS concludes training programme for ASHA certification, aims to certify 10 lakh workers in next phase",
+      "matched_url": "https://timesofindia.indiatimes.com/india/nios-concludes-training-programme-for-asha-certification-aims-to-certify-10-lakh-workers-in-next-phase/articleshow/132491658.cms",
+      "matched_date": "2026-07-19T14:08:45+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK",
+      "credit_party": "DMK"
     },
     {
       "id": "aiadmk_2016_044",

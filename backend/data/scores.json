@@ -4,8 +4,8 @@
     "period": "2016-2021",
     "note": "AIADMK ruled TN 2016-2021; score = promises implemented",
     "total": 103,
-    "fulfilled": 57.0,
-    "score": 55.3,
+    "fulfilled": 58.0,
+    "score": 56.3,
     "avg_llm_confidence": 0.0,
     "categories": {
       "infrastructure": {
@@ -15,8 +15,8 @@
       },
       "employment": {
         "total": 9.0,
-        "fulfilled": 6.0,
-        "score": 66.7
+        "fulfilled": 7.0,
+        "score": 77.8
       },
       "economy": {
         "total": 7.0,
