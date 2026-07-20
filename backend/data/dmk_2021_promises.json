@@ -2088,16 +2088,17 @@
       "classification_confidence": "high",
       "party": "DMK",
       "year": 2021,
-      "status": "unfulfilled",
-      "similarity_score": 0.3486,
-      "matched_headline": "Remain indoors, avoid sensitive locations: India steps up safety measures for seafarers amid ongoing Iran war",
-      "matched_url": "https://timesofindia.indiatimes.com/india/remain-indoors-avoid-sensitive-locations-india-steps-up-safety-measures-for-seafarers-amid-ongoing-iran-war/articleshow/130133590.cms",
-      "matched_date": "2026-04-09T13:42:07+05:30",
+      "status": "fulfilled",
+      "similarity_score": 0.3601,
+      "matched_headline": "Fishers allege Mamallan reservoir plan ignores tidal inundation risks",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/fishers-allege-mamallan-reservoir-plan-ignores-tidal-inundation-risks/article71245614.ece",
+      "matched_date": "Mon, 20 Jul 2026 23:07:08 +0530",
       "match_valid": true,
       "specificity_score": 0.1,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "DMK",
+      "credit_party": "DMK"
     },
     {
       "id": "dmk_2021_085",
