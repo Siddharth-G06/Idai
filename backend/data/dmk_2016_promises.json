@@ -3343,15 +3343,15 @@
       "party": "DMK",
       "year": 2016,
       "status": "unfulfilled",
-      "similarity_score": 0.3057,
-      "matched_headline": "SC accepts RIL's fresh request to settle gas row with Centre",
-      "matched_url": "https://timesofindia.indiatimes.com/india/sc-accepts-rils-fresh-request-to-settle-gas-row-with-centre/articleshow/131319471.cms",
-      "matched_date": "2026-05-26T04:00:10+05:30",
+      "similarity_score": 0.345,
+      "matched_headline": "Southern Railway begins construction of new FOBs, lifts at Walajah, Virunchipuram, Gudiyatham, Melattur railway stations",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/southern-railway-begins-construction-of-new-fobs-lifts-at-walajah-virunchipuram-gudiyatham-melattur-railway-stations/article71254145.ece",
+      "matched_date": "Thu, 23 Jul 2026 00:46:59 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "unknown"
     },
     {
       "id": "dmk_2016_136",
@@ -7499,15 +7499,15 @@
       "party": "DMK",
       "year": 2016,
       "status": "unfulfilled",
-      "similarity_score": 0.323,
-      "matched_headline": "Tamil Nadu election 2026: Salem South constituency people want traffic congestion, mosquito menace, drinking water issues addressed",
-      "matched_url": "https://www.thehindu.com/elections/tamil-nadu-assembly/salem-south-constituency-people-want-traffic-congestion-mosquito-menaceand-drinking-water-issues-addressed/article70768626.ece",
-      "matched_date": "Sat, 18 Apr 2026 21:21:27 +0530",
+      "similarity_score": 0.3374,
+      "matched_headline": "Southern Railway begins construction of new FOBs, lifts at Walajah, Virunchipuram, Gudiyatham, Melattur railway stations",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/southern-railway-begins-construction-of-new-fobs-lifts-at-walajah-virunchipuram-gudiyatham-melattur-railway-stations/article71254145.ece",
+      "matched_date": "Thu, 23 Jul 2026 00:46:59 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "unknown"
     },
     {
       "id": "dmk_2016_304",
