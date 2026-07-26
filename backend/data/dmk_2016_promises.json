@@ -559,7 +559,7 @@
         "healthcare"
       ],
       "multi_category": false,
-      "confidence": 0.4053,
+      "confidence": 0.4054,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
@@ -931,7 +931,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.5159,
+      "confidence": 0.5158,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
@@ -6207,15 +6207,15 @@
       "party": "DMK",
       "year": 2016,
       "status": "fulfilled",
-      "similarity_score": 0.4657,
-      "matched_headline": "Ensure adequate supply of drinking water during summer: T.N. CM Vijay instructs officials",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/ensure-adequate-supply-of-drinking-water-during-summer-tn-cm-vijay-instructs-officials/article70968960.ece",
-      "matched_date": "Tue, 12 May 2026 15:50:14 +0530",
+      "similarity_score": 0.488,
+      "matched_headline": "PM Modi pitches water conservation amid widespread monsoon deficit",
+      "matched_url": "https://timesofindia.indiatimes.com/india/pm-modi-pitches-water-conservation-amid-widespread-monsoon-deficit/articleshow/132640202.cms",
+      "matched_date": "2026-07-26T16:48:13+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown",
+      "ruling_at_time": "DMK",
       "credit_party": "DMK"
     },
     {
@@ -7395,7 +7395,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.8517,
+      "confidence": 0.8516,
       "classification_confidence": "high",
       "party": "DMK",
       "year": 2016,
@@ -8758,7 +8758,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.6655,
+      "confidence": 0.6654,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
