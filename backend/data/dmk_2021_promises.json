@@ -520,15 +520,15 @@
       "party": "DMK",
       "year": 2021,
       "status": "unfulfilled",
-      "similarity_score": 0.3339,
-      "matched_headline": "Birds in 2 more poultry farms test positive for Avian Flu",
-      "matched_url": "https://timesofindia.indiatimes.com/india/birds-in-2-more-poultry-farms-test-positive-for-avian-flu/articleshow/131073693.cms",
-      "matched_date": "2026-05-13T23:37:00+05:30",
+      "similarity_score": 0.3393,
+      "matched_headline": "Farmers in Villupuram urged to enroll under crop insurance scheme for Kharif 2026",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/farmers-in-villupuram-urged-to-enroll-under-crop-insurance-scheme-for-kharif-2026/article71285432.ece",
+      "matched_date": "Thu, 30 Jul 2026 20:55:19 +0530",
       "match_valid": true,
       "specificity_score": 0.1,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "unknown"
     },
     {
       "id": "dmk_2021_022",
@@ -6697,7 +6697,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.2279,
+      "confidence": 0.2278,
       "classification_confidence": "low",
       "party": "DMK",
       "year": 2021,
@@ -7819,7 +7819,7 @@
         "healthcare"
       ],
       "multi_category": false,
-      "confidence": 0.7,
+      "confidence": 0.7001,
       "classification_confidence": "high",
       "party": "DMK",
       "year": 2021,
@@ -15782,7 +15782,7 @@
         "education"
       ],
       "multi_category": false,
-      "confidence": 0.6011,
+      "confidence": 0.6012,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2021,
