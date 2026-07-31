@@ -15762,16 +15762,17 @@
       "classification_confidence": "high",
       "party": "DMK",
       "year": 2021,
-      "status": "unfulfilled",
-      "similarity_score": 0.3357,
-      "matched_headline": "Restore Sathangadu Lake to original extent of 135 acres, remove encroachments on 65 acres: TNIC",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/restore-sathangadu-lake-to-original-extent-of-135-acres-remove-encroachments-on-65-acres-tnic/article71101390.ece",
-      "matched_date": "Sun, 14 Jun 2026 23:05:43 +0530",
+      "status": "fulfilled",
+      "similarity_score": 0.3883,
+      "matched_headline": "Developers want T.N. govt. to increase floor-to-floor height to promote luxury housing in Chennai",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/developers-want-tn-govt-to-increase-floor-to-floor-height-to-promote-luxury-housing-in-chennai/article71287207.ece",
+      "matched_date": "Fri, 31 Jul 2026 11:28:59 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "DMK",
+      "credit_party": "DMK"
     },
     {
       "id": "dmk_2021_635",
