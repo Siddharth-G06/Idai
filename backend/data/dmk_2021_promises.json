@@ -14823,16 +14823,17 @@
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2021,
-      "status": "unfulfilled",
-      "similarity_score": 0.2573,
-      "matched_headline": "T.N. SC/ST Commission seeks detailed report on conservancy worker clearing human waste in Tiruppur",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/tn-scst-commission-seeks-detailed-report-on-conservancy-worker-clearing-human-waste-in-tiruppur/article71065525.ece",
-      "matched_date": "Sat, 06 Jun 2026 11:38:32 +0530",
+      "status": "fulfilled",
+      "similarity_score": 0.346,
+      "matched_headline": "Over 1,000 sanitation workers in Chennai protest over long-pending demands",
+      "matched_url": "https://www.thehindu.com/news/cities/chennai/over-1000-sanitation-workers-in-chennai-protest-over-long-pending-demands/article71295099.ece",
+      "matched_date": "Sat, 01 Aug 2026 20:05:15 +0530",
       "match_valid": true,
       "specificity_score": 0.3,
       "specificity": "medium",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "DMK",
+      "credit_party": "DMK"
     },
     {
       "id": "dmk_2021_597",
