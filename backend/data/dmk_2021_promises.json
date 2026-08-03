@@ -3804,7 +3804,7 @@
         "healthcare"
       ],
       "multi_category": false,
-      "confidence": 0.4077,
+      "confidence": 0.4076,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2021,
@@ -5755,15 +5755,15 @@
       "party": "DMK",
       "year": 2021,
       "status": "unfulfilled",
-      "similarity_score": 0.3369,
-      "matched_headline": "97 teams formed to carry out vaccination camp for foot and mouth disease in Villupuram",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/97-teams-formed-to-carry-out-fmd-vaccination-drive-in-villupuram/article71161249.ece",
-      "matched_date": "Mon, 29 Jun 2026 19:16:39 +0530",
+      "similarity_score": 0.3382,
+      "matched_headline": "Kauvery Hospital, The Hindu to host webinar on vascular health",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/kauvery-hospital-the-hindu-to-host-webinar-on-vascular-health/article71301529.ece",
+      "matched_date": "Tue, 04 Aug 2026 00:43:40 +0530",
       "match_valid": true,
       "specificity_score": 0.1,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "unknown"
     },
     {
       "id": "dmk_2021_232",
@@ -6697,7 +6697,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.2279,
+      "confidence": 0.2278,
       "classification_confidence": "low",
       "party": "DMK",
       "year": 2021,
@@ -7669,7 +7669,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.2945,
+      "confidence": 0.2946,
       "classification_confidence": "low",
       "party": "DMK",
       "year": 2021,
@@ -12646,7 +12646,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.1677,
+      "confidence": 0.1676,
       "classification_confidence": "low",
       "party": "DMK",
       "year": 2021,
@@ -15785,7 +15785,7 @@
         "education"
       ],
       "multi_category": false,
-      "confidence": 0.6011,
+      "confidence": 0.6012,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2021,
