@@ -4181,16 +4181,17 @@
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2021,
-      "status": "unfulfilled",
-      "similarity_score": 0.3462,
-      "matched_headline": "Polluted waterbodies, livelihood woes: Chennai’s coastal communities question ‘blue economy’ projects",
-      "matched_url": "https://www.thehindu.com/news/cities/chennai/polluted-waterbodies-livelihood-woes-chennais-coastal-communities-question-blue-economy-projects/article71183220.ece",
-      "matched_date": "Mon, 06 Jul 2026 13:59:35 +0530",
+      "status": "fulfilled",
+      "similarity_score": 0.3554,
+      "matched_headline": "T.N. Agriculture Budget | Contingency plans drawn up for districts to cope with Super El Niño impacts: Minister",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/tn-agriculture-budget-contingency-plans-drawn-up-for-districts-to-cope-with-super-el-nino-impacts-minister/article71312267.ece",
+      "matched_date": "Thu, 06 Aug 2026 11:20:37 +0530",
       "match_valid": true,
       "specificity_score": 0.2,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "unknown",
+      "credit_party": "DMK"
     },
     {
       "id": "dmk_2021_169",
@@ -6697,7 +6698,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.2279,
+      "confidence": 0.2278,
       "classification_confidence": "low",
       "party": "DMK",
       "year": 2021,
@@ -7819,7 +7820,7 @@
         "healthcare"
       ],
       "multi_category": false,
-      "confidence": 0.7,
+      "confidence": 0.7001,
       "classification_confidence": "high",
       "party": "DMK",
       "year": 2021,
@@ -15790,7 +15791,7 @@
         "education"
       ],
       "multi_category": false,
-      "confidence": 0.6011,
+      "confidence": 0.6012,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2021,
