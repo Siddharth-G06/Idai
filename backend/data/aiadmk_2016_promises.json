@@ -20,16 +20,17 @@
       "classification_confidence": "low",
       "party": "AIADMK",
       "year": 2016,
-      "status": "unfulfilled",
-      "similarity_score": 0.3032,
-      "matched_headline": "Tamil Nadu CM Vijay inaugurates two-day training programme for MLAs",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/tamil-nadu-cm-vijay-inaugurates-two-day-training-programme-for-mlas/article71108198.ece",
-      "matched_date": "Tue, 16 Jun 2026 13:27:29 +0530",
+      "status": "fulfilled",
+      "similarity_score": 0.3576,
+      "matched_headline": "High volume of exotic animal applications in T.N., gaps in facilities hamper regulation and seizure",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/high-volume-of-exotic-animal-applications-in-tn-gaps-in-facilities-hamper-regulation-and-seizure/article71352014.ece",
+      "matched_date": "Sun, 16 Aug 2026 11:38:28 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK",
+      "credit_party": "DMK"
     },
     {
       "id": "aiadmk_2016_002",
