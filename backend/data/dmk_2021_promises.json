@@ -4237,15 +4237,15 @@
       "party": "DMK",
       "year": 2021,
       "status": "fulfilled",
-      "similarity_score": 0.3643,
-      "matched_headline": "DMK seeks adjournment motion on Cauvery dispute, slams TVK government’s Agriculture Budget",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/dmk-seeks-adjournment-motion-on-cauvery-dispute-slams-tvk-governments-agriculture-budget/article71313106.ece",
-      "matched_date": "Thu, 06 Aug 2026 16:02:27 +0530",
+      "similarity_score": 0.3982,
+      "matched_headline": "DMK’s regional satraps among 22 who will lose district secretary posts",
+      "matched_url": "https://www.thehindu.com/news/national/dmks-regional-satraps-among-22-who-will-lose-district-secretary-posts/article71381677.ece",
+      "matched_date": "Mon, 24 Aug 2026 00:03:16 +0530",
       "match_valid": true,
       "specificity_score": 0.2,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown",
+      "ruling_at_time": "DMK",
       "credit_party": "DMK"
     },
     {
@@ -6705,7 +6705,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.2278,
+      "confidence": 0.2279,
       "classification_confidence": "low",
       "party": "DMK",
       "year": 2021,
@@ -7827,7 +7827,7 @@
         "healthcare"
       ],
       "multi_category": false,
-      "confidence": 0.7001,
+      "confidence": 0.7,
       "classification_confidence": "high",
       "party": "DMK",
       "year": 2021,
@@ -15809,7 +15809,7 @@
         "education"
       ],
       "multi_category": false,
-      "confidence": 0.6012,
+      "confidence": 0.6011,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2021,
