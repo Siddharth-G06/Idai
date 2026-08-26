@@ -492,16 +492,17 @@
       "classification_confidence": "medium",
       "party": "AIADMK",
       "year": 2016,
-      "status": "unfulfilled",
-      "similarity_score": 0.3314,
-      "matched_headline": "Chief Minister Vijay inaugurates MLA office in his Perambur constituency",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/chief-minister-vijay-inaugurates-mla-office-in-his-perambur-constituency/article71217945.ece",
-      "matched_date": "Mon, 13 Jul 2026 21:38:16 +0530",
+      "status": "fulfilled",
+      "similarity_score": 0.4372,
+      "matched_headline": "App to access govt. services to be launched: IT Minister",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/app-to-access-govt-services-to-be-launched-it-minister/article71389995.ece",
+      "matched_date": "Wed, 26 Aug 2026 00:35:20 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "DMK",
+      "credit_party": "DMK"
     },
     {
       "id": "aiadmk_2016_021",
