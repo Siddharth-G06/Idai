@@ -1253,7 +1253,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.2446,
+      "confidence": 0.2445,
       "classification_confidence": "low",
       "party": "AIADMK",
       "year": 2021,
@@ -1425,7 +1425,7 @@
         "agriculture"
       ],
       "multi_category": false,
-      "confidence": 0.6713,
+      "confidence": 0.6714,
       "classification_confidence": "medium",
       "party": "AIADMK",
       "year": 2021,
@@ -1503,16 +1503,16 @@
       "classification_confidence": "medium",
       "party": "AIADMK",
       "year": 2021,
-      "status": "pending",
-      "similarity_score": 0.2472,
-      "matched_headline": "T.N. govt. allocates ₹828.36 crore for MLACDS",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/tn-govt-allocates-82836-crore-for-mlacds/article71333524.ece",
-      "matched_date": "Wed, 12 Aug 2026 01:14:13 +0530",
+      "status": "unfulfilled",
+      "similarity_score": 0.3013,
+      "matched_headline": "SRMIST, The Hindu to organise webinar on technology integration in medical profession",
+      "matched_url": "https://www.thehindu.com/education/srmist-the-hindu-to-organise-webinar-on-technology-integration-in-medical-profession/article71396818.ece",
+      "matched_date": "Thu, 27 Aug 2026 20:43:25 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "unknown"
     },
     {
       "id": "aiadmk_2021_062",
@@ -2557,15 +2557,15 @@
       "party": "AIADMK",
       "year": 2021,
       "status": "unfulfilled",
-      "similarity_score": 0.3216,
-      "matched_headline": "EPF contributions above Rs 1800/month to be voluntary",
-      "matched_url": "https://timesofindia.indiatimes.com/india/epf-contributions-above-1800/month-to-be-voluntary/articleshow/132126458.cms",
-      "matched_date": "2026-07-02T04:17:54+05:30",
+      "similarity_score": 0.3253,
+      "matched_headline": "Manickam Tagore demands release of ₹5,109 crore in Samagra Shiksha funds for Tamil Nadu",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/manickam-tagore-demands-release-of-5109-crore-in-samagra-shiksha-funds-for-tamil-nadu/article71396089.ece",
+      "matched_date": "Thu, 27 Aug 2026 22:30:47 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "unknown"
     }
   ]
 }
