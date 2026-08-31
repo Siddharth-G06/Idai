@@ -142,14 +142,14 @@
     "period": "2021-2026",
     "note": "DMK ruled TN 2021-2026; score = promises implemented",
     "total": 671,
-    "fulfilled": 604.4,
-    "score": 90.1,
+    "fulfilled": 605.4,
+    "score": 90.2,
     "avg_llm_confidence": 0.0,
     "categories": {
       "infrastructure": {
         "total": 160.0,
-        "fulfilled": 152.0,
-        "score": 95.0
+        "fulfilled": 153.0,
+        "score": 95.6
       },
       "agriculture": {
         "total": 51.5,
