@@ -1602,15 +1602,15 @@
       "party": "AIADMK",
       "year": 2021,
       "status": "unfulfilled",
-      "similarity_score": 0.2635,
-      "matched_headline": "Rejuvenation of irrigation channels, ponds to begin in Tamil Nadu under VB-G RAM G scheme",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/rejuvenation-of-irrigation-channels-ponds-to-begin-in-tamil-nadu-under-vb-g-ram-g-scheme/article71352224.ece",
-      "matched_date": "Sun, 16 Aug 2026 13:09:34 +0530",
+      "similarity_score": 0.2698,
+      "matched_headline": "Tamil Nadu CM Vijay opens Mettur Dam releasing Cauvery water for irrigation in State",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/tamil-nadu-cm-vijay-opens-mettur-dam-releasing-cauvery-water-for-irrigation-in-state/article71414428.ece",
+      "matched_date": "Tue, 01 Sep 2026 15:58:17 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "unknown"
     },
     {
       "id": "aiadmk_2021_066",
