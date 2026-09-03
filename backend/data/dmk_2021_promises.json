@@ -8784,16 +8784,17 @@
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2021,
-      "status": "unfulfilled",
-      "similarity_score": 0.3399,
-      "matched_headline": "T.N. Housing Minister to inaugurate The Hindu Real Estate & Infrastructure Summit 2026 on July 30",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/tn-housing-minister-to-inaugurate-the-hindu-real-estate-infrastructure-summit-2026-on-july-30/article71277594.ece",
-      "matched_date": "Tue, 28 Jul 2026 23:16:26 +0530",
+      "status": "fulfilled",
+      "similarity_score": 0.3532,
+      "matched_headline": "The Hindu Property Expo will feature more than 200 projects from over 45 firms",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/the-hindu-property-expo-will-feature-more-than-200-projects-from-over-45-firms/article71424746.ece",
+      "matched_date": "Fri, 04 Sep 2026 00:10:42 +0530",
       "match_valid": true,
       "specificity_score": 0.1,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK",
+      "credit_party": "DMK"
     },
     {
       "id": "dmk_2021_353",
