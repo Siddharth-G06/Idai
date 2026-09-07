@@ -562,7 +562,7 @@
         "healthcare"
       ],
       "multi_category": false,
-      "confidence": 0.4053,
+      "confidence": 0.4054,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
@@ -934,7 +934,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.5159,
+      "confidence": 0.5158,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
@@ -7410,7 +7410,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.8517,
+      "confidence": 0.8516,
       "classification_confidence": "high",
       "party": "DMK",
       "year": 2016,
@@ -8777,7 +8777,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.6655,
+      "confidence": 0.6654,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
@@ -16561,15 +16561,15 @@
       "party": "DMK",
       "year": 2016,
       "status": "fulfilled",
-      "similarity_score": 0.378,
-      "matched_headline": "Online registration of select documents to be launched in Tamil Nadu on August 17: Minister",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/online-registration-of-select-documents-to-be-launched-in-tamil-nadu-on-august-17-minister/article71192839.ece",
-      "matched_date": "Tue, 07 Jul 2026 14:41:03 +0530",
+      "similarity_score": 0.3861,
+      "matched_headline": "Registration offices to be rationalised; 25 model registration hubs to come up, Minister tells Assembly",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/registration-offices-to-be-rationalised-25-model-registration-hubs-to-come-up-minister-tells-assembly/article71438596.ece",
+      "matched_date": "Mon, 07 Sep 2026 19:01:05 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown",
+      "ruling_at_time": "DMK",
       "credit_party": "DMK"
     },
     {

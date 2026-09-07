@@ -667,16 +667,17 @@
       "classification_confidence": "low",
       "party": "AIADMK",
       "year": 2016,
-      "status": "unfulfilled",
-      "similarity_score": 0.3394,
-      "matched_headline": "DVAC registers case against Tahsildar, VAO in Vellore",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/dvac-registers-case-against-tahsildar-vao-in-vellore/article71044950.ece",
-      "matched_date": "Sun, 31 May 2026 23:45:48 +0530",
+      "status": "fulfilled",
+      "similarity_score": 0.3868,
+      "matched_headline": "Registration offices to be rationalised; 25 model registration hubs to come up, Minister tells Assembly",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/registration-offices-to-be-rationalised-25-model-registration-hubs-to-come-up-minister-tells-assembly/article71438596.ece",
+      "matched_date": "Mon, 07 Sep 2026 19:01:05 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "DMK",
+      "credit_party": "DMK"
     },
     {
       "id": "aiadmk_2016_028",
@@ -1574,7 +1575,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.2198,
+      "confidence": 0.2199,
       "classification_confidence": "low",
       "party": "AIADMK",
       "year": 2016,
