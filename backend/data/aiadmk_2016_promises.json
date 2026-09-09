@@ -1575,7 +1575,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.2198,
+      "confidence": 0.2199,
       "classification_confidence": "low",
       "party": "AIADMK",
       "year": 2016,
@@ -1876,15 +1876,15 @@
       "party": "AIADMK",
       "year": 2016,
       "status": "unfulfilled",
-      "similarity_score": 0.2302,
-      "matched_headline": "TMB Q4 net surges 28% to ₹374 crore",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/tmb-results-for-business-page/article70916305.ece",
-      "matched_date": "Tue, 28 Apr 2026 20:19:32 +0530",
+      "similarity_score": 0.2616,
+      "matched_headline": "T.N.’s GSDP expanded by 15.98% in 2024-25; debt stands at ₹8.53 lakh crore: CAG",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/tns-gsdp-expanded-by-1598-in-2024-25-debt-stands-at-853-lakh-crore-cag/article71444013.ece",
+      "matched_date": "Wed, 09 Sep 2026 01:03:44 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK"
     },
     {
       "id": "aiadmk_2016_077",
