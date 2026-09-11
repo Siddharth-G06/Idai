@@ -6709,7 +6709,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.2278,
+      "confidence": 0.2279,
       "classification_confidence": "low",
       "party": "DMK",
       "year": 2021,
@@ -7832,7 +7832,7 @@
         "healthcare"
       ],
       "multi_category": false,
-      "confidence": 0.7001,
+      "confidence": 0.7,
       "classification_confidence": "high",
       "party": "DMK",
       "year": 2021,
@@ -8286,7 +8286,7 @@
       "party": "DMK",
       "year": 2021,
       "status": "fulfilled",
-      "similarity_score": 0.5174,
+      "similarity_score": 0.5175,
       "matched_headline": "Tamil Nadu Budget: Lean-period fishing assistance raised to ₹7,000 per family",
       "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/tamil-nadu-budget-lean-period-fishing-assistance-raised-to-7000-per-family/article71308426.ece",
       "matched_date": "Wed, 05 Aug 2026 12:42:45 +0530",
@@ -15821,7 +15821,7 @@
         "education"
       ],
       "multi_category": false,
-      "confidence": 0.6012,
+      "confidence": 0.6011,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2021,
