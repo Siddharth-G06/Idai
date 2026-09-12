@@ -562,7 +562,7 @@
         "healthcare"
       ],
       "multi_category": false,
-      "confidence": 0.4053,
+      "confidence": 0.4054,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
@@ -934,7 +934,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.5159,
+      "confidence": 0.5158,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
@@ -7410,7 +7410,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.8517,
+      "confidence": 0.8516,
       "classification_confidence": "high",
       "party": "DMK",
       "year": 2016,
@@ -8777,7 +8777,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.6655,
+      "confidence": 0.6654,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
@@ -9601,15 +9601,15 @@
       "party": "DMK",
       "year": 2016,
       "status": "unfulfilled",
-      "similarity_score": 0.3431,
-      "matched_headline": "Return of the native: The Nilgiris planning to promote cultivation of native fruit trees",
-      "matched_url": "https://www.thehindu.com/news/cities/Coimbatore/return-of-the-native-the-nilgiris-planning-to-promote-cultivation-of-native-fruit-trees/article71117206.ece",
-      "matched_date": "Thu, 18 Jun 2026 18:59:18 +0530",
+      "similarity_score": 0.3487,
+      "matched_headline": "PM Modi, Brics leaders take part in joint tree plantation at Bharat Mandapam: Watch",
+      "matched_url": "https://timesofindia.indiatimes.com/india/pm-modi-brics-leaders-take-part-in-joint-tree-plantation-at-bharat-mandapam-watch/articleshow/134129899.cms",
+      "matched_date": "2026-09-12T17:31:49+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK"
     },
     {
       "id": "dmk_2016_388",
