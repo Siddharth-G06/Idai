@@ -786,16 +786,17 @@
       "classification_confidence": "high",
       "party": "AIADMK",
       "year": 2021,
-      "status": "unfulfilled",
-      "similarity_score": 0.3439,
-      "matched_headline": "12 Korean universities participate in education fair",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/12-korean-universities-participate-in-education-fair/article71490707.ece",
-      "matched_date": "Mon, 21 Sep 2026 22:00:48 +0530",
+      "status": "fulfilled",
+      "similarity_score": 0.406,
+      "matched_headline": "Gauhati University, Thailand discuss academic, research collaboration",
+      "matched_url": "https://timesofindia.indiatimes.com/india/gauhati-university-thailand-discuss-academic-research-collaboration/articleshow/134415635.cms",
+      "matched_date": "2026-09-22T21:02:13+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "DMK",
+      "credit_party": "DMK"
     },
     {
       "id": "aiadmk_2021_033",
