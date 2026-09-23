@@ -14069,16 +14069,17 @@
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2021,
-      "status": "unfulfilled",
-      "similarity_score": 0.3486,
-      "matched_headline": "Jammu and Kashmir: 3 publishers held for books in school libraries praising separatists",
-      "matched_url": "https://timesofindia.indiatimes.com/india/jammu-and-kashmir-3-publishers-held-for-books-in-school-libraries-praising-separatists/articleshow/132351534.cms",
-      "matched_date": "2026-07-13T00:30:38+05:30",
+      "status": "fulfilled",
+      "similarity_score": 0.3728,
+      "matched_headline": "J&amp;K scans 21 lakh library books, pulls out 4,000 titles; ‘objectionable content’ under scrutiny",
+      "matched_url": "https://timesofindia.indiatimes.com/india/jk-scans-21-lakh-library-books-pulls-out-4000-titles-objectionable-content-under-scrutiny/articleshow/134420150.cms",
+      "matched_date": "2026-09-23T02:42:03+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "DMK",
+      "credit_party": "DMK"
     },
     {
       "id": "dmk_2021_565",
