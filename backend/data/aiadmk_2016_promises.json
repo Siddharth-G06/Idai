@@ -1826,16 +1826,17 @@
       "classification_confidence": "low",
       "party": "AIADMK",
       "year": 2016,
-      "status": "unfulfilled",
-      "similarity_score": 0.2785,
-      "matched_headline": "From zero to 26, estimation shows signs of Nilgiri Tahrs’ revival in Coimbatore forest division",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/from-zero-to-26-estimation-shows-signs-of-nilgiri-tahrs-revival-in-coimbatore-forest-division/article71093605.ece",
-      "matched_date": "Sat, 13 Jun 2026 15:16:01 +0530",
+      "status": "fulfilled",
+      "similarity_score": 0.3532,
+      "matched_headline": "Sustainability must be backed by measurable outcomes, practical action: Tamil Nadu Minister V.K. Rajeev",
+      "matched_url": "https://www.thehindu.com/news/cities/chennai/sustainability-must-be-backed-by-measurable-outcomes-practical-action-tamil-nadu-minister-vk-rajeev/article71499279.ece",
+      "matched_date": "Wed, 23 Sep 2026 16:16:41 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "DMK",
+      "credit_party": "DMK"
     },
     {
       "id": "aiadmk_2016_075",
