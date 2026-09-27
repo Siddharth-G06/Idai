@@ -7414,7 +7414,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.8517,
+      "confidence": 0.8516,
       "classification_confidence": "high",
       "party": "DMK",
       "year": 2016,
@@ -9804,7 +9804,7 @@
       "party": "DMK",
       "year": 2016,
       "status": "fulfilled",
-      "similarity_score": 0.3592,
+      "similarity_score": 0.3593,
       "matched_headline": "Sanitation workers to receive ₹50 as food allowance daily",
       "matched_url": "https://www.thehindu.com/news/cities/chennai/sanitation-workers-to-receive-50-as-food-allowance-daily/article71513707.ece",
       "matched_date": "Sun, 27 Sep 2026 00:40:05 +0530",
