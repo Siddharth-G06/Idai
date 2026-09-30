@@ -563,7 +563,7 @@
         "healthcare"
       ],
       "multi_category": false,
-      "confidence": 0.4053,
+      "confidence": 0.4054,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
@@ -935,7 +935,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.5159,
+      "confidence": 0.5158,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
@@ -8782,7 +8782,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.6655,
+      "confidence": 0.6654,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
@@ -9804,7 +9804,7 @@
       "party": "DMK",
       "year": 2016,
       "status": "fulfilled",
-      "similarity_score": 0.3593,
+      "similarity_score": 0.3592,
       "matched_headline": "Sanitation workers to receive ₹50 as food allowance daily",
       "matched_url": "https://www.thehindu.com/news/cities/chennai/sanitation-workers-to-receive-50-as-food-allowance-daily/article71513707.ece",
       "matched_date": "Sun, 27 Sep 2026 00:40:05 +0530",
