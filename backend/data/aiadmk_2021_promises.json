@@ -41,7 +41,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.1919,
+      "confidence": 0.1918,
       "classification_confidence": "low",
       "party": "AIADMK",
       "year": 2021,
@@ -2560,15 +2560,15 @@
       "party": "AIADMK",
       "year": 2021,
       "status": "unfulfilled",
-      "similarity_score": 0.3253,
-      "matched_headline": "Manickam Tagore demands release of ₹5,109 crore in Samagra Shiksha funds for Tamil Nadu",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/manickam-tagore-demands-release-of-5109-crore-in-samagra-shiksha-funds-for-tamil-nadu/article71396089.ece",
-      "matched_date": "Thu, 27 Aug 2026 22:30:47 +0530",
+      "similarity_score": 0.3274,
+      "matched_headline": "UPITS 2026 concludes with 4,400 MoUs worth Rs 6,500 crore; business worth Rs 15,500 crore estimated",
+      "matched_url": "https://timesofindia.indiatimes.com/india/upits-2026-concludes-with-4400-mous-worth-rs-6500-crore-business-worth-rs-15500-crore-estimated/articleshow/134582224.cms",
+      "matched_date": "2026-09-30T10:39:06+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK"
     }
   ]
 }
