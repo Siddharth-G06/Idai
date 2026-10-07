@@ -563,7 +563,7 @@
         "healthcare"
       ],
       "multi_category": false,
-      "confidence": 0.4054,
+      "confidence": 0.4053,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
@@ -935,7 +935,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.5158,
+      "confidence": 0.5159,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
@@ -7144,15 +7144,15 @@
       "party": "DMK",
       "year": 2016,
       "status": "fulfilled",
-      "similarity_score": 0.4754,
-      "matched_headline": "1000-year-old temples to be renovated; folk deities to be celebrated: HR&CE Minister",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/1000-year-old-temples-to-be-renovated-folk-deities-to-be-celebrated-hrce-minister/article71373816.ece",
-      "matched_date": "Fri, 21 Aug 2026 19:23:54 +0530",
+      "similarity_score": 0.4959,
+      "matched_headline": "The seven Shiva temples of Mylapore",
+      "matched_url": "https://www.thehindu.com/news/cities/chennai/the-seven-shiva-temples-of-mylapore/article71551833.ece",
+      "matched_date": "Tue, 06 Oct 2026 20:53:13 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK",
+      "ruling_at_time": "unknown",
       "credit_party": "DMK"
     },
     {
@@ -8782,7 +8782,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.6654,
+      "confidence": 0.6655,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
