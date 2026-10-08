@@ -1851,15 +1851,15 @@
       "party": "AIADMK",
       "year": 2021,
       "status": "unfulfilled",
-      "similarity_score": 0.3351,
-      "matched_headline": "Over 500 participate in RIFAH’s annual conference",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/over-500-participate-in-rifahs-annual-conference/article70995252.ece",
-      "matched_date": "Tue, 19 May 2026 00:49:48 +0530",
+      "similarity_score": 0.3458,
+      "matched_headline": "Times Prime rolls out Rs 1 lakh reward envelopes across 5,000 Daalchini vending machines",
+      "matched_url": "https://timesofindia.indiatimes.com/india/times-prime-rolls-out-rs-1-lakh-reward-envelopes-across-5000-daalchini-vending-machines/articleshow/134785482.cms",
+      "matched_date": "2026-10-08T14:40:16+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK"
     },
     {
       "id": "aiadmk_2021_076",
