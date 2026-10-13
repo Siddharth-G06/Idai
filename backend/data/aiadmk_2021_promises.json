@@ -41,7 +41,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.1918,
+      "confidence": 0.1919,
       "classification_confidence": "low",
       "party": "AIADMK",
       "year": 2021,
@@ -366,15 +366,15 @@
       "party": "AIADMK",
       "year": 2021,
       "status": "fulfilled",
-      "similarity_score": 0.3782,
-      "matched_headline": "Language-based AI systems could aid in organising archaeology reports",
-      "matched_url": "https://timesofindia.indiatimes.com/india/language-based-ai-systems-could-aid-in-organising-reports-in-archaeology/articleshow/131193257.cms",
-      "matched_date": "2026-05-19T12:28:27+05:30",
+      "similarity_score": 0.4263,
+      "matched_headline": "AI can aid faster, cost-effective diagnosis but clinical validation and data safeguards needed: experts",
+      "matched_url": "https://www.thehindu.com/news/cities/chennai/ai-can-aid-faster-cost-effective-diagnosis-but-clinical-validation-and-data-safeguards-needed-experts/article71578899.ece",
+      "matched_date": "Tue, 13 Oct 2026 16:10:55 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK",
+      "ruling_at_time": "unknown",
       "credit_party": "DMK"
     },
     {
@@ -1254,7 +1254,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.2446,
+      "confidence": 0.2445,
       "classification_confidence": "low",
       "party": "AIADMK",
       "year": 2021,
@@ -1426,7 +1426,7 @@
         "agriculture"
       ],
       "multi_category": false,
-      "confidence": 0.6713,
+      "confidence": 0.6714,
       "classification_confidence": "medium",
       "party": "AIADMK",
       "year": 2021,
