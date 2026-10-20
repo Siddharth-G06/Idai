@@ -563,7 +563,7 @@
         "healthcare"
       ],
       "multi_category": false,
-      "confidence": 0.4054,
+      "confidence": 0.4053,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
@@ -935,7 +935,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.5158,
+      "confidence": 0.5159,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
@@ -7414,7 +7414,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.8516,
+      "confidence": 0.8517,
       "classification_confidence": "high",
       "party": "DMK",
       "year": 2016,
@@ -8782,7 +8782,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.6654,
+      "confidence": 0.6655,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
@@ -11720,15 +11720,15 @@
       "party": "DMK",
       "year": 2016,
       "status": "unfulfilled",
-      "similarity_score": 0.3326,
-      "matched_headline": "Teacher recruitment candidates from 2025 demand to be considered for recruitment to new vacancies",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/teacher-recruitment-candidates-from-2025-demand-to-be-considered-for-recruitment-to-new-vacancies/article71094185.ece",
-      "matched_date": "Sat, 13 Jun 2026 00:21:01 +0530",
+      "similarity_score": 0.3442,
+      "matched_headline": "Applications invited for VITEEE 2027",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/applications-invited-for-viteee-2027/article71604433.ece",
+      "matched_date": "Tue, 20 Oct 2026 18:18:36 +0530",
       "match_valid": true,
       "specificity_score": 0.2,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "unknown"
     },
     {
       "id": "dmk_2016_473",
