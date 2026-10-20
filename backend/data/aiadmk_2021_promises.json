@@ -762,15 +762,15 @@
       "party": "AIADMK",
       "year": 2021,
       "status": "fulfilled",
-      "similarity_score": 0.3635,
-      "matched_headline": "24-hour water supply scheme to be commissioned in some areas of Tiruchi before July 31",
-      "matched_url": "https://www.thehindu.com/news/cities/Tiruchirapalli/24-hour-water-supply-scheme-to-be-commissioned-in-some-areas-of-tiruchi-before-july-31/article71241554.ece",
-      "matched_date": "Sun, 19 Jul 2026 19:24:27 +0530",
+      "similarity_score": 0.3837,
+      "matched_headline": "Tamil Nadu government orders additional 25 days of guaranteed employment for vulnerable rural households",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/tamil-nadu-government-orders-additional-25-days-of-guaranteed-employment-for-vulnerable-rural-households/article71603349.ece",
+      "matched_date": "Tue, 20 Oct 2026 13:39:50 +0530",
       "match_valid": true,
       "specificity_score": 0.5,
       "specificity": "medium",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK",
+      "ruling_at_time": "unknown",
       "credit_party": "DMK"
     },
     {
@@ -1254,7 +1254,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.2445,
+      "confidence": 0.2446,
       "classification_confidence": "low",
       "party": "AIADMK",
       "year": 2021,
@@ -1426,7 +1426,7 @@
         "agriculture"
       ],
       "multi_category": false,
-      "confidence": 0.6714,
+      "confidence": 0.6713,
       "classification_confidence": "medium",
       "party": "AIADMK",
       "year": 2021,
