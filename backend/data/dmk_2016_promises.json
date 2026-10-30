@@ -16819,15 +16819,15 @@
       "party": "DMK",
       "year": 2016,
       "status": "unfulfilled",
-      "similarity_score": 0.3179,
-      "matched_headline": "Over 500 participate in RIFAH’s annual conference",
-      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/over-500-participate-in-rifahs-annual-conference/article70995252.ece",
-      "matched_date": "Tue, 19 May 2026 00:49:48 +0530",
+      "similarity_score": 0.3247,
+      "matched_headline": "Census 2027 population enumeration phase to be of record 50 days",
+      "matched_url": "https://timesofindia.indiatimes.com/india/census-2027-population-enumeration-phase-to-be-of-record-50-days/articleshow/135377987.cms",
+      "matched_date": "2026-10-31T02:52:14+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown"
+      "ruling_at_time": "DMK"
     },
     {
       "id": "dmk_2016_679",
