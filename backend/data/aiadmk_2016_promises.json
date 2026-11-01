@@ -865,16 +865,17 @@
       "classification_confidence": "medium",
       "party": "AIADMK",
       "year": 2016,
-      "status": "unfulfilled",
-      "similarity_score": 0.3185,
-      "matched_headline": "Minister V. Sampath Kumar distributes 1,202 new ration cards in Coimbatore",
-      "matched_url": "https://www.thehindu.com/news/cities/Coimbatore/minister-v-sampath-kumar-distributes-1202-new-ration-cards-in-coimbatore/article71237789.ece",
-      "matched_date": "Sat, 18 Jul 2026 19:38:08 +0530",
+      "status": "fulfilled",
+      "similarity_score": 0.3509,
+      "matched_headline": "Minister inaugurates modern paddy storage facilities in Cuddalore district",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/minister-inaugurates-modern-paddy-storage-facilities-in-cuddalore-district/article71652117.ece",
+      "matched_date": "Sun, 01 Nov 2026 10:17:03 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "DMK",
+      "credit_party": "DMK"
     },
     {
       "id": "aiadmk_2016_036",
