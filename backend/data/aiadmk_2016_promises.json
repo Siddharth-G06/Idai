@@ -1434,15 +1434,15 @@
       "party": "AIADMK",
       "year": 2016,
       "status": "unfulfilled",
-      "similarity_score": 0.1883,
-      "matched_headline": "Congress demands independent probe into donation chori",
-      "matched_url": "https://timesofindia.indiatimes.com/india/congress-demands-independent-probe-into-donation-chori/articleshow/132502204.cms",
-      "matched_date": "2026-07-20T03:50:20+05:30",
+      "similarity_score": 0.1969,
+      "matched_headline": "Home textile exporters to get subsidy to participate in Germany fair in 2027",
+      "matched_url": "https://www.thehindu.com/news/cities/Coimbatore/home-textile-exporters-to-get-subsidy-to-participate-in-germany-fair-in-2027/article71661421.ece",
+      "matched_date": "Tue, 03 Nov 2026 20:30:11 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "unknown"
     },
     {
       "id": "aiadmk_2016_059",
