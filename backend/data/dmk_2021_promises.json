@@ -3812,7 +3812,7 @@
         "healthcare"
       ],
       "multi_category": false,
-      "confidence": 0.4077,
+      "confidence": 0.4076,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2021,
@@ -5917,15 +5917,15 @@
       "party": "DMK",
       "year": 2021,
       "status": "fulfilled",
-      "similarity_score": 0.4197,
-      "matched_headline": "Govt proposes mandatory Vehicle-to-Vehicle communication systems from Oct 2028 to cut road crashes",
-      "matched_url": "https://timesofindia.indiatimes.com/india/govt-proposes-mandatory-vehicle-to-vehicle-communication-systems-from-oct-2028-to-cut-road-crashes/articleshow/132844760.cms",
-      "matched_date": "2026-08-04T08:14:48+05:30",
+      "similarity_score": 0.4267,
+      "matched_headline": "Vehicles exceeding 12 metres in length prohibited from plying on Kodaikanal route",
+      "matched_url": "https://www.thehindu.com/news/cities/Madurai/vehicles-exceeding-12-metres-in-length-prohibited-from-plying-on-kodaikanal-route/article71683507.ece",
+      "matched_date": "Tue, 10 Nov 2026 15:37:47 +0530",
       "match_valid": true,
       "specificity_score": 0.1,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK",
+      "ruling_at_time": "unknown",
       "credit_party": "DMK"
     },
     {
@@ -7684,7 +7684,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.2945,
+      "confidence": 0.2946,
       "classification_confidence": "low",
       "party": "DMK",
       "year": 2021,
@@ -7834,7 +7834,7 @@
         "healthcare"
       ],
       "multi_category": false,
-      "confidence": 0.7001,
+      "confidence": 0.7,
       "classification_confidence": "high",
       "party": "DMK",
       "year": 2021,
@@ -12676,7 +12676,7 @@
         "general"
       ],
       "multi_category": false,
-      "confidence": 0.1677,
+      "confidence": 0.1676,
       "classification_confidence": "low",
       "party": "DMK",
       "year": 2021,
