@@ -11825,15 +11825,15 @@
       "party": "DMK",
       "year": 2016,
       "status": "unfulfilled",
-      "similarity_score": 0.3386,
-      "matched_headline": "Will remove vendors, move in-house: NTA",
-      "matched_url": "https://timesofindia.indiatimes.com/india/will-remove-vendors-move-in-house-nta/articleshow/131254282.cms",
-      "matched_date": "2026-05-22T05:02:27+05:30",
+      "similarity_score": 0.343,
+      "matched_headline": "Call for cancellation of TNMSC’s tenders for repair works at TASMAC warehouses in Tamil Nadu",
+      "matched_url": "https://www.thehindu.com/news/national/tamil-nadu/call-for-cancellation-of-tnmsc-tenders-for-repair-works-at-tasmac-warehouses-in-tamil-nadu/article71709061.ece",
+      "matched_date": "Tue, 17 Nov 2026 13:28:43 +0530",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "DMK"
+      "ruling_at_time": "unknown"
     },
     {
       "id": "dmk_2016_477",
