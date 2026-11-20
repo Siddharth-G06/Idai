@@ -563,7 +563,7 @@
         "healthcare"
       ],
       "multi_category": false,
-      "confidence": 0.4054,
+      "confidence": 0.4053,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
@@ -935,7 +935,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.5158,
+      "confidence": 0.5159,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
@@ -3500,15 +3500,15 @@
       "party": "DMK",
       "year": 2016,
       "status": "fulfilled",
-      "similarity_score": 0.361,
-      "matched_headline": "Textile associations demand measures to reduce power costs in T.N.",
-      "matched_url": "https://www.thehindu.com/news/cities/Coimbatore/textile-associations-demand-measures-to-reduce-power-costs-in-tn/article71282623.ece",
-      "matched_date": "Thu, 30 Jul 2026 00:48:03 +0530",
+      "similarity_score": 0.3918,
+      "matched_headline": "We cut tax, but where are the hires, salary hikes: PM Modi to industry",
+      "matched_url": "https://timesofindia.indiatimes.com/india/we-cut-tax-but-where-are-the-hires-salary-hikes-pm-to-industry/articleshow/136007746.cms",
+      "matched_date": "2026-11-20T04:43:35+05:30",
       "match_valid": true,
       "specificity_score": 0.0,
       "specificity": "low",
       "promising_party": "DMK",
-      "ruling_at_time": "unknown",
+      "ruling_at_time": "DMK",
       "credit_party": "DMK"
     },
     {
@@ -7418,7 +7418,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.8516,
+      "confidence": 0.8517,
       "classification_confidence": "high",
       "party": "DMK",
       "year": 2016,
@@ -8786,7 +8786,7 @@
         "infrastructure"
       ],
       "multi_category": false,
-      "confidence": 0.6654,
+      "confidence": 0.6655,
       "classification_confidence": "medium",
       "party": "DMK",
       "year": 2016,
